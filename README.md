@@ -1,7 +1,7 @@
 # Shan Hai Ching
 
 <p align="right">
-    <i>Free-Fantacy</i>
+    <i>Free-Fantasy</i>
 </p>
 
 > Only Commit 3 folders
