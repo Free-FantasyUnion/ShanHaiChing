@@ -20,7 +20,6 @@ public class PlayerManager : MonoBehaviour
     {
 
     }
-
     public static PlayerManager GetInstance()
     {
         return instance;

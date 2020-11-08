@@ -9,7 +9,22 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField]Sprite enemyImage;
     [SerializeField] float detectRadius;
     [SerializeField] float attackRadius;
+    [SerializeField] float defendRatio;
 
+    private void SetYuanqi()
+    {
+        this.yuanQi = 1 * (1 + Random.Range(0,0.5f));
+        this.yuanQiDrop = Mathf.Sqrt(this.yuanQi*this.yuanQi-1);
+    }
+
+    private float Defend(float value)
+    {
+        return value * defendRatio;
+    }
+    public void Hurt(float value)
+    {
+        this.yuanQi -= Defend(value);
+    }
 
     /*    smjb????
      *    
@@ -22,15 +37,12 @@ public abstract class EnemyBase : MonoBehaviour
     /// <summary>
     /// 近战远战的敌人的寻路方式不同
     /// </summary>
+    
     abstract public void AI();
 
 
     /// <summary>
     ///不同敌人有不同的攻击方式
     /// </summary>
-    void Attack()
-    {
-        
-    }
-
+    abstract public void Attack();
 }

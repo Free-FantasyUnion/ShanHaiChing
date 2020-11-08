@@ -10,5 +10,7 @@ public class CloseEnemy : EnemyBase
         
     }
 
-
+    public override void Attack()
+    {
+    }
 }
