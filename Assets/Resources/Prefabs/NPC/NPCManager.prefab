@@ -43,10 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99572d409a1ca643a9202fba38549ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dialog_Text_FrameWork: {fileID: 2607462725621501710, guid: 5cdda3c9f3ca4a04cbe177555ad85597,
+  Dialog_Text_FrameWork_Prefab: {fileID: 2607462725621501710, guid: 5cdda3c9f3ca4a04cbe177555ad85597,
     type: 3}
   Dialog_Text: {fileID: 0}
   dialogScriptsList: []
   curScriptName: 
   index_Of_Scripts: 0
-  test: {fileID: 4900000, guid: 624dda0bf40b1f6468b7d6b84a364648, type: 3}
