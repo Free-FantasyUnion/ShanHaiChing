@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class NPCManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class NPCManager : MonoBehaviour
     [SerializeField] private GameObject Dialog_Text_FrameWork;
     [SerializeField] private Text Dialog_Text;
 
+    [Space(10)]
 
     /// <summary>
     /// 剧本列表
@@ -19,18 +21,12 @@ public class NPCManager : MonoBehaviour
 
     private DialogScriptHelper helper;
 
-    //test
-    public TextAsset test;
-    public DialogScriptHelper dialog_Test;
 
-    
+
+
     private void Start()
     {
-        SetUp();
-
-
-        //test
-        dialog_Test = new DialogScriptHelper(test, "Test");
+        SetUp(); 
     }
 
     private void Update()
@@ -39,11 +35,7 @@ public class NPCManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             print(curScriptName);
-
             ShowText();
-           /* //test
-            string tmp = dialog_Test.ReadLine();
-            print(tmp);//catch a error and destory the class;*/
         }
     }
 
@@ -53,23 +45,30 @@ public class NPCManager : MonoBehaviour
         //获取text文本的Text组件
         GameObject prefab = Instantiate(Dialog_Text_FrameWork);
         Dialog_Text = prefab.transform.Find("Text").GetComponent<Text>();
-        dialogScriptsList = new List<TextAsset>();
-        dialogScriptsList.Add(test);
-        //
-        index_Of_Scripts = 0;
-        curScriptName = dialogScriptsList[0].name;
-        //创建一个帮助器
-        helper = new DialogScriptHelper(dialogScriptsList[index_Of_Scripts], curScriptName);
+
+        // load the scripts
+        dialogScriptsList = new List<TextAsset>(Resources.LoadAll<TextAsset>(SceneManager.GetActiveScene().name));
         
 
+        //创建一个帮助器
+        helper = new DialogScriptHelper(dialogScriptsList[index_Of_Scripts], curScriptName);
 
+        // set up
+        index_Of_Scripts = 0;
+        curScriptName = dialogScriptsList[0].name;
     }
 
     private void ShowText()
     {
+        //catch and destory the prefab
         this.Dialog_Text.text = helper.ReadLine();
     }
 
+
+    private void ReseBonseToNPC(int index,string npcName)
+    {
+        
+    }
 }
 
 
