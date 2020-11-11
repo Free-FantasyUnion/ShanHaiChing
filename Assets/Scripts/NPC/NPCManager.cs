@@ -7,23 +7,24 @@ using UnityEngine.Assertions.Must;
 
 public class NPCManager : MonoBehaviour
 {
-    private static NPCManager instance = new NPCManager();
+    private static NPCManager instance;
+
     [Header("UI")]
-    [SerializeField] private GameObject Dialog_Text_FrameWork_Prefab;
-    [SerializeField] private Text Dialog_Text;
-    private GameObject Dialog_Text_FrameWork;
+
+    private GameObject dialogFramework_Prefab;
+    private GameObject dialogFrameWork;
+    private Text Dialog_Text;
+
 
     [Space(10)]
 
     /// <summary>
     /// 剧本列表
     /// </summary>
-    [SerializeField] private List<TextAsset> dialogScriptsList;
-    public string curScriptName;
-    public int index_Of_Scripts;//start from 0
+    private List<TextAsset> dialogScriptsList;
     bool isDialogging = false;
 
-    private DialogScriptHelper helper = new DialogScriptHelper();
+    private DialogScriptHelper helper;
 
     private NPCManager()
     {
@@ -35,46 +36,50 @@ public class NPCManager : MonoBehaviour
         return instance;
     }
 
-
+    private void Awake()
+    {
+        instance = new NPCManager();
+        instance.helper = new DialogScriptHelper();
+    }
 
     private void Start()
     {
 
         // load the scripts
-        dialogScriptsList = new List<TextAsset>(Resources.LoadAll<TextAsset>(SceneManager.GetActiveScene().name));
-        Dialog_Text_FrameWork_Prefab = Resources.Load<GameObject>("Prefabs/NPC/NPC_Dialog_UI");
-        print("OVer");
+        instance.dialogScriptsList = new List<TextAsset>(Resources.LoadAll<TextAsset>(SceneManager.GetActiveScene().name));
+        instance.dialogFramework_Prefab = Resources.Load<GameObject>("Prefabs/NPC/NPC_Dialog_UI");
     }
 
 
     private void ShowText()
     {
         //catch and destory the prefab
-        this.Dialog_Text.text = helper.ReadLine();
+        instance.Dialog_Text.text = helper.ReadLine();
     }
 
 
     public void ReseBonseToNPC(int index)
     {
-        if (!isDialogging)// 第一次按下对话键
+        if (!instance.isDialogging)// 第一次按下对话键
         {
-            isDialogging = true;
+            instance.isDialogging = true;
             //生成prefab并获取text文本的Text组件
-            Dialog_Text_FrameWork = Instantiate(Dialog_Text_FrameWork_Prefab);
-            Dialog_Text = Dialog_Text_FrameWork.transform.Find("Text").GetComponent<Text>();
-            helper.LoadScripts(dialogScriptsList[index]);
-            ShowText();
+
+            instance.dialogFrameWork = Instantiate(instance.dialogFramework_Prefab);
+            instance.Dialog_Text = dialogFrameWork.transform.Find("Text").GetComponent<Text>();
+            instance.helper.LoadScripts(instance.dialogScriptsList[index]);
+            instance.ShowText();
         }
         else
         {
             try
             {
-                ShowText();
+                instance.ShowText();
             }
             catch
             {
-                isDialogging = false;
-                Destroy(Dialog_Text_FrameWork);
+                instance.isDialogging = false;
+                Destroy(instance.dialogFrameWork);
             }
         }
 

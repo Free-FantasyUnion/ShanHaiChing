@@ -25,15 +25,16 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        
+
     }
-
-
-
-    float CaculateAngel(Vector3 playerFront, Vector3 enemyLine)
+    private void Start()
     {
-        return Mathf.Acos(Vector3.Dot(playerFront.normalized, enemyLine.normalized)) * Mathf.Rad2Deg;
+        GameManager.GetInstance().AttackJudge();
     }
+
+
+
+
 
 
     //Delegate
