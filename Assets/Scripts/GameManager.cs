@@ -28,20 +28,39 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.H))
-		{
-            AttackJudge();
-		}
+		
 	}
 
-    public void AttackJudge()
+	
+    public void AttackJudge(Transform point,float attackRadius,float attackAngel,LayerMask attackLayer,float damage)
     {
-		
+		Collider2D[] targets = Physics2D.OverlapCircleAll(point.position, attackRadius, attackLayer);
+		List<Transform> judgeList=new List<Transform>();
+		foreach (Collider2D target in targets)
+		{//TODO: Check the vector3.right is correct
+			if (CaculateAngel(point.right, target.transform.position - point.position)<attackAngel)
+			{
+				if (attackLayer == LayerMask.NameToLayer("Enemy"))
+				{
+					target.GetComponent<EnemyBase>().Hurt(damage);
+				}
+				else if (attackLayer == LayerMask.NameToLayer("Player"))
+				{
+					target.GetComponent<Player>().Hurt(damage);
+				}
+			}
+		}
     }
 
-	float CaculateAngel(Vector3 playerFront, Vector3 enemyLine)
+	/// <summary>
+	/// 计算2个向量的夹角
+	/// </summary>
+	/// <param name="direction"></param>
+	/// <param name="joinedLine"></param>
+	/// <returns></returns>
+	float CaculateAngel(Vector3 direction, Vector3 joinedLine)
 	{
-		return Mathf.Acos(Vector3.Dot(playerFront.normalized, enemyLine.normalized)) * Mathf.Rad2Deg;
+		return Mathf.Acos(Vector3.Dot(direction.normalized, joinedLine.normalized)) * Mathf.Rad2Deg;
 	}
 
 

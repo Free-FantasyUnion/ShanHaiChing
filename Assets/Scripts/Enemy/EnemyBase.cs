@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EnemyBase : MonoBehaviour
+public abstract class EnemyBase : MonoBehaviour,ICharacter
 {
-    [SerializeField]float yuanQi;
-    [SerializeField]float yuanQiDrop;
-    [SerializeField]Sprite enemyImage;
-    [SerializeField] float detectRadius;
-    [SerializeField] float attackRadius;
-    [SerializeField] float defendRatio;
+    [SerializeField] protected float yuanQi;
+    [SerializeField] protected float yuanQiDrop;
+    [SerializeField] protected Sprite enemyImage;
+    [SerializeField] protected float detectRadius;
+    [SerializeField] protected float attackRadius;
+    [SerializeField] protected float defendRatio;
 
     private void SetYuanqi()
     {
@@ -21,10 +21,7 @@ public abstract class EnemyBase : MonoBehaviour
     {
         return value * defendRatio;
     }
-    public void Hurt(float value)
-    {
-        this.yuanQi -= Defend(value);
-    }
+    
 
     /*    smjb????
      *    
@@ -44,5 +41,10 @@ public abstract class EnemyBase : MonoBehaviour
     /// <summary>
     ///不同敌人有不同的攻击方式
     /// </summary>
-    abstract public void Attack();
+    public abstract void Attack();
+
+    public void Hurt(float value)
+    {
+        this.yuanQi -= Defend(value);
+    }
 }

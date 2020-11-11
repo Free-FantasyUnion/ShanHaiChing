@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface ICharacter 
 {
-    float Attack(float value);
+    void Attack();
     void Hurt(float value);
 }

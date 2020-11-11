@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+
+public class Player : MonoBehaviour,ICharacter
 {
     //Atack
     float attackRatio;
@@ -29,7 +30,7 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
-        GameManager.GetInstance().AttackJudge();
+        
     }
 
 
@@ -37,18 +38,19 @@ public class Player : MonoBehaviour
 
 
 
-    //Delegate
+   /* //Delegate
     void OverLapScope(float attackRange, int angle, LayerMask layer)
     {
         Collider2D[] enemyList = Physics2D.OverlapCircleAll(attackPoint, attackRadius,LayerToAttack);
-/*        foreach(EnemyBase tmp in enemyList)
+*/
+   /*        foreach(EnemyBase tmp in enemyList)
         {
             if(CaculateAngel(transform.right, tmp.transform.position - this.transform.position) < angle)
             {
                 Attack(tmp);
             }
-        }*/
-    }
+        }*//*
+    }*/
 
 
     void AttackRange(Weapon weapon)
@@ -88,9 +90,24 @@ public class Player : MonoBehaviour
         //每次移动都会new一个三维向量,考虑性能
         this.transform.Translate(Vector3.ClampMagnitude(temp,10));
     }
-    // Update is called once per frame
-    #endregion
 
+
+    #endregion
+    public void Attack(float value)
+    {
+        
+    }
+
+    public void Hurt(float value)
+    {
+
+    }
+
+    public void Attack()
+    {
+        throw new System.NotImplementedException();
+    }
+    // Update is called once per frame
 
 
 
