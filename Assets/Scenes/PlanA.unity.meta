@@ -1,5 +1,14 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Scenes/PlanA.unity.meta
+guid: f03aba839deebd44f8c901bc541a38fc
+=======
+guid: 6f8475785b7511b4eb05c77177c4781a
+folderAsset: yes
+>>>>>>> 660539eb1b43dffecd5b10e824e227feeb55440d:Assets/Art/Sprites/NPC.meta
+=======
 guid: 838cd65c7ec6b0345a85d8fae9bd9618
+>>>>>>> 660539eb1b43dffecd5b10e824e227feeb55440d
 DefaultImporter:
   externalObjects: {}
   userData: 
