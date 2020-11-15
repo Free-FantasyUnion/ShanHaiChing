@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour,ICharacter
 {
     //Atack
+    
     float attackRatio;
     float yuanQi;
     
@@ -76,17 +77,36 @@ public class Player : MonoBehaviour,ICharacter
 
 
     #region Move
-    float MoveX()
+    private float MoveX()
     {
-        return 1f;
+        return Time.deltaTime * this.velocityX;
     }
-    float MoveY()
+    private float MoveY()
     {
-        return 1f ;
+        return Time.deltaTime * this.velocityY;
     }
     void Move()
     {
-        Vector3 temp = new Vector3(MoveX(), MoveY(), 0);
+        float tempX, tempY;
+        tempX = 0;
+        tempY = 0;
+        if (Input.GetKeyDown((KeyCode)GameManager.Key.Up))
+        {
+            tempY = this.velocityY;
+        }
+        else if (Input.GetKeyDown((KeyCode)GameManager.Key.Down))
+        {
+            tempY = -this.velocityY;
+        }
+        if (Input.GetKeyDown((KeyCode)GameManager.Key.Left))
+        {
+            tempX = -this.velocityX;
+        }
+        else if (Input.GetKeyDown((KeyCode)GameManager.Key.Right))
+        {
+            tempX = this.velocityX;
+        }
+        Vector3 temp = new Vector3(tempX, tempY, 0);
         //每次移动都会new一个三维向量,考虑性能
         this.transform.Translate(Vector3.ClampMagnitude(temp,10));
     }

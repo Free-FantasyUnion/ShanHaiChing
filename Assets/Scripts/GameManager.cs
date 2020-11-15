@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
 
 
 
-	enum Key
+	public enum Key
 	{
 		Attack=KeyCode.J,
 		Up = KeyCode.W,

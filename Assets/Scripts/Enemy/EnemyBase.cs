@@ -7,8 +7,6 @@ public abstract class EnemyBase : MonoBehaviour,ICharacter
     [SerializeField] protected float yuanQi;
     [SerializeField] protected float yuanQiDrop;
     [SerializeField] protected Sprite enemyImage;
-    [SerializeField] protected float detectRadius;
-    [SerializeField] protected float attackRadius;
     [SerializeField] protected float defendRatio;
 
     private void SetYuanqi()

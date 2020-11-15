@@ -10,5 +10,26 @@ public class EnemyManager : MonoBehaviour
     //
 
 
+    private static EnemyManager instance = new EnemyManager();
+
+    private EnemyManager(){}
+
+    List<EnemyBase> enemyPool;
+    public int PoolSize;
+
+    private void Start()
+    {
+        instance.enemyPool = new List<EnemyBase>();
+    }
+
+    private void Update()
+    {
+        
+    }
+
+
+
+
+
 
 }
