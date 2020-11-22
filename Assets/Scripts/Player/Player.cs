@@ -15,6 +15,8 @@ public class Player : MonoBehaviour,ICharacter
     float velocityY;
     float maxSpeed;
 
+    //Anime
+    private Animator playerAnimator;
 
     //Attack
     Vector2 attackPoint;
@@ -31,7 +33,7 @@ public class Player : MonoBehaviour,ICharacter
     }
     private void Start()
     {
-        
+        playerAnimator = GetComponent<Animator>();
     }
 
 
@@ -87,6 +89,8 @@ public class Player : MonoBehaviour,ICharacter
     }
     void Move()
     {
+        playerAnimator.SetFloat("VelocityX", velocityX);
+        playerAnimator.SetFloat("VelocityY", velocityY);
         float tempX, tempY;
         tempX = 0;
         tempY = 0;
@@ -113,10 +117,6 @@ public class Player : MonoBehaviour,ICharacter
 
 
     #endregion
-    public void Attack(float value)
-    {
-        
-    }
 
     public void Hurt(float value)
     {
@@ -125,7 +125,9 @@ public class Player : MonoBehaviour,ICharacter
 
     public void Attack()
     {
-        throw new System.NotImplementedException();
+        playerAnimator.SetBool("IsCloseAttack", true);
+        //throw new System.NotImplementedException();
+        playerAnimator.SetBool("IsCloseAttack", false);
     }
     // Update is called once per frame
 
