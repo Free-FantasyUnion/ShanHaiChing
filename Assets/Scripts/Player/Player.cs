@@ -23,7 +23,24 @@ public class Player : MonoBehaviour,ICharacter
     float attackRadius;
     LayerMask LayerToAttack;
 
-    
+    //SetByRatio
+    public void SetYuanqiByRatio(float value)
+    {
+        this.yuanQi = this.yuanQi * value;
+    }
+
+    public void GetBuff(Buff bf)
+    {
+        this.buffList.Add(bf);
+    }
+    public void SetAtkByRatio(float value)
+    {
+        this.attackRatio = this.attackRatio * value;
+    }
+    public void Burn()
+    {
+        ;
+    }
     List<Buff> buffList;
 
 
@@ -58,12 +75,22 @@ public class Player : MonoBehaviour,ICharacter
 
     void AttackRange(Weapon weapon)
     {
-        
+        ;
     }
 
+    void AttackEffect(EnemyBase enemy)
+    {
+        foreach(var bf in buffList){
+            if (true)
+            {
+                bf.BuffEffect(enemy);
+            }
+        }
+    }
 
     void Attack(EnemyBase enemy)
     {
+        AttackEffect(enemy);
         enemy.Hurt(YuanQi2Attack(yuanQi));
     }
 
