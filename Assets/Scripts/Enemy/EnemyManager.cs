@@ -8,7 +8,17 @@ public class EnemyManager : MonoBehaviour
     //ObjectPool<BulletBase> bullets;
     //
     //
-
+    public enum AttackType
+    {
+        Far,
+        Close
+    };
+    public enum AIType
+    {
+        Aggressive,
+        Stand,
+        Guard
+    }
 
     private static EnemyManager instance = new EnemyManager();
 
@@ -26,7 +36,7 @@ public class EnemyManager : MonoBehaviour
     {
         
     }
-
+    
 
 
 

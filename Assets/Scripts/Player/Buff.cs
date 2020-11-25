@@ -20,9 +20,8 @@ public abstract class Buff
         this.buffType = type;
     }
 
-    public void BuffEffect(ICharacter targetCharacter)
+    public void BuffEffect(IBuffable targetCharacter)
     {
-        
         
         switch (buffType)
         {
@@ -35,12 +34,6 @@ public abstract class Buff
             case BuffType.AtkUp:
                 {
                     targetCharacter.SetAtkByRatio(atkRatio);
-                    break;
-                }
-                
-            case BuffType.FireBlade:
-                {
-                    targetCharacter.Burn();
                     break;
                 }
             default:

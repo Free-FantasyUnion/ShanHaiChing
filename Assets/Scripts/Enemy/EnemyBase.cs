@@ -8,6 +8,9 @@ public abstract class EnemyBase : MonoBehaviour,ICharacter
     [SerializeField] protected float yuanQiDrop;
     [SerializeField] protected Sprite enemyImage;
     [SerializeField] protected float defendRatio;
+    [SerializeField] protected float velocity;
+    [SerializeField] protected EnemyManager.AttackType attackType;
+    [SerializeField] protected EnemyManager.AIType aiType;
 
     private void SetYuanqi()
     {
@@ -15,11 +18,32 @@ public abstract class EnemyBase : MonoBehaviour,ICharacter
         this.yuanQiDrop = Mathf.Sqrt(this.yuanQi*this.yuanQi-1);
     }
 
-    private float Defend(float value)
+    private float MoveX()
     {
-        return value * defendRatio;
+        return Time.deltaTime * this.velocity;
     }
-    
+    private float MoveY()
+    {
+        return Time.deltaTime * this.velocity;
+    }
+    private void AIMove()
+    {
+        switch (this.aiType)
+        {
+            case EnemyManager.AIType.Aggressive:
+                ;
+                break;
+            case EnemyManager.AIType.Stand:
+                ;
+                break;
+            case EnemyManager.AIType.Guard:
+                ;
+                break;
+            default:
+                break;
+        }
+    }
+
 
     /*    smjb????
      *    
@@ -32,7 +56,7 @@ public abstract class EnemyBase : MonoBehaviour,ICharacter
     /// <summary>
     /// 近战远战的敌人的寻路方式不同
     /// </summary>
-    
+
     abstract public void AI();
 
 
@@ -43,6 +67,10 @@ public abstract class EnemyBase : MonoBehaviour,ICharacter
 
     public void Hurt(float value)
     {
-        this.yuanQi -= Defend(value);
+        this.yuanQi -= value*defendRatio;
+    }
+    public void Burn(float burnValue, int burnTime)
+    {
+        ;
     }
 }

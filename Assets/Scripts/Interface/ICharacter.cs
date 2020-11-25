@@ -4,11 +4,7 @@ using UnityEngine;
 
 public interface ICharacter 
 {
-    void SetYuanqiByRatio(float value);
-
-    void SetAtkByRatio(float value);
     void Attack();
-
-    void Burn();
+    void Burn(float burnValue, int burnTime);
     void Hurt(float value);
 }

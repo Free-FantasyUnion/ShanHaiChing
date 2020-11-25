@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 
-public class Player : MonoBehaviour,ICharacter
+public class Player : MonoBehaviour,ICharacter, IBuffable
 {
     //Atack
     
@@ -37,9 +38,15 @@ public class Player : MonoBehaviour,ICharacter
     {
         this.attackRatio = this.attackRatio * value;
     }
-    public void Burn()
+    public void BurnHurt()
     {
         ;
+    }
+    public void Burn(float burnValue, int burnTime)
+    {
+        ThreadStart burnThreadRef = new ThreadStart(BurnHurt);
+        Thread burnThread = new Thread(burnThreadRef);
+        burnThread.Start();
     }
     List<Buff> buffList;
 
@@ -83,7 +90,7 @@ public class Player : MonoBehaviour,ICharacter
         foreach(var bf in buffList){
             if (true)
             {
-                bf.BuffEffect(enemy);
+                ;
             }
         }
     }
@@ -150,7 +157,7 @@ public class Player : MonoBehaviour,ICharacter
 
     }
 
-    public void Attack()
+    public void Attack(ICharacter enemy)
     {
         playerAnimator.SetBool("IsCloseAttack", true);
         //throw new System.NotImplementedException();
