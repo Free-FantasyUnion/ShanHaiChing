@@ -9,16 +9,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	private static GameManager instance;
-
+	public Player player;
 
 
     private void Awake()
     {
 		instance = new GameManager();
-	}
-    private GameManager()
-	{
-	
 	}
 	// Start is called before the first frame update
 	void Start()

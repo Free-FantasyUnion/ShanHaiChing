@@ -4,16 +4,23 @@ using System.Threading;
 using UnityEngine;
 
 
-public class Player : MonoBehaviour,ICharacter, IBuffable
+public class Player : MonoBehaviour, ICharacter, IBuffable
 {
-    //Atack
-    
-    float attackRatio;
+
+    //Basic Attributes
+    [SerializeField] private float basicAttackValue = 10.0f;
+    [SerializeField] private float basicYuanQi = 100.0f;
+    [SerializeField] private float basicYuanQiDrop = 1.0f;
+    [SerializeField] private float basicDefenceRatio = 0.1f;
+    [SerializeField] private float basicSpeed = 1.0f;
+    [SerializeField] private float velocityX = 5.0f;
+    [SerializeField] private float velocityZ = 5.0f;
+    //Attributes at time
+    float attackValue;
     float yuanQi;
-    
+    float yuanQiDrop;
+    float defenceRatio;
     //Move
-    float velocityX;
-    float velocityY;
     float maxSpeed;
 
     //Anime
@@ -23,81 +30,70 @@ public class Player : MonoBehaviour,ICharacter, IBuffable
     Vector2 attackPoint;
     float attackRadius;
     LayerMask LayerToAttack;
-
-    //SetByRatio
-    public void SetYuanqiByRatio(float value)
-    {
-        this.yuanQi = this.yuanQi * value;
-    }
-
+    List<Buff> buffList;
+    
+    //IsBuffable
     public void GetBuff(Buff bf)
     {
         this.buffList.Add(bf);
     }
+    public void SetDefenceByRatio(float value)
+    {
+        this.defenceRatio = this.basicDefenceRatio * value;
+    }
+
     public void SetAtkByRatio(float value)
     {
-        this.attackRatio = this.attackRatio * value;
+        this.attackValue = this.basicAttackValue * value;
     }
-    public void BurnHurt()
-    {
-        ;
-    }
-    public void Burn(float burnValue, int burnTime)
-    {
-        ThreadStart burnThreadRef = new ThreadStart(BurnHurt);
-        Thread burnThread = new Thread(burnThreadRef);
-        burnThread.Start();
-    }
-    List<Buff> buffList;
 
-
-    private void Awake()
+    public void SetSpeedByRatio(float value)
     {
-
+        this.maxSpeed = this.basicSpeed * value;
     }
-    private void Start()
+    public void SetYuanqiDropByRatio(float value)
     {
-        playerAnimator = GetComponent<Animator>();
+        this.yuanQiDrop = this.basicYuanQiDrop * value;
+    }
+    public void InitAttributes()
+    {
+        SetAtkByRatio(1.0f);
+        SetDefenceByRatio(1.0f);
+        SetSpeedByRatio(1.0f);
+        SetYuanqiDropByRatio(1.0f);
     }
 
 
 
 
-
-
-   /* //Delegate
-    void OverLapScope(float attackRange, int angle, LayerMask layer)
-    {
-        Collider2D[] enemyList = Physics2D.OverlapCircleAll(attackPoint, attackRadius,LayerToAttack);
-*/
-   /*        foreach(EnemyBase tmp in enemyList)
-        {
-            if(CaculateAngel(transform.right, tmp.transform.position - this.transform.position) < angle)
-            {
-                Attack(tmp);
-            }
-        }*//*
-    }*/
+    /* //Delegate
+     void OverLapScope(float attackRange, int angle, LayerMask layer)
+     {
+         Collider2D[] enemyList = Physics2D.OverlapCircleAll(attackPoint, attackRadius,LayerToAttack);
+ */
+    /*        foreach(EnemyBase tmp in enemyList)
+         {
+             if(CaculateAngel(transform.right, tmp.transform.position - this.transform.position) < angle)
+             {
+                 Attack(tmp);
+             }
+         }*//*
+     }*/
 
 
     void AttackRange(Weapon weapon)
     {
         ;
     }
-
-    void AttackEffect(EnemyBase enemy)
+    public void Attack()
     {
-        foreach(var bf in buffList){
-            if (true)
-            {
-                ;
-            }
-        }
+        ;
     }
-
-    void Attack(EnemyBase enemy)
+    void AttackEnemy(EnemyBase enemy)
     {
-        AttackEffect(enemy);
+        playerAnimator.SetBool("IsCloseAttack", true);
+        //throw new System.NotImplementedException();
+        playerAnimator.SetBool("IsCloseAttack", false);
         enemy.Hurt(YuanQi2Attack(yuanQi));
     }
 
@@ -113,58 +109,66 @@ public class Player : MonoBehaviour,ICharacter, IBuffable
 
 
     #region Move
-    private float MoveX()
-    {
-        return Time.deltaTime * this.velocityX;
-    }
-    private float MoveY()
-    {
-        return Time.deltaTime * this.velocityY;
-    }
-    void Move()
+    public void Move()
     {
         playerAnimator.SetFloat("VelocityX", velocityX);
-        playerAnimator.SetFloat("VelocityY", velocityY);
-        float tempX, tempY;
+        playerAnimator.SetFloat("VelocityZ", velocityZ);
+        float tempX, tempZ;
         tempX = 0;
-        tempY = 0;
-        if (Input.GetKeyDown((KeyCode)GameManager.Key.Up))
+        tempZ = 0;
+        if (Input.GetKey((KeyCode)GameManager.Key.Up))
         {
-            tempY = this.velocityY;
+            Debug.Log("Moving Up");
+            tempZ = this.velocityZ;
         }
-        else if (Input.GetKeyDown((KeyCode)GameManager.Key.Down))
+        else if (Input.GetKey((KeyCode)GameManager.Key.Down))
         {
-            tempY = -this.velocityY;
+            Debug.Log("Moving Down");
+            tempZ = -this.velocityZ;
         }
-        if (Input.GetKeyDown((KeyCode)GameManager.Key.Left))
+        if (Input.GetKey((KeyCode)GameManager.Key.Left))
         {
+            Debug.Log("Moving Left");
             tempX = -this.velocityX;
         }
-        else if (Input.GetKeyDown((KeyCode)GameManager.Key.Right))
+        else if (Input.GetKey((KeyCode)GameManager.Key.Right))
         {
+            Debug.Log("Moving Right");
             tempX = this.velocityX;
         }
-        Vector3 temp = new Vector3(tempX, tempY, 0);
+        Vector3 temp = new Vector3(tempX, 0, tempZ);
+        Vector3 printTemp = Vector3.ClampMagnitude(temp, this.maxSpeed);
+        Debug.Log(this.maxSpeed);
         //每次移动都会new一个三维向量,考虑性能
-        this.transform.Translate(Vector3.ClampMagnitude(temp,10));
+        this.gameObject.transform.Translate(Vector3.ClampMagnitude(temp,this.maxSpeed*Time.deltaTime));
     }
-
-
+   
     #endregion
-
     public void Hurt(float value)
-    {
+        {
+            this.yuanQi -= value * (1-this.defenceRatio);
+        }
+    
 
-    }
-
-    public void Attack(ICharacter enemy)
-    {
-        playerAnimator.SetBool("IsCloseAttack", true);
-        //throw new System.NotImplementedException();
-        playerAnimator.SetBool("IsCloseAttack", false);
-    }
     // Update is called once per frame
+    private void Awake()
+    {
 
+    }
+    private void Start()
+    {
+        playerAnimator = GetComponent<Animator>();
+        buffList = new List<Buff>();
+    }
+    private void Update()
+    {
+        InitAttributes();
+        foreach(var buff in this.buffList)
+        {
+            buff.BuffEffect(this);
+        }
+        this.Move();
+    }
 
 
 

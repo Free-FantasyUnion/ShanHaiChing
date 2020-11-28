@@ -4,7 +4,13 @@ using UnityEngine;
 
 public interface IBuffable
 {
-    void SetYuanqiByRatio(float value);
+    void SetDefenceByRatio(float value);
 
     void SetAtkByRatio(float value);
+
+    void SetYuanqiDropByRatio(float value);
+
+    void SetSpeedByRatio(float value);
+
+    void GetBuff(Buff buff);
 }

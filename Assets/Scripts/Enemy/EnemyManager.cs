@@ -17,7 +17,8 @@ public class EnemyManager : MonoBehaviour
     {
         Aggressive,
         Stand,
-        Guard
+        Guard,
+        Shooting
     }
 
     private static EnemyManager instance = new EnemyManager();
