@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
 		Right=KeyCode.D,
 		// 快速移动未确定
 		QuickMove = KeyCode.LeftShift,
+		Dialog=KeyCode.KeypadEnter,
 	}
 
 }

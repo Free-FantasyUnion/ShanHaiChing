@@ -111,8 +111,9 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     #region Move
     public void Move()
     {
-        playerAnimator.SetFloat("VelocityX", velocityX);
-        playerAnimator.SetFloat("VelocityZ", velocityZ);
+/*        playerAnimator.SetFloat("VelocityX", velocityX);
+        playerAnimator.SetFloat("VelocityZ", velocityZ);*/
+
         float tempX, tempZ;
         tempX = 0;
         tempZ = 0;
@@ -138,12 +139,14 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         }
         Vector3 temp = new Vector3(tempX, 0, tempZ);
         Vector3 printTemp = Vector3.ClampMagnitude(temp, this.maxSpeed);
+        playerAnimator.SetFloat("speed", Vector3.Magnitude(printTemp));
         Debug.Log(this.maxSpeed);
         //每次移动都会new一个三维向量,考虑性能
         this.gameObject.transform.Translate(Vector3.ClampMagnitude(temp,this.maxSpeed*Time.deltaTime));
     }
    
     #endregion
+
     public void Hurt(float value)
         {
             this.yuanQi -= value * (1-this.defenceRatio);

@@ -10,8 +10,6 @@ public class NPCManager : MonoBehaviour
     private static NPCManager instance;
 
     [Header("UI")]
-
-    private GameObject dialogFramework_Prefab;
     private GameObject dialogFrameWork;
     private Text Dialog_Text;
 
@@ -47,7 +45,8 @@ public class NPCManager : MonoBehaviour
 
         // load the scripts
         instance.dialogScriptsList = new List<TextAsset>(Resources.LoadAll<TextAsset>(SceneManager.GetActiveScene().name));
-        instance.dialogFramework_Prefab = Resources.Load<GameObject>("Prefabs/NPC/NPC_Dialog_UI");
+        //instance.dialogFramework_Prefab = Resources.Load<GameObject>("Prefabs/NPC/NPC_Dialog_UI");
+        instance.dialogFrameWork = transform.GetChild(0).gameObject;
     }
 
 
@@ -65,8 +64,10 @@ public class NPCManager : MonoBehaviour
             instance.isDialogging = true;
             //生成prefab并获取text文本的Text组件
 
-            instance.dialogFrameWork = Instantiate(instance.dialogFramework_Prefab);
-            instance.Dialog_Text = dialogFrameWork.transform.Find("Text").GetComponent<Text>();
+            //instance.dialogFrameWork = Instantiate(instance.dialogFramework_Prefab);
+            instance.dialogFrameWork.SetActive(true);
+
+            instance.Dialog_Text = dialogFrameWork.transform.GetChild(0).GetChild(0).GetComponent<Text>();
             instance.helper.LoadScripts(instance.dialogScriptsList[index]);
             instance.ShowText();
         }
@@ -79,7 +80,7 @@ public class NPCManager : MonoBehaviour
             catch
             {
                 instance.isDialogging = false;
-                Destroy(instance.dialogFrameWork);
+                instance.dialogFrameWork.SetActive(false);
             }
         }
 

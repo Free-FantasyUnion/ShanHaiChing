@@ -17,15 +17,20 @@ public class NPC : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown((KeyCode)GameManager.Key.Dialog)&&Physics2D.OverlapCircle(this.transform.position, 10f) != null)
+        //TODO : 设置判定范围
+        {
             NPCManager.GetInstance().ReseBonseToNPC(scriptsIndex);
+        }
     }
+/*
     private void OnTriggerStay2D(Collider2D collision)
     {
+        
         if (Input.GetKeyDown(KeyCode.P))
             NPCManager.GetInstance().ReseBonseToNPC(scriptsIndex);
     }
-
+*/
 
 
 }
