@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     private static PlayerManager instance = new PlayerManager();
+    public Transform playerTF;
     private PlayerManager()
     {
 
@@ -12,7 +13,8 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-
+        instance.playerTF = GameObject.FindGameObjectWithTag("Player").transform;
+        print(instance.playerTF);
     }
 
 
@@ -24,6 +26,7 @@ public class PlayerManager : MonoBehaviour
     {
         return instance;
     }
+
 
 
 }
