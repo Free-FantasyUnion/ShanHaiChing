@@ -14,7 +14,6 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         instance.playerTF = GameObject.FindGameObjectWithTag("Player").transform;
-        print(instance.playerTF);
     }
 
 

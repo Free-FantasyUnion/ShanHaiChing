@@ -26,12 +26,12 @@ public class NPC : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+/*    private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(this.transform.position, radius);
             
-    }   
+    }   */
     /*
         private void OnTriggerStay2D(Collider2D collision)
         {

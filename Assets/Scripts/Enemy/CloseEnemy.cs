@@ -11,7 +11,7 @@ public class CloseEnemy : EnemyBase
 /*    [SerializeField] Sprite normal;
     [SerializeField] Sprite warning;
     [SerializeField] Sprite attacking;*/
-    private GameObject weapon;
+    private Transform JudgePoint;
 
     [SerializeField] private Animator anim;
 
@@ -64,7 +64,7 @@ public class CloseEnemy : EnemyBase
     public override void Attack()
     {
         float attackValue = this.YuanQi2Attack();
-        GameManager.GetInstance().AttackJudge(this.weapon.transform, attackRadius, attackAngle, LayerMask.NameToLayer("Player"), attackValue);
+        GameManager.AttackJudge(JudgePoint, attackRadius, attackAngle, LayerMask.NameToLayer("Player"), attackValue);
     }
 
 

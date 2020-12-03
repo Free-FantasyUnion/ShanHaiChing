@@ -1,25 +1,7 @@
 fileFormatVersion: 2
-guid: 403420e9ed284d547866725bc05b56f7
+guid: 97feac984674f1d46a41be8150fb1e5d
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 1212527640140087493
-    second: move_1_0
-  - first:
-      213: 8016201619310604194
-    second: move_1_1
-  - first:
-      213: 369117725057142956
-    second: move_1_2
-  - first:
-      213: 1475406779806300646
-    second: move_1_0
-  - first:
-      213: -2906641038406034501
-    second: move_1_1
-  - first:
-      213: -2727966908936902968
-    second: move_1_2
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,11 +40,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 9
+  spritePivot: {x: 0.5, y: 0.1}
   spritePixelsToUnits: 150
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -139,70 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: move_1_0
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 23
-        width: 393
-        height: 395
-      alignment: 8
-      pivot: {x: 1, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6e9be8136a2b97410800000000000000
-      internalID: 1475406779806300646
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: move_1_1
-      rect:
-        serializedVersion: 2
-        x: 489
-        y: 30
-        width: 401
-        height: 391
-      alignment: 8
-      pivot: {x: 1, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bbb5c38206989a7d0800000000000000
-      internalID: -2906641038406034501
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: move_1_2
-      rect:
-        serializedVersion: 2
-        x: 942
-        y: 30
-        width: 428
-        height: 401
-      alignment: 8
-      pivot: {x: 1, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8c6abc9bc80542ad0800000000000000
-      internalID: -2727966908936902968
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []

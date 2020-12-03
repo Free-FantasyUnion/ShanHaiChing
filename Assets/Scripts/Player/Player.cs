@@ -7,7 +7,7 @@ using UnityEngine;
 public class Player : MonoBehaviour, ICharacter, IBuffable
 {
 
-    //Basic Attributes
+    [Header("Basic Attributes")]
     [SerializeField] private float basicAttackValue = 10.0f;
     [SerializeField] private float basicYuanQi = 100.0f;
     [SerializeField] private float basicYuanQiDrop = 1.0f;
@@ -15,6 +15,13 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     [SerializeField] private float basicSpeed = 1.0f;
     [SerializeField] private float velocityX = 5.0f;
     [SerializeField] private float velocityZ = 5.0f;
+    [Header("攻击")]
+    [SerializeField] private int faceDirection = 1;
+    private float attackRadius = 1.71f;
+    [SerializeField] private int atkTimes = -1;
+    [SerializeField] private float 连续攻击间隔 = 0.5f;
+    private Transform judgePoint= null;
+    private float lastAtkTime;
     //Attributes at time
     float attackValue;
     float yuanQi;
@@ -28,10 +35,38 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
 
     //Attack
     Vector2 attackPoint;
-    float attackRadius;
     LayerMask LayerToAttack;
-    List<Buff> buffList;
-    
+    List<Buff> buffList = null;
+
+
+    private void Start()
+    {
+        playerAnimator = GetComponent<Animator>();
+        buffList = new List<Buff>();
+        lastAtkTime = 0;
+        judgePoint = transform.Find("Player_Module/main/bone_1/bone_2/bone_3/bone_14/bone_15/bone_16/剑/JudgePoint");
+    }
+
+    private void Update()
+    {
+        InitAttributes();
+
+        /*        foreach (var buff in this.buffList)
+                {
+                    buff.BuffEffect(this);
+                }*/
+        this.Move();
+        if (Input.GetKeyDown((KeyCode)GameManager.Key.Attack))
+        {
+            Attack();
+        }
+    }
+
+
+
+
+    #region 基本参数设置
+
     //IsBuffable
     public void GetBuff(Buff bf)
     {
@@ -63,42 +98,23 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         SetYuanqiDropByRatio(1.0f);
     }
 
+    #endregion
 
-
-
-    /* //Delegate
-     void OverLapScope(float attackRange, int angle, LayerMask layer)
-     {
-         Collider2D[] enemyList = Physics2D.OverlapCircleAll(attackPoint, attackRadius,LayerToAttack);
- */
-    /*        foreach(EnemyBase tmp in enemyList)
-         {
-             if(CaculateAngel(transform.right, tmp.transform.position - this.transform.position) < angle)
-             {
-                 Attack(tmp);
-             }
-         }*//*
-     }*/
-
-
-    void AttackRange(Weapon weapon)
-    {
-        ;
-    }
     public void Attack()
     {
-        ;
+        if (Time.timeSinceLevelLoad - lastAtkTime >= 连续攻击间隔)
+        {
+            lastAtkTime = Time.timeSinceLevelLoad;
+            atkTimes += atkTimes == 3 ? -2 : 1;
+            
+            // 0 non
+            // 1 atk_1
+            // 2 atk_2
+            // 3 atk_3
+            playerAnimator.SetInteger("attack", atkTimes);
+            GameManager.AttackJudge(judgePoint, attackRadius, 60f, LayerMask.NameToLayer("Enemy"), YuanQi2Attack(yuanQi));
+        }
     }
-    void AttackEnemy(EnemyBase enemy)
-    {
-        playerAnimator.SetBool("IsCloseAttack", true);
-        //throw new System.NotImplementedException();
-        playerAnimator.SetBool("IsCloseAttack", false);
-        enemy.Hurt(YuanQi2Attack(yuanQi));
-    }
-
-
-
 
     private float YuanQi2Attack(float YuanQi)
     {
@@ -111,8 +127,8 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     #region Move
     public void Move()
     {
-/*        playerAnimator.SetFloat("VelocityX", velocityX);
-        playerAnimator.SetFloat("VelocityZ", velocityZ);*/
+        /*        playerAnimator.SetFloat("VelocityX", velocityX);
+                playerAnimator.SetFloat("VelocityZ", velocityZ);*/
 
         float tempX, tempZ;
         tempX = 0;
@@ -130,11 +146,22 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         if (Input.GetKey((KeyCode)GameManager.Key.Left))
         {
             Debug.Log("Moving Left");
+            if (faceDirection != -1)
+            {
+                this.transform.localScale = new Vector3(-1, 1, 1);
+                faceDirection = -1;
+            }
             tempX = -this.velocityX;
+
         }
         else if (Input.GetKey((KeyCode)GameManager.Key.Right))
         {
             Debug.Log("Moving Right");
+            if (faceDirection != 1)
+            {
+                this.transform.localScale = new Vector3(1, 1, 1);
+                faceDirection = 1;
+            }
             tempX = this.velocityX;
         }
         Vector3 temp = new Vector3(tempX, 0, tempZ);
@@ -142,36 +169,26 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         playerAnimator.SetFloat("speed", Vector3.Magnitude(printTemp));
         //Debug.Log(this.maxSpeed);
         //每次移动都会new一个三维向量,考虑性能
-        this.gameObject.transform.Translate(Vector3.ClampMagnitude(temp,this.maxSpeed*Time.deltaTime));
+        this.gameObject.transform.Translate(Vector3.ClampMagnitude(temp, this.maxSpeed * Time.deltaTime));
     }
-   
+
     #endregion
 
     public void Hurt(float value)
-        {
-            this.yuanQi -= value * (1-this.defenceRatio);
-        }
-    
+    {
+        this.yuanQi -= value * ( 1 - this.defenceRatio );
+    }
 
-    // Update is called once per frame
-    private void Awake()
-    {
 
-    }
-    private void Start()
+
+
+
+    private void SetAttackFalse()
     {
-        playerAnimator = GetComponent<Animator>();
-        buffList = new List<Buff>();
+        atkTimes = 0;
+        playerAnimator.SetInteger("attack", 0);
     }
-    private void Update()
-    {
-        InitAttributes();
-        foreach(var buff in this.buffList)
-        {
-            buff.BuffEffect(this);
-        }
-        this.Move();
-    }
+
 
 
 
