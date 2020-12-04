@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     private static PlayerManager instance = new PlayerManager();
-    public Transform playerTF;
+    [HideInInspector]public Transform playerTF;
     private PlayerManager()
     {
 

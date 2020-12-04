@@ -20,7 +20,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     private float attackRadius = 1.71f;
     [SerializeField] private int atkTimes = -1;
     [SerializeField] private float 连续攻击间隔 = 0.5f;
-    private Transform judgePoint= null;
+    private Transform judgePoint = null;
     private float lastAtkTime;
     //Attributes at time
     float attackValue;
@@ -50,7 +50,6 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     private void Update()
     {
         InitAttributes();
-
         /*        foreach (var buff in this.buffList)
                 {
                     buff.BuffEffect(this);
@@ -58,7 +57,12 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         this.Move();
         if (Input.GetKeyDown((KeyCode)GameManager.Key.Attack))
         {
-            Attack();
+            AnimationStateChange();
+        }
+        if (atkTimes!=0&&Time.timeSinceLevelLoad - lastAtkTime >= 0.75f)
+        {
+            atkTimes = 0;
+            playerAnimator.SetInteger("attack", 0);
         }
     }
 
@@ -102,18 +106,9 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
 
     public void Attack()
     {
-        if (Time.timeSinceLevelLoad - lastAtkTime >= 连续攻击间隔)
-        {
-            lastAtkTime = Time.timeSinceLevelLoad;
-            atkTimes += atkTimes == 3 ? -2 : 1;
-            
-            // 0 non
-            // 1 atk_1
-            // 2 atk_2
-            // 3 atk_3
-            playerAnimator.SetInteger("attack", atkTimes);
-            GameManager.AttackJudge(judgePoint, attackRadius, 60f, LayerMask.NameToLayer("Enemy"), YuanQi2Attack(yuanQi));
-        }
+
+        GameManager.AttackJudge(judgePoint, attackRadius, 60f, LayerMask.NameToLayer("Enemy"), YuanQi2Attack(yuanQi));
+
     }
 
     private float YuanQi2Attack(float YuanQi)
@@ -189,6 +184,20 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         playerAnimator.SetInteger("attack", 0);
     }
 
+    private void AnimationStateChange()
+    {
+        if (Time.timeSinceLevelLoad - lastAtkTime >= 连续攻击间隔)
+        {
+            lastAtkTime = Time.timeSinceLevelLoad;
+            atkTimes += atkTimes == 3 ? -2 : 1;
+            // 0 non
+            // 1 atk_1
+            // 2 atk_2
+            // 3 atk_3
+            playerAnimator.SetInteger("attack", atkTimes);
+        }
+
+    }
 
 
 
