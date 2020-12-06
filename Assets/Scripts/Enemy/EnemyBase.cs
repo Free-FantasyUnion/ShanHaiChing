@@ -17,6 +17,8 @@ public abstract class EnemyBase : MonoBehaviour,ICharacter,IBuffable
     [SerializeField] protected EnemyManager.AIType aiType;
     [SerializeField] protected Sprite enemyImage;
     [SerializeField] protected Buff dropBuff;
+
+    [SerializeField] protected float closeAttackRange;
     //Attributes at time
     [SerializeField] protected Player target;// default: player
     protected List<Buff> buffList;
@@ -50,9 +52,15 @@ public abstract class EnemyBase : MonoBehaviour,ICharacter,IBuffable
     {
         this.yuanQiDrop = this.basicYuanQiDrop * value;
     }
-    
+    public void InitAttributes()
+    {
+        SetAtkByRatio(1.0f);
+        SetDefenceByRatio(1.0f);
+        SetSpeedByRatio(1.0f);
+        SetYuanqiDropByRatio(1.0f);
+    }
 
-    
+
     protected void SetYuanqi()
     {
         this.yuanQi = 1 * (1 + Random.Range(0,0.5f));
@@ -68,63 +76,29 @@ public abstract class EnemyBase : MonoBehaviour,ICharacter,IBuffable
     {
         return Time.deltaTime * this.velocityY;
     }
-    protected void AggressiveMove()
+    protected void MoveToward(Vector3 targetPosition)
     {
-        Vector3 temp = this.target.gameObject.transform.position - this.gameObject.transform.position; 
+        Vector3 temp = this.target.gameObject.transform.position - targetPosition;
+        print(temp);
         this.gameObject.transform.Translate(Vector3.ClampMagnitude(temp, this.maxSpeed * Time.deltaTime));
     }
     protected void DoNothing()
     {
         ;//really do nothing! really!
     }
-    protected void GuardMove()
-    {
-        ;//undefined
-    }
-    protected void ShootingMove()
-    {
-        ;
-    }
-    protected void AIMove()
-    {
-        switch (this.aiType)
-        {
-            case EnemyManager.AIType.Aggressive:
-                AggressiveMove();
-                break;
-            case EnemyManager.AIType.Stand:
-                DoNothing();
-                break;
-            case EnemyManager.AIType.Guard:
-                GuardMove();
-                break;
-            case EnemyManager.AIType.Shooting:
-                ;
-                break;
-            default:
-                break;
-        }
-    }
-
-
     /// <summary>
     /// 近战远战的敌人的寻路方式不同
     /// </summary>
 
-    abstract public void AI();
 
 
     /// <summary>
     ///不同敌人有不同的攻击方式
     /// </summary>
-    public abstract void Attack();
+    protected abstract void Action();
 
     public void Hurt(float value)
     {
         this.yuanQi -= value*defenceRatio;
-    }
-    public void Burn(float burnValue, int burnTime)
-    {
-        ;
     }
 }

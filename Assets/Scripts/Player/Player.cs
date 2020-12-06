@@ -45,11 +45,12 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         buffList = new List<Buff>();
         lastAtkTime = 0;
         judgePoint = transform.Find("Player_Module/main/bone_1/bone_2/bone_3/bone_14/bone_15/bone_16/剑/JudgePoint");
+        InitAttributes();
     }
 
     private void Update()
     {
-        InitAttributes();
+        
         /*        foreach (var buff in this.buffList)
                 {
                     buff.BuffEffect(this);

@@ -11,14 +11,18 @@ public class EnemyManager : MonoBehaviour
     public enum AttackType
     {
         Far,
-        Close
+        Dash,
+        Trump,
+        Call,
+        Assist
     };
     public enum AIType
     {
         Aggressive,
         Stand,
-        Guard,
-        Shooting
+        Dash,
+        Avoid,
+        Random
     }
 
     private static EnemyManager instance = new EnemyManager();
