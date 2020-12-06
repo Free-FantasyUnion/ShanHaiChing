@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: 608177321}
   - component: {fileID: 608177320}
   - component: {fileID: 608177323}
-  - component: {fileID: 608177324}
+  - component: {fileID: 608177325}
   m_Layer: 9
   m_Name: Enemy_Wolf
   m_TagString: Untagged
@@ -750,7 +750,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.6333334, y: 2.0373044}
   m_EdgeRadius: 0
---- !u!114 &608177324
+--- !u!114 &608177325
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -759,26 +759,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 608177319}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9e46458434e9934caf3c740629ce3e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 51cc0064c39d2804e844d064f848ed16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   basicYuanQi: 0
   basicYuanQiDrop: 0
   basicAttackValue: 0
   basicDefenceRatio: 0
-  basicSpeed: 0
-  velocityX: 0
-  velocityY: 0
+  basicSpeed: 10
+  velocityX: 5
+  velocityY: 5
   attackType: 0
   aiType: 0
   enemyImage: {fileID: 0}
-  target: {fileID: 0}
+  closeAttackRange: 0
+  target: {fileID: 1291536231}
   yuanQiDrop: 0
-  warningRadius: 0
-  attackRadius: 0
-  attackAngle: 0
-  player: {fileID: 0}
-  anim: {fileID: 0}
+  warningRadius: 30
+  attackRadius: 3
+  attackAngle: 60
+  player: {fileID: 1291536231}
+  dashDistance: 20
+  dashTime: 1500
+  dashSpeedRatio: 3
+  anim: {fileID: 608177320}
 --- !u!1 &657445326
 GameObject:
   m_ObjectHideFlags: 0
