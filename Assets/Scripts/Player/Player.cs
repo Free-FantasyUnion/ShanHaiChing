@@ -51,7 +51,6 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
 
     private void Update()
     {
-
         foreach (var buff in this.buffList)
         {
             buff.BuffEffect(this);
@@ -124,7 +123,6 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
             GameManager.AttackJudge(judgePoint, attackRadius, 60f, LayerMask.NameToLayer("Enemy"), YuanQi2Attack(yuanQi));
             coldTime = basicColdTime;
         }
-
 
     }
 

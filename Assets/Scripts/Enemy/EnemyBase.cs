@@ -78,8 +78,12 @@ public abstract class EnemyBase : MonoBehaviour,ICharacter,IBuffable
     }
     protected void MoveToward(Vector3 targetPosition)
     {
-        Vector3 temp = this.target.gameObject.transform.position - targetPosition;
-        print(temp);
+        Vector3 temp = this.gameObject.transform.position - targetPosition;
+        this.gameObject.transform.Translate(Vector3.ClampMagnitude(-temp, this.maxSpeed * Time.deltaTime));
+    }
+    protected void MoveAway(Vector3 targetPosition)
+    {
+        Vector3 temp = this.gameObject.transform.position - targetPosition;
         this.gameObject.transform.Translate(Vector3.ClampMagnitude(temp, this.maxSpeed * Time.deltaTime));
     }
     protected void DoNothing()
