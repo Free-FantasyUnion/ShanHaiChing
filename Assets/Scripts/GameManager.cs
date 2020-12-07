@@ -14,19 +14,10 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.instance = new GameManager();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
+        GameManager.instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    public Vector3 playerPos;
 
     public static bool AttackJudge(Transform point, float attackRadius, float attackAngel, LayerMask attackLayer, float damage)
     {
@@ -54,6 +45,11 @@ public class GameManager : MonoBehaviour
         return tmp;
     }
 
+    public void setPlayerPos(Vector3 v)
+    {
+        playerPos = v;
+    }
+
     /// <summary>
     /// 计算2个向量的夹角
     /// </summary>
@@ -65,25 +61,10 @@ public class GameManager : MonoBehaviour
         return Mathf.Acos(Vector3.Dot(direction.normalized, joinedLine.normalized)) * Mathf.Rad2Deg;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     public static GameManager GetInstance()
     {
         return instance;
     }
-
-
 
     public enum Key
     {

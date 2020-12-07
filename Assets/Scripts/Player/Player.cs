@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -13,6 +11,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     [SerializeField] private float basicYuanQiDrop = 1.0f;
     [SerializeField] private float basicDefenceRatio = 0.1f;
     [SerializeField] private float basicSpeed = 1.0f;
+    [SerializeField] private float basicColdTime = 0.35f;
     [SerializeField] private float velocityX = 5.0f;
     [SerializeField] private float velocityZ = 5.0f;
     [Header("攻击")]
@@ -27,6 +26,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     float yuanQi;
     float yuanQiDrop;
     float defenceRatio;
+    float coldTime;
     //Move
     float maxSpeed;
 
@@ -36,6 +36,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     //Attack
     Vector2 attackPoint;
     LayerMask LayerToAttack;
+    [SerializeField]private TrailRenderer tail;
     List<Buff> buffList = null;
 
 
@@ -50,21 +51,31 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
 
     private void Update()
     {
-        
-        /*        foreach (var buff in this.buffList)
-                {
-                    buff.BuffEffect(this);
-                }*/
+
+        foreach (var buff in this.buffList)
+        {
+            buff.BuffEffect(this);
+        }
         this.Move();
         if (Input.GetKeyDown((KeyCode)GameManager.Key.Attack))
         {
             AnimationStateChange();
         }
-        if (atkTimes!=0&&Time.timeSinceLevelLoad - lastAtkTime >= 0.75f)
+        this.coldTime -= Time.deltaTime;
+        if (atkTimes != 0)
+        {
+            tail.enabled = true;
+        } else
+        {
+            tail.enabled = false;
+        }
+        if (atkTimes != 0 && Time.timeSinceLevelLoad - lastAtkTime >= 0.75f)
         {
             atkTimes = 0;
             playerAnimator.SetInteger("attack", 0);
         }
+        GameManager.GetInstance().setPlayerPos(transform.position);
+
     }
 
 
@@ -101,14 +112,19 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         SetDefenceByRatio(1.0f);
         SetSpeedByRatio(1.0f);
         SetYuanqiDropByRatio(1.0f);
+        this.coldTime = 0;
     }
 
     #endregion
 
     public void Attack()
     {
+        if (coldTime <= 0)
+        {
+            GameManager.AttackJudge(judgePoint, attackRadius, 60f, LayerMask.NameToLayer("Enemy"), YuanQi2Attack(yuanQi));
+            coldTime = basicColdTime;
+        }
 
-        GameManager.AttackJudge(judgePoint, attackRadius, 60f, LayerMask.NameToLayer("Enemy"), YuanQi2Attack(yuanQi));
 
     }
 
@@ -131,17 +147,16 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         tempZ = 0;
         if (Input.GetKey((KeyCode)GameManager.Key.Up))
         {
-            Debug.Log("Moving Up");
+            //Debug.Log("Moving Up");
             tempZ = this.velocityZ;
         }
         else if (Input.GetKey((KeyCode)GameManager.Key.Down))
         {
-            Debug.Log("Moving Down");
             tempZ = -this.velocityZ;
         }
         if (Input.GetKey((KeyCode)GameManager.Key.Left))
         {
-            Debug.Log("Moving Left");
+            //Debug.Log("Moving Left");
             if (faceDirection != -1)
             {
                 this.transform.localScale = new Vector3(-1, 1, 1);
@@ -152,7 +167,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         }
         else if (Input.GetKey((KeyCode)GameManager.Key.Right))
         {
-            Debug.Log("Moving Right");
+            //Debug.Log("Moving Right");
             if (faceDirection != 1)
             {
                 this.transform.localScale = new Vector3(1, 1, 1);
@@ -172,7 +187,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
 
     public void Hurt(float value)
     {
-        this.yuanQi -= value * ( 1 - this.defenceRatio );
+        this.yuanQi -= value * (1 - this.defenceRatio);
     }
 
 
