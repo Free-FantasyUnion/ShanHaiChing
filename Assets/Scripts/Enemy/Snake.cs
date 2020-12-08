@@ -22,7 +22,7 @@ public class Snake : EnemyBase
     }
     protected void bite()
     {
-        GameManager.AttackJudge(this.transform, this.attackRadius, this.attackAngle, LayerMask.NameToLayer("enemy"), this.attackValue);
+        GameManager.AttackJudge(this.transform, this.attackRadius, this.attackAngle, LayerMask.NameToLayer("Player"), this.attackValue);
         //sleep
     }
     protected override void Action()

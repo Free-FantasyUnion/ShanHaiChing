@@ -7,7 +7,7 @@ public class Wolf : EnemyBase
     [SerializeField] float warningRadius;
     [SerializeField] float attackRadius;
     [SerializeField] float attackAngle;
-    [SerializeField] Player player;
+    [SerializeField] Player player;//TODO: 变量未赋值
     [SerializeField] float dashDistance = 0.5f;
     [SerializeField] float dashTime = 0.7f;
     [SerializeField] float dashSpeedRatio = 5.0f;
@@ -28,12 +28,14 @@ public class Wolf : EnemyBase
             dashDirection = 1;
         }
         this.transform.Translate(new Vector3(this.maxSpeed*dashSpeedRatio*Time.deltaTime*dashDirection,0,0));
-        GameManager.AttackJudge(this.transform, this.attackRadius, this.attackAngle, LayerMask.NameToLayer("Enemy"), this.attackValue);
+        GameManager.AttackJudge(this.transform, this.attackRadius, this.attackAngle, LayerMask.NameToLayer("Player"), this.attackValue);
     }
 
     protected override void Action()
     {
         float distanceX = this.transform.position.x - player.transform.position.x;
+/*        this.transform.localScale = new Vector3(distanceX >= 0 ? 1 : -1, 1, 1);*/
+// TODO: 狼的移动需要添加左右翻转的代码 用 localScale
         float absDistanceX = Mathf.Abs(distanceX);
         float distanceZ = this.transform.position.z - player.transform.position.z;
         float absDistanceZ = Mathf.Abs(distanceZ);
@@ -42,10 +44,12 @@ public class Wolf : EnemyBase
         if (absDistanceX >= dashDistance && !isDashing)
         {
             this.MoveToward(target1);
+            anim.SetInteger("state", 1);
         }
         else if (Mathf.Abs(distanceZ) >= 3.0f && !isDashing)
         {
             this.transform.Translate(0, 0, (-distanceZ / absDistanceZ) * this.maxSpeed * Time.deltaTime);
+            anim.SetInteger("state", 1);
         }
         else if(!isDashing)
         {
@@ -59,6 +63,7 @@ public class Wolf : EnemyBase
             {
                 dashingRight = false;
             }
+            anim.SetInteger("state", 2);
         }
         
     }

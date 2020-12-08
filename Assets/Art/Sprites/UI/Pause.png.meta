@@ -1,43 +1,19 @@
 fileFormatVersion: 2
-guid: 802f729291b89464488d42f0c288d8ad
+guid: d7846e6302088fa468a733530a8e85e5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6937817954938267909
-    second: 2_0
+      213: -7762350047352875558
+    second: Pause_0
   - first:
-      213: 3191122964850554743
-    second: 2_1
+      213: 7690072442612862611
+    second: Pause_1
   - first:
-      213: 5382512944479897801
-    second: 2_2
+      213: -2715382943813668581
+    second: Pause_2
   - first:
-      213: -5515383189529662604
-    second: 2_3
-  - first:
-      213: -3926759211464601419
-    second: 2_4
-  - first:
-      213: -4424780041397978121
-    second: 2_5
-  - first:
-      213: 827538889749247048
-    second: attack_0
-  - first:
-      213: -5010287565412364656
-    second: attack_1
-  - first:
-      213: -5463148037355797382
-    second: attack_2
-  - first:
-      213: -5182820943178688908
-    second: attack_3
-  - first:
-      213: 7402079830906333199
-    second: attack_4
-  - first:
-      213: 1372099006290288469
-    second: attack_5
+      213: -7931945028459697436
+    second: Pause_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -97,7 +73,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -109,7 +85,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -121,7 +97,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: iPhone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -133,7 +109,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -145,7 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -159,106 +135,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: attack_0
+      name: Pause_0
       rect:
         serializedVersion: 2
-        x: 89
-        y: 33
-        width: 665
-        height: 336
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 88
+        y: 45
+        width: 113
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84433595c320c7b00800000000000000
-      internalID: 827538889749247048
+      spriteID: ad59b4532c7964490800000000000000
+      internalID: -7762350047352875558
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack_1
+      name: Pause_1
       rect:
         serializedVersion: 2
-        x: 881
-        y: 8
-        width: 664
-        height: 363
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 369
+        y: 31
+        width: 123
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09e0a014102e77ab0800000000000000
-      internalID: -5010287565412364656
+      spriteID: 39ec5fe8420a8ba60800000000000000
+      internalID: 7690072442612862611
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack_3
+      name: Pause_2
       rect:
         serializedVersion: 2
-        x: 1704
-        y: 35
-        width: 647
-        height: 333
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 658
+        y: 45
+        width: 125
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 476116bdfcbe218b0800000000000000
-      internalID: -5182820943178688908
+      spriteID: b11f4dc6995015ad0800000000000000
+      internalID: -2715382943813668581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack_4
+      name: Pause_3
       rect:
         serializedVersion: 2
-        x: 3209
-        y: 26
-        width: 600
-        height: 326
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 922
+        y: 45
+        width: 133
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f086148636879b660800000000000000
-      internalID: 7402079830906333199
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attack_5
-      rect:
-        serializedVersion: 2
-        x: 2502
-        y: 19
-        width: 626
-        height: 317
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 55f599ac6ccaa0310800000000000000
-      internalID: 1372099006290288469
+      spriteID: 4eaebb895021ce190800000000000000
+      internalID: -7931945028459697436
       vertices: []
       indices: 
       edges: []
