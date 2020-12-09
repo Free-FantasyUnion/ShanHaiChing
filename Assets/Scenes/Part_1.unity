@@ -517,6 +517,7 @@ MonoBehaviour:
   basicSpeed: 10
   velocityX: 5
   velocityY: 5
+  player: {fileID: 1291536231}
   attackType: 0
   aiType: 0
   enemyImage: {fileID: 0}
@@ -526,7 +527,6 @@ MonoBehaviour:
   warningRadius: 30
   attackRadius: 3
   attackAngle: 60
-  player: {fileID: 1291536231}
   dashDistance: 20
   dashTime: 1500
   dashSpeedRatio: 3
@@ -925,6 +925,8 @@ MonoBehaviour:
   - {fileID: 8786358780822897011, guid: 5fcdae9f0946a764db1664c750ac2226, type: 3}
   - {fileID: 8786358780822897011, guid: 5fcdae9f0946a764db1664c750ac2226, type: 3}
   radius: 3
+  player: {fileID: 0}
+  bullet: {fileID: 0}
 --- !u!1 &364002785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,7 +1005,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364002785}
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 0.44, y: 4.880005, z: -43.8}
+  m_LocalPosition: {x: 12.03, y: 9.220005, z: -43.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1750,7 +1752,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 828052959}
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 0.44, y: 4.880005, z: -43.8}
+  m_LocalPosition: {x: 12.03, y: 9.220005, z: -43.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1137252465}
@@ -3767,7 +3769,7 @@ PrefabInstance:
     - target: {fileID: 5287748247948235904, guid: af1fa94355886bd488f7d9c99eee7468,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5287748247948235904, guid: af1fa94355886bd488f7d9c99eee7468,
         type: 3}
@@ -4010,7 +4012,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291536226}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.44, y: -4.34, z: -1.41}
+  m_LocalPosition: {x: 12.03, y: 0, z: -1.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 992432007}
@@ -5120,6 +5122,8 @@ MonoBehaviour:
   - {fileID: 5287748247948235909, guid: af1fa94355886bd488f7d9c99eee7468, type: 3}
   - {fileID: 5287748247948235909, guid: af1fa94355886bd488f7d9c99eee7468, type: 3}
   radius: 3
+  player: {fileID: 0}
+  bullet: {fileID: 0}
 --- !u!1 &1867661474
 GameObject:
   m_ObjectHideFlags: 0
@@ -5228,6 +5232,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rushEnemy: []
   radius: 0
+  player: {fileID: 0}
+  bullet: {fileID: 0}
 --- !u!1 &1926687546
 GameObject:
   m_ObjectHideFlags: 0
@@ -5995,7 +6001,7 @@ PrefabInstance:
     - target: {fileID: 5287748247948235904, guid: af1fa94355886bd488f7d9c99eee7468,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5287748247948235904, guid: af1fa94355886bd488f7d9c99eee7468,
         type: 3}

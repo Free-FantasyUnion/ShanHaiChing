@@ -3,16 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: 测试完了自己的代码之后把debug.log()和print给注释掉
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
     public Player player;
 
-
     private void Awake()
     {
         GameManager.instance = this;
+        instance.player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     public Vector3 playerPos;
@@ -26,7 +27,7 @@ public class GameManager : MonoBehaviour
             List<Transform> judgeList = new List<Transform>();
             foreach (Collider2D target in targets)
             {
-                //TODO: Check the vector3.right is correct
+                //TODO: Check the vector3.right is correct//目前为止未出现错误
                 if (CaculateAngel(point.right, target.transform.position - point.position) < attackAngel)
                 {
                     if (attackLayer == LayerMask.NameToLayer("Enemy"))

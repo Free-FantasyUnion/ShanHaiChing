@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EnemyBase : MonoBehaviour,ICharacter,IBuffable
+public abstract class EnemyBase : MonoBehaviour, ICharacter, IBuffable
 {
     //basic Attributes
     [SerializeField] protected float basicYuanQi;
@@ -12,7 +12,7 @@ public abstract class EnemyBase : MonoBehaviour,ICharacter,IBuffable
     [SerializeField] protected float basicSpeed;
     [SerializeField] protected float velocityX;
     [SerializeField] protected float velocityY;
-
+    [SerializeField] public Player player;
     [SerializeField] protected EnemyManager.AttackType attackType;
     [SerializeField] protected EnemyManager.AIType aiType;
     [SerializeField] protected Sprite enemyImage;
@@ -63,8 +63,8 @@ public abstract class EnemyBase : MonoBehaviour,ICharacter,IBuffable
 
     protected void SetYuanqi()
     {
-        this.yuanQi = 1 * (1 + Random.Range(0,0.5f));
-        this.yuanQiDrop = Mathf.Sqrt(this.yuanQi*this.yuanQi-1);
+        this.yuanQi = 1 * ( 1 + Random.Range(0, 0.5f) );
+        this.yuanQiDrop = Mathf.Sqrt(this.yuanQi * this.yuanQi - 1);
     }
 
     //Move
@@ -101,6 +101,10 @@ public abstract class EnemyBase : MonoBehaviour,ICharacter,IBuffable
 
     public void Hurt(float value)
     {
-        this.yuanQi -= value*defenceRatio;
+        this.yuanQi -= value * defenceRatio;
+        if (yuanQi <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

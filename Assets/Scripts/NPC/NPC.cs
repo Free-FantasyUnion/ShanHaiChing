@@ -9,7 +9,7 @@ public class NPC : MonoBehaviour
 
     [SerializeField] private Sprite NPC_Sprite;
     [SerializeField] private int scriptsIndex;
-    [SerializeField] private float radius=5f;
+    [SerializeField] private float radius = 5f;
 
     private void Start()
     {
@@ -19,19 +19,19 @@ public class NPC : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown((KeyCode)GameManager.Key.Dialog))
-        //TODO : 设置判定范围
+        //TODO : 设置判定范围//貌似已经设置好了
         {
-            if(Vector3.Distance(PlayerManager.GetInstance().playerTF.position,this.transform.position)<=radius)
-            NPCManager.GetInstance().ReseBonseToNPC(scriptsIndex);
+            if (Vector3.Distance(PlayerManager.GetInstance().playerTF.position, this.transform.position) <= radius)
+                NPCManager.GetInstance().ReseBonseToNPC(scriptsIndex);
         }
     }
 
-/*    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(this.transform.position, radius);
-            
-    }   */
+    /*    private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(this.transform.position, radius);
+
+        }   */
     /*
         private void OnTriggerStay2D(Collider2D collision)
         {

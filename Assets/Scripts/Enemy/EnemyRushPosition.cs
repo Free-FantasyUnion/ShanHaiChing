@@ -7,21 +7,29 @@ public class EnemyRushPosition : MonoBehaviour
 {
     [SerializeField] private List<GameObject> rushEnemy;
     [SerializeField] private float radius;
+    [SerializeField] private Player player;
+    [SerializeField] private GameObject bullet;//TODO: 如果生成蛇的话,就给蛇的bullet赋值这个
 
+    private void Start()
+    {
+        player = GameManager.GetInstance().player;
+        bullet = Resources.Load<GameObject>("Prefabs/Bullet");
+    }
     public void makeEnemy()
     {
         List<Vector3> poss = calculatePosition();
         Sequence sequence = DOTween.Sequence();
         for (int i = 0; i < rushEnemy.Count; ++i)
         {
-            Instantiate(rushEnemy[i]);
+            var tmp = Instantiate(rushEnemy[i]);
+            tmp.GetComponent<EnemyBase>().player = this.player;
             rushEnemy[i].name = this.name + i;
             // print("pos:" + transform.position + "add" + poss[i] + "to" + (transform.position + poss[i])); 
             rushEnemy[i].transform.position = transform.position + poss[i];
             var enemyRenderer = rushEnemy[i].GetComponent<SpriteRenderer>();
             Color color = enemyRenderer.color;
         }
-        
+
     }
 
     public List<Vector3> calculatePosition()

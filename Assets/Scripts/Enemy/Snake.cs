@@ -7,7 +7,7 @@ public class Snake : EnemyBase
     [SerializeField] float warningRadius;
     [SerializeField] float attackRadius;
     [SerializeField] float attackAngle;
-    [SerializeField] Player player;
+
     private Transform JudgePoint;
     [SerializeField] private Animator anim;
     [SerializeField] private float shootingDistance;
@@ -29,9 +29,11 @@ public class Snake : EnemyBase
 
         //sleep
     }
-    protected override void Action()
+    protected override void Action()// 这段代码不要乱动
     {
-        Vector3 distance = player.transform.GetChild(1).position - this.transform.position;
+        //Vector3 distance = player.transform.GetChild(1).position - this.transform.position;
+        Vector3 distance = player.transform.GetChild(1).position - JudgePoint.position;
+        //TODO: 近战蛇的人间大迷惑, 位移出问题,动画没问题.
         float absDistance = distance.magnitude;
         if (absDistance >= shootingDistance)
         {
@@ -80,7 +82,7 @@ public class Snake : EnemyBase
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         }
         JudgePoint = transform.GetChild(0);
-        if (Bullet == null)//TODO: 生成器给引用
+        if (Bullet == null)
             Bullet = Resources.Load<GameObject>("Prefabs/Bullet");
     }
 

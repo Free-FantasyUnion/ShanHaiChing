@@ -7,7 +7,7 @@ public class Wolf : EnemyBase
     [SerializeField] float warningRadius;
     [SerializeField] float attackRadius;
     [SerializeField] float attackAngle;
-    [SerializeField] Player player;
+
     [SerializeField] float dashDistance = 0.5f;
     [SerializeField] float dashTime = 0.7f;
     [SerializeField] float dashSpeedRatio = 5.0f;
@@ -103,7 +103,7 @@ public class Wolf : EnemyBase
             }
             else
             {
-
+                //TODO: 这坨代码这里看着就是屎山,再说吧,忘了咋写了
             }
 
         }
