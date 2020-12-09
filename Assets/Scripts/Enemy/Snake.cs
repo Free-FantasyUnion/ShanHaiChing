@@ -12,17 +12,21 @@ public class Snake : EnemyBase
     [SerializeField] private Animator anim;
     [SerializeField] private float shootingDistance;
     [SerializeField] private float bitingDistance;
-    [SerializeField] private BulletBase Bullet;
+    [SerializeField] private GameObject Bullet;
     [SerializeField] private float coldTime;
     float coldTimeRemain = 0;
+    float facingDir = 1;
     protected void shoot()
     {
-        Instantiate(Bullet, this.transform);
+        var tmp = Instantiate(Bullet, JudgePoint.position, JudgePoint.rotation, null).GetComponent<BulletBase>();
+        tmp.player = this.player;
+        //tmp.speed
         //sleep
     }
     protected void bite()
     {
-        GameManager.AttackJudge(this.transform, this.attackRadius, this.attackAngle, LayerMask.NameToLayer("Player"), this.attackValue);
+        GameManager.AttackJudge(JudgePoint, this.attackRadius, this.attackAngle, LayerMask.NameToLayer("Player"), this.attackValue);
+
         //sleep
     }
     protected override void Action()
@@ -31,32 +35,36 @@ public class Snake : EnemyBase
         float absDistance = distance.magnitude;
         if (absDistance >= shootingDistance)
         {
-            this.MoveToward(player.transform.position);
+            anim.SetFloat("speed", 2);
+            facingDir = this.MoveToward(player.transform.position) ? 1 : -1;
             this.coldTimeRemain -= Time.deltaTime;
         }
-        else if (absDistance >= bitingDistance && this.coldTimeRemain <=0)
+        else if (absDistance >= bitingDistance && this.coldTimeRemain <= 0)
         {
             this.shoot();
             this.coldTimeRemain = this.coldTime;
+            anim.SetFloat("speed", 0);
         }
-        else if(this.coldTimeRemain <= 0)
+        else if (this.coldTimeRemain <= 0)
         {
-            if(absDistance <= this.attackRadius)
+            if (absDistance <= this.attackRadius)
             {
-                print("Biting!");
-                this.bite();
+                anim.SetBool("attack", true);
+                anim.SetFloat("speed", 0);
                 this.coldTimeRemain = this.coldTime;
             }
             else
             {
+                anim.SetFloat("speed", 2);
                 this.coldTimeRemain -= Time.deltaTime;
-                this.MoveToward(player.transform.position);
+                facingDir = this.MoveToward(player.transform.position) ? 1 : -1;
             }
         }
         else
         {
             this.coldTimeRemain -= Time.deltaTime;
         }
+        this.transform.localScale = new Vector3(facingDir, 1, 1);
     }
     // Start is called before the first frame update
     void Start()
@@ -67,12 +75,24 @@ public class Snake : EnemyBase
         this.shootingDistance = 15.0f;
         this.bitingDistance = 10.0f;
         InitAttributes();
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        }
+        JudgePoint = transform.GetChild(0);
+        if (Bullet == null)//TODO: 生成器给引用
+            Bullet = Resources.Load<GameObject>("Prefabs/Bullet");
     }
 
     // Update is called once per frame
     void Update()
     {
         Action();
+    }
+
+    public void SetAttackFalse()
+    {
+        this.anim.SetBool("attack", false);
     }
 
 }

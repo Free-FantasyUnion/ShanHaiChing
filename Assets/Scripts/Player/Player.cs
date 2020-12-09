@@ -34,8 +34,6 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     private Animator playerAnimator;
 
     //Attack
-    Vector2 attackPoint;
-    LayerMask LayerToAttack;
     [SerializeField]private TrailRenderer tail;
     List<Buff> buffList = null;
 
@@ -120,8 +118,9 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     {
         if (coldTime <= 0)
         {
-            GameManager.AttackJudge(judgePoint, attackRadius, 60f, LayerMask.NameToLayer("Enemy"), YuanQi2Attack(yuanQi));
+            print( GameManager.AttackJudge(judgePoint, attackRadius, 60f, LayerMask.NameToLayer("Enemy"), YuanQi2Attack(yuanQi)));
             coldTime = basicColdTime;
+
         }
 
     }

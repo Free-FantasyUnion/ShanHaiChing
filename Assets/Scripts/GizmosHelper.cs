@@ -8,6 +8,8 @@ public class GizmosHelper : MonoBehaviour
     public float attackRadius;
     public Transform NPC;
     public float NPCRadius;
+    public Transform snake;
+    public float snakeRadius=2f;
 
     private void OnDrawGizmos()
     {
@@ -15,5 +17,6 @@ public class GizmosHelper : MonoBehaviour
 
         Gizmos.DrawWireSphere(judgePoint.position, attackRadius);
         Gizmos.DrawWireSphere(NPC.position, NPCRadius);
+        Gizmos.DrawWireSphere(snake.position, snakeRadius);
     }
 }

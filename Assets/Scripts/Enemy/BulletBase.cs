@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract  class BulletBase : MonoBehaviour
+public  class BulletBase : MonoBehaviour
 {
     Sprite bulletImage;
     Vector3 moveDirect;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float attackValue;
-    private Player player;
-
+    public Player player;
+    //TODO:转向
     void AI()
     {
         ;
