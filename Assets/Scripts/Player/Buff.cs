@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public abstract class Buff 
+public class Buff 
 {
     public enum BuffType
     {
@@ -19,14 +19,18 @@ public abstract class Buff
     float atkRatio;
     float speedRatio;
     float yuanqiDropRatio;
+    public float startTime;
+    public bool isEffected;
 
-    public Buff(BuffType type)
+    public Buff(BuffType type, float time)
     {
         this.buffType = type;
         this.defenceRatio = 1.0f;
         this.atkRatio = 1.0f;
         this.speedRatio = 1.0f;
         this.yuanqiDropRatio = 1.0f;
+        this.startTime = time;
+        isEffected = true;
         switch (type)
         {
             case BuffType.DefenceUp:

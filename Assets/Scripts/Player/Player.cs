@@ -38,6 +38,16 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     List<Buff> buffList = null;
     private float attackRatio = 1;
 
+    private void Awake()
+    {
+        Messenger.AddListener(GameEvent.ENEMY_DEATH, onEnemyDeath);
+    }
+
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.ENEMY_DEATH, onEnemyDeath);
+    }
+
     private void Start()
     {
         playerAnimator = GetComponent<Animator>();
@@ -78,6 +88,27 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
 
     }
 
+    private void onEnemyDeath()
+    {
+        int buff_max = 4;
+        int rnd = Random.Range(1, buff_max);
+        switch(rnd)
+        {
+            case 1:
+                GetBuff(new Buff(Buff.BuffType.AtkUp, Time.time));
+                break;
+            case 2:
+                GetBuff(new Buff(Buff.BuffType.SpeedUp, Time.time));
+                break;
+            case 3:
+                GetBuff(new Buff(Buff.BuffType.SpeedDown, Time.time));
+                break;
+            case 4:
+                GetBuff(new Buff(Buff.BuffType.YuanqiDropSlower, Time.time));
+                break;
+        }
+    }
+
 
 
 
@@ -86,8 +117,18 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     //IsBuffable
     public void GetBuff(Buff bf)
     {
+        foreach (var e in buffList)
+        {
+            if (e.Equals(bf)) e.startTime = Time.time;
+        }
         this.buffList.Add(bf);
     }
+
+    public void removeBuff(Buff bf)
+    {
+
+    }
+
     public void SetDefenceByRatio(float value)
     {
         this.defenceRatio = this.basicDefenceRatio * value;

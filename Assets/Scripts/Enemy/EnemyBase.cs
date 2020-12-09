@@ -29,6 +29,11 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter, IBuffable
     protected float maxSpeed;
     public float yuanQiDrop;
 
+    private void OnDestroy()
+    {
+        Messenger.Broadcast(GameEvent.ENEMY_DEATH);
+    }
+
     //IsBuffable
     public void GetBuff(Buff bf)
     {
