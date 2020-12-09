@@ -16,14 +16,14 @@ public class Snake : EnemyBase
     [SerializeField] private float coldTime;
     float coldTimeRemain = 0;
     float facingDir = 1;
-    protected void shoot()
+    protected void Shoot()
     {
         var tmp = Instantiate(Bullet, JudgePoint.position, JudgePoint.rotation, null).GetComponent<BulletBase>();
         tmp.player = this.player;
         //tmp.speed
         //sleep
     }
-    protected void bite()
+    protected void Bite()
     {
         GameManager.AttackJudge(JudgePoint, this.attackRadius, this.attackAngle, LayerMask.NameToLayer("Player"), this.attackValue);
 
@@ -31,17 +31,17 @@ public class Snake : EnemyBase
     }
     protected override void Action()
     {
-        Vector3 distance = player.transform.position - this.transform.position;
+        Vector3 distance = player.transform.GetChild(1).position - this.transform.position;
         float absDistance = distance.magnitude;
         if (absDistance >= shootingDistance)
         {
             anim.SetFloat("speed", 2);
-            facingDir = this.MoveToward(player.transform.position) ? 1 : -1;
+            facingDir = this.MoveToward(player.transform.GetChild(1).position) ? 1 : -1;
             this.coldTimeRemain -= Time.deltaTime;
         }
         else if (absDistance >= bitingDistance && this.coldTimeRemain <= 0)
         {
-            this.shoot();
+            this.Shoot();
             this.coldTimeRemain = this.coldTime;
             anim.SetFloat("speed", 0);
         }
@@ -57,7 +57,7 @@ public class Snake : EnemyBase
             {
                 anim.SetFloat("speed", 2);
                 this.coldTimeRemain -= Time.deltaTime;
-                facingDir = this.MoveToward(player.transform.position) ? 1 : -1;
+                facingDir = this.MoveToward(player.transform.GetChild(1).position) ? 1 : -1;
             }
         }
         else

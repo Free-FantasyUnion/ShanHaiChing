@@ -7,7 +7,7 @@ public class Wolf : EnemyBase
     [SerializeField] float warningRadius;
     [SerializeField] float attackRadius;
     [SerializeField] float attackAngle;
-    [SerializeField] Player player;//TODO: 变量未赋值
+    [SerializeField] Player player;
     [SerializeField] float dashDistance = 0.5f;
     [SerializeField] float dashTime = 0.7f;
     [SerializeField] float dashSpeedRatio = 5.0f;
@@ -29,19 +29,18 @@ public class Wolf : EnemyBase
             dashDirection = 1;
         }
         this.transform.Translate(new Vector3(this.maxSpeed * dashSpeedRatio * Time.deltaTime * dashDirection, 0, 0));
-        GameManager.AttackJudge(this.transform, this.attackRadius, this.attackAngle, LayerMask.NameToLayer("Player"), this.attackValue);
+        GameManager.AttackJudge(JudgePoint, this.attackRadius, this.attackAngle, LayerMask.NameToLayer("Player"), this.attackValue);
     }
 
     protected override void Action()
     {
-        float distanceX = this.transform.position.x - player.transform.position.x;
-        /*        this.transform.localScale = new Vector3(distanceX >= 0 ? 1 : -1, 1, 1);*/
-        // TODO: 狼的移动需要添加左右翻转的代码 用 localScale
+
+        float distanceX = this.transform.position.x - player.transform.GetChild(1).position.x;
         float absDistanceX = Mathf.Abs(distanceX);
-        float distanceZ = this.transform.position.z - player.transform.position.z;
+        float distanceZ = this.transform.position.z - player.transform.GetChild(1).position.z;
         float absDistanceZ = Mathf.Abs(distanceZ);
 
-        Vector3 target0 = player.transform.position;
+        Vector3 target0 = player.transform.GetChild(1).position;
         Vector3 target1 = target0 + new Vector3(dashDistance * ( 0.66f ) * ( distanceX / absDistanceX ), 0, 0);
         if (absDistanceX >= dashDistance && !isDashing)
         {
@@ -69,7 +68,6 @@ public class Wolf : EnemyBase
         }
 
     }
-    // Start is called before the first frame update
     void Start()
     {
         isDashing = false;
@@ -79,11 +77,12 @@ public class Wolf : EnemyBase
         this.dashDistance = 5.0f;
         this.dashTime = 1.5f;
         timer2 = 0;
-        if(player==null)
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        JudgePoint = transform.GetChild(0);
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         Action();
@@ -104,7 +103,7 @@ public class Wolf : EnemyBase
             }
             else
             {
-                
+
             }
 
         }

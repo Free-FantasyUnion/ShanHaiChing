@@ -36,7 +36,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     //Attack
     [SerializeField]private TrailRenderer tail;
     List<Buff> buffList = null;
-
+    private float attackRatio=1;
 
     private void Start()
     {
@@ -56,6 +56,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         this.Move();
         if (Input.GetKeyDown((KeyCode)GameManager.Key.Attack))
         {
+            attackRatio = 0.2f;
             AnimationStateChange();
         }
         this.coldTime -= Time.deltaTime;
@@ -68,6 +69,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         }
         if (atkTimes != 0 && Time.timeSinceLevelLoad - lastAtkTime >= 0.75f)
         {
+            attackRatio = 1;
             atkTimes = 0;
             playerAnimator.SetInteger("attack", 0);
         }
@@ -118,6 +120,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     {
         if (coldTime <= 0)
         {
+            //这个print作为调试用
             print( GameManager.AttackJudge(judgePoint, attackRadius, 60f, LayerMask.NameToLayer("Enemy"), YuanQi2Attack(yuanQi)));
             coldTime = basicColdTime;
 
@@ -177,7 +180,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         playerAnimator.SetFloat("speed", Vector3.Magnitude(printTemp));
         //Debug.Log(this.maxSpeed);
         //每次移动都会new一个三维向量,考虑性能
-        this.gameObject.transform.Translate(Vector3.ClampMagnitude(temp, this.maxSpeed * Time.deltaTime));
+        this.gameObject.transform.Translate(Vector3.ClampMagnitude(temp, this.maxSpeed*attackRatio * Time.deltaTime));
     }
 
     #endregion
@@ -186,9 +189,6 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     {
         this.yuanQi -= value * (1 - this.defenceRatio);
     }
-
-
-
 
 
     private void SetAttackFalse()

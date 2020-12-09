@@ -20,7 +20,7 @@ public  class BulletBase : MonoBehaviour
     }
     private void moveFollow()
     {
-        this.moveDirect = player.transform.position - this.transform.position;
+        this.moveDirect = player.transform.GetChild(1).position - this.transform.position;
         this.transform.Translate(Vector3.ClampMagnitude(this.moveDirect, this.moveSpeed));
     }
     void BulletEffect()
@@ -29,7 +29,7 @@ public  class BulletBase : MonoBehaviour
     }
     private void Start()
     {
-        this.moveDirect = player.transform.position - this.transform.position;
+        this.moveDirect = player.transform.GetChild(1).position - this.transform.position;
     }
     private void Update()
     {

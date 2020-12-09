@@ -91,9 +91,6 @@ public abstract class EnemyBase : MonoBehaviour,ICharacter,IBuffable
     {
         ;//really do nothing! really!
     }
-    /// <summary>
-    /// 近战远战的敌人的寻路方式不同
-    /// </summary>
 
 
 

@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
-
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
@@ -27,7 +25,8 @@ public class GameManager : MonoBehaviour
         {
             List<Transform> judgeList = new List<Transform>();
             foreach (Collider2D target in targets)
-            {//TODO: Check the vector3.right is correct
+            {
+                //TODO: Check the vector3.right is correct
                 if (CaculateAngel(point.right, target.transform.position - point.position) < attackAngel)
                 {
                     if (attackLayer == LayerMask.NameToLayer("Enemy"))
