@@ -14,6 +14,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     [SerializeField] private float basicColdTime = 0.35f;
     [SerializeField] private float velocityX = 5.0f;
     [SerializeField] private float velocityZ = 5.0f;
+    [SerializeField] private float buffTime = 5.0f;
     [Header("攻击")]
     [SerializeField] private int faceDirection = 1;
     private float attackRadius = 1.71f;
@@ -40,12 +41,12 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
 
     private void Awake()
     {
-        Messenger.AddListener(GameEvent.ENEMY_DEATH, onEnemyDeath);
+        Messenger.AddListener(GameEvent.ENEMY_DEATH, OnEnemyDeath);
     }
 
     private void OnDestroy()
     {
-        Messenger.RemoveListener(GameEvent.ENEMY_DEATH, onEnemyDeath);
+        Messenger.RemoveListener(GameEvent.ENEMY_DEATH, OnEnemyDeath);
     }
 
     private void Start()
@@ -61,7 +62,9 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     {
         foreach (var buff in this.buffList)
         {
+            if ((Time.time - buff.startTime) >= buffTime) buffList.Remove(buff);
             buff.BuffEffect(this);
+            buff.updateFill(1.0f - (Time.time - buff.startTime) / buffTime);
         }
         this.Move();
         if (Input.GetKeyDown((KeyCode)GameManager.Key.Attack))
@@ -88,7 +91,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
 
     }
 
-    private void onEnemyDeath()
+    private void OnEnemyDeath()
     {
         int buff_max = 4;
         int rnd = Random.Range(1, buff_max);
@@ -122,11 +125,6 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
             if (e.Equals(bf)) e.startTime = Time.time;
         }
         this.buffList.Add(bf);
-    }
-
-    public void removeBuff(Buff bf)
-    {
-
     }
 
     public void SetDefenceByRatio(float value)

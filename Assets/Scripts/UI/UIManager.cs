@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
         Instance = this;
         foreach (var img in BuffImages)
         {
-            img.GetComponent<Image>().fillAmount = 1.0f;
+            img.GetComponent<Image>().fillAmount = 0.0f;
         }
     }
 

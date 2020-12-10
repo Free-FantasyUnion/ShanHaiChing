@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Buff 
@@ -100,6 +101,11 @@ public class Buff
                 break;
 
         }
+    }
+
+    public void updateFill(float fillAmount)
+    {
+        UIManager.Instance.setUIRatio(buffType, fillAmount);
     }
     
 }
