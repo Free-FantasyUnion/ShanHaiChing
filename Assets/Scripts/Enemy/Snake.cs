@@ -5,9 +5,9 @@ using UnityEngine;
 public class Snake : EnemyBase
 {
     [SerializeField] float warningRadius;
-    [SerializeField] float attackRadius;
+    [SerializeField]  float attackRadius=1.5f;
     [SerializeField] float attackAngle;
-
+    public Vector3 distance;
     private Transform JudgePoint;
     [SerializeField] private Animator anim;
     [SerializeField] private float shootingDistance;
@@ -32,13 +32,18 @@ public class Snake : EnemyBase
     protected override void Action()// 这段代码不要乱动
     {
         //Vector3 distance = player.transform.GetChild(1).position - this.transform.position;
-        Vector3 distance = player.transform.GetChild(1).position - JudgePoint.position;
-        //TODO: 近战蛇的人间大迷惑, 位移出问题,动画没问题.
+        distance = player.transform.GetChild(1).position - JudgePoint.position;
+
         float absDistance = distance.magnitude;
         if (absDistance >= shootingDistance)
         {
             anim.SetFloat("speed", 2);
-            facingDir = this.MoveToward(player.transform.GetChild(1).position) ? 1 : -1;
+            Vector3 temp = JudgePoint.position - player.transform.GetChild(1).position;
+            /*if (temp.sqrMagnitude > 2.25f)*/
+                this.transform.Translate(Vector3.ClampMagnitude(-temp, this.maxSpeed * Time.deltaTime));
+            if (Mathf.Abs(temp.x) > 2f)
+                facingDir = temp.x > 0 ? 1 : -1;
+
             this.coldTimeRemain -= Time.deltaTime;
         }
         else if (absDistance >= bitingDistance && this.coldTimeRemain <= 0)
@@ -46,6 +51,7 @@ public class Snake : EnemyBase
             this.Shoot();
             this.coldTimeRemain = this.coldTime;
             anim.SetFloat("speed", 0);
+            anim.SetBool("attack", true);
         }
         else if (this.coldTimeRemain <= 0)
         {
@@ -59,7 +65,11 @@ public class Snake : EnemyBase
             {
                 anim.SetFloat("speed", 2);
                 this.coldTimeRemain -= Time.deltaTime;
-                facingDir = this.MoveToward(player.transform.GetChild(1).position) ? 1 : -1;
+                Vector3 temp = JudgePoint.position - player.transform.GetChild(1).position;
+/*                if(temp.sqrMagnitude>2.25f)*/
+                this.transform.Translate(Vector3.ClampMagnitude(-temp, this.maxSpeed * Time.deltaTime));
+                if (Mathf.Abs(temp.x) > 2f)
+                    facingDir = temp.x > 0.1f ? 1 : -1;
             }
         }
         else
@@ -68,7 +78,7 @@ public class Snake : EnemyBase
         }
         this.transform.localScale = new Vector3(facingDir, 1, 1);
     }
-    // Start is called before the first frame update
+
     void Start()
     {
         anim = this.GetComponent<Animator>();
@@ -86,7 +96,7 @@ public class Snake : EnemyBase
             Bullet = Resources.Load<GameObject>("Prefabs/Bullet");
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         Action();

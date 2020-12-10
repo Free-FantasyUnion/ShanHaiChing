@@ -113,6 +113,7 @@ MonoBehaviour:
   warningRadius: 0
   attackRadius: 0
   attackAngle: 0
+  distance: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
   shootingDistance: 0
   bitingDistance: 0

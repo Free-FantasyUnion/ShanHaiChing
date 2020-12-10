@@ -12,7 +12,7 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter, IBuffable
     [SerializeField] protected float basicSpeed;
     [SerializeField] protected float velocityX;
     [SerializeField] protected float velocityY;
-    [SerializeField] public Player player;
+    public Player player;
     [SerializeField] protected EnemyManager.AttackType attackType;
     [SerializeField] protected EnemyManager.AIType aiType;
     [SerializeField] protected Sprite enemyImage;
@@ -109,7 +109,7 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter, IBuffable
         this.yuanQi -= value * defenceRatio;
         if (yuanQi <= 0)
         {
-            Destroy(this.gameObject);
+            Destroy(this.gameObject,3);
         }
     }
 }

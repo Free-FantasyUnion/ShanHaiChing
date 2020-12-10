@@ -8,7 +8,7 @@ public class EnemyRushPosition : MonoBehaviour
     [SerializeField] private List<GameObject> rushEnemy;
     [SerializeField] private float radius;
     [SerializeField] private Player player;
-    [SerializeField] private GameObject bullet;//TODO: 如果生成蛇的话,就给蛇的bullet赋值这个
+    [SerializeField] private GameObject bullet;//TODO: 如果生成蛇的话,就给蛇的bullet赋值这个(已加载)
 
     private void Start()
     {

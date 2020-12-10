@@ -6,14 +6,12 @@ public class PlayerManager : MonoBehaviour
 {
     private static PlayerManager instance = new PlayerManager();
     [HideInInspector]public Transform playerTF;
-    private PlayerManager()
-    {
 
-    }
 
     void Start()
     {
         instance.playerTF = GameObject.FindGameObjectWithTag("Player").transform;
+
     }
 
 
