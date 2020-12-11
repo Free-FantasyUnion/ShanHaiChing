@@ -41,7 +41,7 @@ public class Snake : EnemyBase
             Vector3 temp = JudgePoint.position - player.transform.GetChild(1).position;
             /*if (temp.sqrMagnitude > 2.25f)*/
                 this.transform.Translate(Vector3.ClampMagnitude(-temp, this.maxSpeed * Time.deltaTime));
-            if (Mathf.Abs(temp.x) > 2f)
+            if (Mathf.Abs(temp.x) > 3f)
                 facingDir = temp.x > 0 ? 1 : -1;
 
             this.coldTimeRemain -= Time.deltaTime;
@@ -51,13 +51,13 @@ public class Snake : EnemyBase
             this.Shoot();
             this.coldTimeRemain = this.coldTime;
             anim.SetFloat("speed", 0);
-            anim.SetBool("attack", true);
+            anim.SetInteger("attack", 2);
         }
         else if (this.coldTimeRemain <= 0)
         {
             if (absDistance <= this.attackRadius)
             {
-                anim.SetBool("attack", true);
+                anim.SetInteger("attack", 1);
                 anim.SetFloat("speed", 0);
                 this.coldTimeRemain = this.coldTime;
             }
@@ -68,7 +68,7 @@ public class Snake : EnemyBase
                 Vector3 temp = JudgePoint.position - player.transform.GetChild(1).position;
 /*                if(temp.sqrMagnitude>2.25f)*/
                 this.transform.Translate(Vector3.ClampMagnitude(-temp, this.maxSpeed * Time.deltaTime));
-                if (Mathf.Abs(temp.x) > 2f)
+                if (Mathf.Abs(temp.x) > 3f)
                     facingDir = temp.x > 0.1f ? 1 : -1;
             }
         }
@@ -104,7 +104,7 @@ public class Snake : EnemyBase
 
     public void SetAttackFalse()
     {
-        this.anim.SetBool("attack", false);
+        anim.SetInteger("attack", 0);
     }
 
 }

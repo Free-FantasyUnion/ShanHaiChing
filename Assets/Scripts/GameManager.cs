@@ -60,7 +60,8 @@ public class GameManager : MonoBehaviour
     /// <returns></returns>
     static float CaculateAngel(Vector3 direction, Vector3 joinedLine)
     {
-        return Mathf.Acos(Vector3.Dot(direction.normalized, joinedLine.normalized)) * Mathf.Rad2Deg;
+        Vector3 tmp = new Vector3(joinedLine.x, 0, joinedLine.z);
+        return Mathf.Acos(Vector3.Dot(direction.normalized, tmp.normalized)) * Mathf.Rad2Deg;
     }
 
     public static GameManager GetInstance()

@@ -44,7 +44,7 @@ public class BulletBase : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionStay(Collision other)
     {
         print(other.gameObject.tag);
         if (other.gameObject.tag == "Player")
