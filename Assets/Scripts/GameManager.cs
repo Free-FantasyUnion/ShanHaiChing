@@ -21,10 +21,9 @@ public class GameManager : MonoBehaviour
     public static bool AttackJudge(Transform point, float attackRadius, float attackAngel, LayerMask attackLayer, float damage)
     {
         Collider[] targets = Physics.OverlapSphere(point.position, attackRadius, attackLayer);
-        bool tmp = targets != null;
+        bool tmp = targets.Length != 0;
         if (tmp)
         {
-            List<Transform> judgeList = new List<Transform>();
             foreach (Collider target in targets)
             {
                 //TODO: Check the vector3.right is correct//目前为止未出现错误

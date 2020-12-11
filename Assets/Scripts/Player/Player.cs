@@ -162,11 +162,10 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         if (coldTime <= 0)
         {
             //这个print作为调试用
-            //print(GameManager.AttackJudge(judgePoint, attackRadius, 60f, LayerMask.NameToLayer("Enemy"), YuanQi2Attack(yuanQi)));
+            print(GameManager.AttackJudge(judgePoint, attackRadius, 60f, LayerMask.NameToLayer("Enemy"), YuanQi2Attack(yuanQi)));
             coldTime = basicColdTime;
 
         }
-
     }
 
     private float YuanQi2Attack(float YuanQi)
@@ -200,7 +199,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
             //Debug.Log("Moving Left");
             if (faceDirection != -1)
             {
-                this.transform.localScale = new Vector3(-1, 1, 1);
+                this.transform.Rotate(0, 180, 0);
                 faceDirection = -1;
             }
             tempX = -this.velocityX;
@@ -211,7 +210,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
             //Debug.Log("Moving Right");
             if (faceDirection != 1)
             {
-                this.transform.localScale = new Vector3(1, 1, 1);
+                this.transform.Rotate(0, 180, 0);
                 faceDirection = 1;
             }
             tempX = this.velocityX;
@@ -221,7 +220,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         playerAnimator.SetFloat("speed", Vector3.Magnitude(printTemp));
         //Debug.Log(this.maxSpeed);
         //每次移动都会new一个三维向量,考虑性能
-        this.gameObject.transform.Translate(Vector3.ClampMagnitude(temp, this.maxSpeed * attackRatio * Time.deltaTime));
+        this.gameObject.transform.Translate(Vector3.ClampMagnitude(temp*faceDirection, this.maxSpeed * attackRatio * Time.deltaTime));
     }
 
     #endregion

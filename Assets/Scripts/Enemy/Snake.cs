@@ -49,6 +49,7 @@ public class Snake : EnemyBase
         else if (absDistance >= bitingDistance && this.coldTimeRemain <= 0)
         {
             this.Shoot();
+            facingDir = distance.x > 0 ? -1 : 1;
             this.coldTimeRemain = this.coldTime;
             anim.SetFloat("speed", 0);
             anim.SetInteger("attack", 2);
