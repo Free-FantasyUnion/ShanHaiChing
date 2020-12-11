@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
         // 快速移动未确定
         QuickMove = KeyCode.LeftShift,
         Dialog = KeyCode.Space,
+        Pause = KeyCode.Escape
     }
 
 }

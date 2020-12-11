@@ -10,9 +10,11 @@ public class UIManager : MonoBehaviour
 
     public List<Image> BuffImages;
     public Image GenkiBar;
+    public GameObject pausePannel;
 
     void Start()
-    {                                       
+    {
+        //pauseCanvas = transform.Find("Undefined")；
         Instance = this;
         BuffImages.Add(transform.Find("/PlayerInfo/Panel/Buffs/AtkUpL").GetComponent<Image>());
         BuffImages.Add(transform.Find("/PlayerInfo/Panel/Buffs/SpeedUpL").GetComponent<Image>());
@@ -43,7 +45,18 @@ public class UIManager : MonoBehaviour
                 break;
         }
     }
-
+    public void gotoScene(string name)
+    {
+        SceneManager.LoadSceneAsync(name);
+    }
+    public void Update()
+    {
+        if (Input.GetKeyDown((KeyCode)GameManager.Key.Pause))
+        {
+            pausePannel.SetActive(true);
+            //otherwise Instantiate(pausePannel, this.Transform);
+        }
+    }
     public void updateQiBar(float ratio)
     {
         GenkiBar.fillAmount = ratio;
