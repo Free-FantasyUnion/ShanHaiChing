@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    public float xMargin = 1f; // Distance in the x axis the player can move before the camera follows.
-    public float yMargin = 1f; // Distance in the y axis the player can move before the camera follows.
-    public float xSmooth = 2f; // How smoothly the camera catches up with it's target movement in the x axis.
-    public float ySmooth = 2f; // How smoothly the camera catches up with it's target movement in the y axis.
-    public Vector2 maxXAndY; // The maximum x and y coordinates the camera can have.
-    public Vector2 minXAndY; // The minimum x and y coordinates the camera can have.
+    public float xMargin = 1f; 
+    public float yMargin = 1f; 
+    public float xSmooth = 2f; 
+    public float ySmooth = 2f; 
+    public Vector2 maxXAndY; 
+    public Vector2 minXAndY; 
     public float yOffset = 14f;
 
-    private Transform m_Player; // Reference to the player's transform.
+    private Transform m_Player; 
 
 
     private void Awake()
     {
-        // Setting up the reference.
         m_Player = transform.Find("/Player").transform;
     }
 
@@ -64,5 +63,10 @@ public class CameraManager : MonoBehaviour
 
         // Set the camera's position to the target position with the same z component.
         transform.position = new Vector3(targetX, targetY, transform.position.z);
+    }
+
+    public void setMaxMoveX(float maxX)
+    {
+        maxXAndY.x = maxX;
     }
 }
