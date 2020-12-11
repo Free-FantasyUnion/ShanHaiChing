@@ -104,7 +104,7 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter, IBuffable
     /// </summary>
     protected abstract void Action();
 
-    public void Hurt(float value)
+    public virtual void Hurt(float value)
     {
         this.yuanQi -= value * defenceRatio;
         if (yuanQi <= 0)

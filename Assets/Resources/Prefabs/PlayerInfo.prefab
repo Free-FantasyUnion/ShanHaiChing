@@ -465,16 +465,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8254753380133330967}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8254753380506086607}
+  m_Father: {fileID: 8254753381285711841}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 79, y: -23.975}
+  m_AnchoredPosition: {x: -561, y: -305}
   m_SizeDelta: {x: 405.12628, y: 57.9498}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8254753380133330960
@@ -506,7 +506,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -2126246720042785711, guid: ba2ae4b1564f3e94d8b719ff164f4f29,
     type: 3}
-  m_Type: 3
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
@@ -514,7 +514,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.93
 --- !u!1 &8254753380138525892
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,9 +1055,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8254753380110764735}
-  - {fileID: 8254753380133330966}
   m_Father: {fileID: 8254753381285711841}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1133,7 +1132,7 @@ RectTransform:
   - {fileID: 8254753381151951554}
   - {fileID: 8254753380682784346}
   m_Father: {fileID: 8254753381285711841}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1847,7 +1846,7 @@ RectTransform:
   - {fileID: 8254753380502479071}
   - {fileID: 8254753379986547239}
   m_Father: {fileID: 8254753381285711841}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1922,6 +1921,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 8254753380138525895}
+  - {fileID: 8254753380133330966}
   - {fileID: 8254753380506086607}
   - {fileID: 8254753381268306778}
   - {fileID: 8254753380524316800}

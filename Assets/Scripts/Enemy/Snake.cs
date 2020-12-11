@@ -108,4 +108,15 @@ public class Snake : EnemyBase
         anim.SetInteger("attack", 0);
     }
 
+
+
+    public override void Hurt(float value)
+    {
+        this.yuanQi -= value * defenceRatio;
+        if (yuanQi <= 0)
+        {
+            anim.SetTrigger("die");
+            Destroy(this.gameObject, 3);
+        }
+    }
 }

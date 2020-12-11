@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour
                 break;
         }
     }
-    public void gotoScene(string name)
+    public static void gotoScene(string name)
     {
         if(name == "Exit")
         {
@@ -97,4 +97,7 @@ public class UIManager : MonoBehaviour
     {
         GenkiBar.fillAmount = ratio;
     }
+
+    
+
 }
