@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     public List<Image> BuffImages;
     public Image GenkiBar;
     public GameObject pausePannel;
+    public GameObject deathPannel;
+    public GameObject statusPannel;
 
     void Start()
     {
@@ -54,11 +56,36 @@ public class UIManager : MonoBehaviour
         }
         SceneManager.LoadSceneAsync(name);
     }
+    bool pausing = false;
+    public void Pause()
+    {
+        if (pausing)
+        {
+            pausing = false;
+            pausePannel.SetActive(false);
+            Time.timeScale = 1;
+            statusPannel.SetActive(true);
+        }
+        else
+        { 
+            pausing = true;
+            pausePannel.SetActive(true);
+            Time.timeScale = 0;
+            statusPannel.SetActive(false);
+        }
+    }
+
+    public void PlayerDeath()
+    {
+        Time.timeScale = 0;
+        statusPannel.SetActive(false);
+        deathPannel.SetActive(true);
+    }
     public void Update()
     {
         if (Input.GetKeyDown((KeyCode)GameManager.Key.Pause))
         {
-            pausePannel.SetActive(true);
+            Pause();
             //otherwise Instantiate(pausePannel, this.Transform);
         }
     }
