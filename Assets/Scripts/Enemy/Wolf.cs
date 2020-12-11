@@ -88,47 +88,51 @@ public class Wolf : EnemyBase
 
     void Update()
     {
-        Action();
-        if (isDashing)
+        if (isAlive)
         {
-            /*if (true)
+            Action();
+            if (isDashing)
             {
-                isDashing = false;
-            }*/
-            if (Time.timeSinceLevelLoad - timer2 >= 1.75f)
-            {
-                Dash();
-                //print(timer);
-                timer -= Time.deltaTime;
-                if (timer <= 0)
+                /*if (true)
                 {
-                    timer = 0;
-                    timer2 = Time.timeSinceLevelLoad;
                     isDashing = false;
-                    dashingRight = false;
+                }*/
+                if (Time.timeSinceLevelLoad - timer2 >= 1.75f)
+                {
+                    Dash();
+                    //print(timer);
+                    timer -= Time.deltaTime;
+                    if (timer <= 0)
+                    {
+                        timer = 0;
+                        timer2 = Time.timeSinceLevelLoad;
+                        isDashing = false;
+                        dashingRight = false;
+                    }
                 }
+                else
+                {
+                    GameManager.AttackJudge(JudgePoint, this.attackRadius, this.attackAngle, LayerMask.NameToLayer("Player"), this.attackValue);
+                }
+
             }
             else
             {
-                GameManager.AttackJudge(JudgePoint, this.attackRadius, this.attackAngle, LayerMask.NameToLayer("Player"), this.attackValue);
+                float distanceX = this.transform.position.x - player.transform.position.x;
+                this.transform.localScale = new Vector3(distanceX >= 0 ? 1 : -1, 1, 1);
             }
+        }
 
-        }
-        else
-        {
-            float distanceX = this.transform.position.x - player.transform.position.x;
-            this.transform.localScale = new Vector3(distanceX >= 0 ? 1 : -1, 1, 1);
-        }
 
     }
 
     public override void Hurt(float value)
     {
         this.yuanQi -= value * defenceRatio;
-        if (yuanQi <= 0)
+        if (yuanQi <= 0 && isAlive)
         {
+            isAlive = false;
             anim.SetTrigger("die");
-            Destroy(this.gameObject, 3);
         }
     }
 }

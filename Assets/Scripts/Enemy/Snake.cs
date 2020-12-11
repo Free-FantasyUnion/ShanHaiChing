@@ -16,6 +16,7 @@ public class Snake : EnemyBase
     [SerializeField] private float coldTime;
     float coldTimeRemain = 0;
     float facingDir = 1;
+
     protected void Shoot()
     {
         var tmp = Instantiate(Bullet, JudgePoint.position, JudgePoint.rotation, null).GetComponent<BulletBase>();
@@ -100,6 +101,7 @@ public class Snake : EnemyBase
 
     void Update()
     {
+        if(isAlive)
         Action();
     }
 
@@ -113,10 +115,11 @@ public class Snake : EnemyBase
     public override void Hurt(float value)
     {
         this.yuanQi -= value * defenceRatio;
-        if (yuanQi <= 0)
+        if (yuanQi <= 0&&isAlive)
         {
+            isAlive = false;
             anim.SetTrigger("die");
-            Destroy(this.gameObject, 3);
         }
     }
+
 }

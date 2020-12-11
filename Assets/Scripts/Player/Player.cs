@@ -61,7 +61,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
 
     private void Update()
     {
-        foreach (var buff in this.buffList)
+        foreach (var buff in this.buffList)//TODO:修
         {
             if ((Time.time - buff.startTime) >= buffTime) buffList.Remove(buff);
             buff.BuffEffect(this);

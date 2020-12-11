@@ -12,6 +12,7 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter, IBuffable
     [SerializeField] protected float basicSpeed;
     [SerializeField] protected float velocityX;
     [SerializeField] protected float velocityY;
+    protected bool isAlive = true;
     public Player player;
     [SerializeField] protected EnemyManager.AttackType attackType;
     [SerializeField] protected EnemyManager.AIType aiType;
@@ -111,5 +112,10 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter, IBuffable
         {
             Destroy(this.gameObject,3);
         }
+    }
+
+    public void DestoryThis()
+    {
+        Destroy(this.gameObject);
     }
 }
