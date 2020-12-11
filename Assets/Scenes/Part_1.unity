@@ -5237,6 +5237,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3665736627099430491, guid: f63b621dd66af954194ba0f55e0d8b91,
+        type: 3}
+      propertyPath: m_Text
+      value: Space
+      objectReference: {fileID: 0}
     - target: {fileID: 3665736627134060428, guid: f63b621dd66af954194ba0f55e0d8b91,
         type: 3}
       propertyPath: m_LocalPosition.z

@@ -12,6 +12,8 @@ public class DialogScriptHelper
     /// </summary>
     private List<string> textList;
     private int curIndex;
+    public string audioName;
+    public bool haveAudio = false;
 
 
 
@@ -27,8 +29,20 @@ public class DialogScriptHelper
     /// <returns></returns>
     public string ReadLine()
     {
+        haveAudio = false;
+        audioName = "NO";
         if (curIndex != textList.Count)
-            return textList[curIndex++];
+        {
+            var s = textList[curIndex++];
+            if (s.Contains("READ"))
+            {
+                audioName = s.Split(' ')[1].Trim();
+                haveAudio = true;
+                s = textList[curIndex++];
+            }
+            s.Replace("&", "\n");
+            return s;
+        }
         else
             throw new System.Exception("已经读到文档结尾");
     }

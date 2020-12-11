@@ -20,6 +20,8 @@ public class NPCManager : MonoBehaviour
     /// 剧本列表
     /// </summary>
     private List<TextAsset> dialogScriptsList;
+    private AudioSource audio;
+    private List<AudioClip> audioClips;
     bool isDialogging = false;
 
     private DialogScriptHelper helper;
@@ -42,18 +44,32 @@ public class NPCManager : MonoBehaviour
 
     private void Start()
     {
-
         // load the scripts
         instance.dialogScriptsList = new List<TextAsset>(Resources.LoadAll<TextAsset>(SceneManager.GetActiveScene().name));
         //instance.dialogFramework_Prefab = Resources.Load<GameObject>("Prefabs/NPC/NPC_Dialog_UI");
         instance.dialogFrameWork = transform.GetChild(0).gameObject;
+        instance.audio = GetComponent<AudioSource>();
+        instance.audioClips = new List<AudioClip>(Resources.LoadAll<AudioClip>("Audio"));
     }
 
 
     private void ShowText()
     {
         //catch and destory the prefab
-        instance.Dialog_Text.text = helper.ReadLine();
+        instance.Dialog_Text.text = instance.helper.ReadLine();
+        if (instance.helper.haveAudio)
+        { 
+            
+            for (int i = 0; i < instance.audioClips.Count; ++i)
+            {
+                if (string.Equals(instance.audioClips[i].name.Trim(), instance.helper.audioName))
+                {
+                    instance.audio.clip = instance.audioClips[i];
+                    instance.audio.Play();
+                    break;
+                }
+            }
+        }
     }
 
 
@@ -85,6 +101,13 @@ public class NPCManager : MonoBehaviour
         }
 
     }
+
+    void readDialog(string name)
+    {
+
+    }
+
+
 }
 
 
