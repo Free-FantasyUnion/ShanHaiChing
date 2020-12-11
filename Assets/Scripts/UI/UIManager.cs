@@ -11,8 +11,12 @@ public class UIManager : MonoBehaviour
     public List<Image> BuffImages;
 
     void Start()
-    {
+    {                                       
         Instance = this;
+        BuffImages.Add(transform.Find("/PlayerInfo/Panel/Buffs/AtkUpL").GetComponent<Image>());
+        BuffImages.Add(transform.Find("/PlayerInfo/Panel/Buffs/SpeedUpL").GetComponent<Image>());
+        BuffImages.Add(transform.Find("/PlayerInfo/Panel/Buffs/SlowGenkiL").GetComponent<Image>());
+        BuffImages.Add(transform.Find("/PlayerInfo/Panel/Buffs/HurtReduceL").GetComponent<Image>());
         foreach (var img in BuffImages)
         {
             img.GetComponent<Image>().fillAmount = 0.0f;

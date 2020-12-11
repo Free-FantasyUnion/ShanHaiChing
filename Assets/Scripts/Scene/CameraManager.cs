@@ -23,15 +23,13 @@ public class CameraManager : MonoBehaviour
 
 
     private bool CheckXMargin()
-    {
-        // Returns true if the distance between the camera and the player in the x axis is greater than the x margin.
+    {        
         return Mathf.Abs(transform.position.x - m_Player.position.x) > xMargin;
     }
 
 
     private bool CheckYMargin()
     {
-        // Returns true if the distance between the camera and the player in the y axis is greater than the y margin.
         return Mathf.Abs(transform.position.y - zPosToy(m_Player.position.z)) > yMargin;
     }
 
@@ -58,7 +56,6 @@ public class CameraManager : MonoBehaviour
         }
         if (CheckYMargin())
         {
-            print("checked " + m_Player.transform.position.z + " to " + zPosToy(m_Player.transform.position.z));
             targetY = Mathf.Lerp(transform.position.y, zPosToy(m_Player.transform.position.z), ySmooth * Time.deltaTime);
         }
 
