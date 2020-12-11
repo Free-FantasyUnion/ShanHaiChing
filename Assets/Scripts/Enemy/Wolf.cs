@@ -16,6 +16,7 @@ public class Wolf : EnemyBase
     //temp
     float timer;
     float timer2;
+    bool isInterrupted;
     bool isDashing = false;
     bool dashingRight = false;
 
@@ -40,7 +41,7 @@ public class Wolf : EnemyBase
         float distanceZ = this.transform.position.z - player.transform.GetChild(1).position.z;
         float absDistanceZ = Mathf.Abs(distanceZ);
 
-        Vector3 target0 = player.transform.GetChild(1).position;
+        Vector3 target0 = player.transform.position;
         Vector3 target1 = target0 + new Vector3(dashDistance * ( 0.66f ) * ( distanceX / absDistanceX ), 0, 0);
         if (absDistanceX >= dashDistance && !isDashing)
         {
@@ -70,12 +71,14 @@ public class Wolf : EnemyBase
     }
     void Start()
     {
+        isInterrupted = false;
         isDashing = false;
         this.basicSpeed = 3.0f;
         anim = this.GetComponent<Animator>();
         this.InitAttributes();
         this.dashDistance = 5.0f;
         this.dashTime = 1.5f;
+        this.attackRadius = 3.0f;
         timer2 = 0;
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -88,7 +91,11 @@ public class Wolf : EnemyBase
         Action();
         if (isDashing)
         {
-            if (Time.timeSinceLevelLoad - timer2 >= 1f)
+            /*if (true)
+            {
+                isDashing = false;
+            }*/
+            if (Time.timeSinceLevelLoad - timer2 >= 1.75f)
             {
                 Dash();
                 //print(timer);
@@ -103,7 +110,7 @@ public class Wolf : EnemyBase
             }
             else
             {
-                //TODO: 这坨代码这里看着就是屎山,再说吧,忘了咋写了
+                GameManager.AttackJudge(JudgePoint, this.attackRadius, this.attackAngle, LayerMask.NameToLayer("Player"), this.attackValue);
             }
 
         }

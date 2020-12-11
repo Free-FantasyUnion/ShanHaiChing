@@ -162,7 +162,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         if (coldTime <= 0)
         {
             //这个print作为调试用
-            print(GameManager.AttackJudge(judgePoint, attackRadius, 60f, LayerMask.NameToLayer("Enemy"), YuanQi2Attack(yuanQi)));
+            //print(GameManager.AttackJudge(judgePoint, attackRadius, 60f, LayerMask.NameToLayer("Enemy"), YuanQi2Attack(yuanQi)));
             coldTime = basicColdTime;
 
         }

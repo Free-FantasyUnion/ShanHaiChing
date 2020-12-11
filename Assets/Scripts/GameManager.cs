@@ -20,22 +20,24 @@ public class GameManager : MonoBehaviour
 
     public static bool AttackJudge(Transform point, float attackRadius, float attackAngel, LayerMask attackLayer, float damage)
     {
-        Collider2D[] targets = Physics2D.OverlapCircleAll(point.position, attackRadius, attackLayer);
+        Collider[] targets = Physics.OverlapSphere(point.position, attackRadius, attackLayer);
         bool tmp = targets != null;
         if (tmp)
         {
             List<Transform> judgeList = new List<Transform>();
-            foreach (Collider2D target in targets)
+            foreach (Collider target in targets)
             {
                 //TODO: Check the vector3.right is correct//目前为止未出现错误
-                if (CaculateAngel(point.right, target.transform.position - point.position) < attackAngel)
+                if (Mathf.Abs(CaculateAngel(point.right, target.transform.position - point.position)) < attackAngel)
                 {
                     if (attackLayer == LayerMask.NameToLayer("Enemy"))
                     {
+                        print("Enemy Hurt!");
                         target.GetComponent<EnemyBase>().Hurt(damage);
                     }
                     else if (attackLayer == LayerMask.NameToLayer("Player"))
                     {
+                        print("Player Under Attack!");
                         target.GetComponent<Player>().Hurt(damage);
                     }
                 }

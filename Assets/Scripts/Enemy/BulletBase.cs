@@ -30,6 +30,7 @@ public class BulletBase : MonoBehaviour
     private void Start()
     {
         this.moveDirect = player.transform.GetChild(1).position - this.transform.position;
+        this.attackValue = 5.0f;
         this.GetComponent<SpriteRenderer>().flipX = moveDirect.x > 0;
     }
     private void Update()
@@ -41,4 +42,15 @@ public class BulletBase : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+
+    private void OnCollisionEnter(Collision other)
+    {
+        print(other.gameObject.tag);
+        if (other.gameObject.tag == "Player")
+        {
+            player.Hurt(attackValue);
+        }
+    }
+
 }

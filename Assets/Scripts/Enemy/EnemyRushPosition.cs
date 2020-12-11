@@ -44,9 +44,9 @@ public class EnemyRushPosition : MonoBehaviour
         }
         if (rushEnemy.Count == 2)
         {
-            print(toPlayerPos);
-            print(Quaternion.AngleAxis(60, Vector3.forward) * toPlayerPos);
-            print(Quaternion.AngleAxis(-60, Vector3.forward) * toPlayerPos);
+            //print(toPlayerPos);
+            //print(Quaternion.AngleAxis(60, Vector3.forward) * toPlayerPos);
+            //print(Quaternion.AngleAxis(-60, Vector3.forward) * toPlayerPos);
             targetPos.Add(Quaternion.AngleAxis(30, Vector3.forward) * toPlayerPos * radius);
             targetPos.Add(Quaternion.AngleAxis(-30, Vector3.forward) * toPlayerPos * radius);
         }
