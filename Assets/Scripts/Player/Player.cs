@@ -56,6 +56,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         lastAtkTime = 0;
         judgePoint = transform.Find("Player_Module/main/bone_1/bone_2/bone_3/bone_14/bone_15/bone_16/剑/JudgePoint");
         InitAttributes();
+        yuanQi = basicYuanQi;
     }
 
     private void Update()
@@ -88,7 +89,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
             playerAnimator.SetInteger("attack", 0);
         }
         GameManager.GetInstance().setPlayerPos(transform.position);
-
+        UIManager.Instance.updateQiBar(this.yuanQi / this.basicYuanQi);
     }
 
     private void OnEnemyDeath()
