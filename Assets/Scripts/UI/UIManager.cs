@@ -47,6 +47,11 @@ public class UIManager : MonoBehaviour
     }
     public void gotoScene(string name)
     {
+        if(name == "Exit")
+        {
+            Application.Quit();
+            return;
+        }
         SceneManager.LoadSceneAsync(name);
     }
     public void Update()
