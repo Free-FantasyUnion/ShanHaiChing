@@ -228,6 +228,10 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     public void Hurt(float value)
     {
         this.yuanQi -= value * ( 1 - this.defenceRatio );
+        if (this.yuanQi <= 0)
+        {
+            Messenger.Broadcast(GameEvent.PLAYER_DEATH);
+        }
     }
 
 
@@ -251,7 +255,5 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         }
 
     }
-
-
 
 }

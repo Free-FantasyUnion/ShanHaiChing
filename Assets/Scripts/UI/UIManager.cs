@@ -18,11 +18,11 @@ public class UIManager : MonoBehaviour
     {
         //pauseCanvas = transform.Find("Undefined")；
         Instance = this;
-        BuffImages.Add(transform.Find("/PlayerInfo/Panel/Buffs/AtkUpL").GetComponent<Image>());
-        BuffImages.Add(transform.Find("/PlayerInfo/Panel/Buffs/SpeedUpL").GetComponent<Image>());
-        BuffImages.Add(transform.Find("/PlayerInfo/Panel/Buffs/SlowGenkiL").GetComponent<Image>());
-        BuffImages.Add(transform.Find("/PlayerInfo/Panel/Buffs/HurtReduceL").GetComponent<Image>());
-        GenkiBar = transform.Find("/PlayerInfo/Panel/GenkiBar").GetComponent<Image>();
+        BuffImages.Add(transform.Find("/PlayerInfo/StatusPanel/Buffs/AtkUpL").GetComponent<Image>());
+        BuffImages.Add(transform.Find("/PlayerInfo/StatusPanel/Buffs/SpeedUpL").GetComponent<Image>());
+        BuffImages.Add(transform.Find("/PlayerInfo/StatusPanel/Buffs/SlowGenkiL").GetComponent<Image>());
+        BuffImages.Add(transform.Find("/PlayerInfo/StatusPanel/Buffs/HurtReduceL").GetComponent<Image>());
+        GenkiBar = transform.Find("/PlayerInfo/StatusPanel/GenkiBar").GetComponent<Image>();
         foreach (var img in BuffImages)
         {
             img.GetComponent<Image>().fillAmount = 0.0f;
@@ -74,8 +74,12 @@ public class UIManager : MonoBehaviour
             statusPannel.SetActive(false);
         }
     }
+    public void Awake()
+    {
+        Messenger.AddListener(GameEvent.PLAYER_DEATH, OnPlayerDeath);
+    }
 
-    public void PlayerDeath()
+    public void OnPlayerDeath()
     {
         Time.timeScale = 0;
         statusPannel.SetActive(false);

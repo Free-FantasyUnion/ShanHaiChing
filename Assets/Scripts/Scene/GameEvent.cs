@@ -3,4 +3,5 @@
     public const string ENEMY_DEATH = "ENEMY_DEATH";
     public const string GOTO_NEXT_STATUS = "GOTO_NEXT_STATUS";
     public const string BOSS_DEATH = "BOSS_DEATH";
+    public const string PLAYER_DEATH = "PLAYER_DEATH";
 }
