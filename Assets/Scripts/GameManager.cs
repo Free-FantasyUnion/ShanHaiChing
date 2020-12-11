@@ -27,19 +27,19 @@ public class GameManager : MonoBehaviour
             foreach (Collider target in targets)
             {
                 //TODO: Check the vector3.right is correct//目前为止未出现错误
-                if (Mathf.Abs(CaculateAngel(point.right, target.transform.position - point.position)) < attackAngel)
-                {
-                    if (attackLayer == LayerMask.NameToLayer("Enemy"))
+/*                if (Mathf.Abs(CaculateAngel(point.right, target.transform.position - point.position)) < attackAngel)
+                {*/
+                    if (target.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                     {
                         print("Enemy Hurt!");
                         target.GetComponent<EnemyBase>().Hurt(damage);
                     }
-                    else if (attackLayer == LayerMask.NameToLayer("Player"))
+                    else if (target.gameObject.layer == LayerMask.NameToLayer("Player"))
                     {
                         print("Player Under Attack!");
                         target.GetComponent<Player>().Hurt(damage);
                     }
-                }
+                
             }
         }
 

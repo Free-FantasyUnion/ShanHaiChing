@@ -17,7 +17,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     [SerializeField] private float buffTime = 5.0f;
     [Header("攻击")]
     [SerializeField] private int faceDirection = 1;
-    private float attackRadius = 1.71f;
+    private float attackRadius = 2f;
     [SerializeField] private int atkTimes = -1;
     [SerializeField] private float 连续攻击间隔 = 0.5f;
     private Transform judgePoint = null;
@@ -162,7 +162,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         if (coldTime <= 0)
         {
             //这个print作为调试用
-            print(GameManager.AttackJudge(judgePoint, attackRadius, 60f, LayerMask.NameToLayer("Enemy"), YuanQi2Attack(yuanQi)));
+            print(GameManager.AttackJudge(judgePoint, attackRadius, 60f, Physics.AllLayers, YuanQi2Attack(yuanQi)));
             coldTime = basicColdTime;
 
         }
@@ -170,7 +170,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
 
     private float YuanQi2Attack(float YuanQi)
     {
-        float attackValue = 0;
+        float attackValue = basicAttackValue;
         //TODO:数值需要策划一下
         return attackValue;
     }
