@@ -82,7 +82,7 @@ public class NPCManager : MonoBehaviour
 
             //instance.dialogFrameWork = Instantiate(instance.dialogFramework_Prefab);
             instance.dialogFrameWork.SetActive(true);
-
+            Time.timeScale = 0;
             instance.Dialog_Text = dialogFrameWork.transform.GetChild(0).GetChild(0).GetComponent<Text>();
             instance.helper.LoadScripts(instance.dialogScriptsList[index]);
             instance.ShowText();
@@ -96,6 +96,7 @@ public class NPCManager : MonoBehaviour
             catch
             {
                 instance.isDialogging = false;
+                Time.timeScale = 1.0f;
                 instance.dialogFrameWork.SetActive(false);
             }
         }

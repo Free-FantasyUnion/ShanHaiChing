@@ -14,13 +14,12 @@ public class ScenesManager : MonoBehaviour
     
     // 控制分界线的位置
     [SerializeField] 
-    private float borderLineSceneTwo, borderLineSceneThree;
-    private bool isEmitSceneTwo = false, isEmitSceneThree = false;
+    private float[] borderLineScene = new float[3];
+    private bool isEmitSceneOne = false, isEmitSceneTwo = false, isEmitSceneThree = false;
     
     // 刷怪点
     [SerializeField]
-    private List<EnemyRushPosition> Scene2RushPosition,
-        Scene3RushPosition;
+    private List<EnemyRushPosition>[] SceneRushPosition = new List<EnemyRushPosition>[3];
 
     // 相机位置的控制
     private CameraManager camera;
@@ -39,6 +38,10 @@ public class ScenesManager : MonoBehaviour
     private int[] maxEnemyAmount = new int[3];
     // 当前所处状态
     private int currentStatus = 0;
+    [SerializeField]
+    private GameObject[] border = new GameObject[2];
+    [SerializeField]
+    private GameObject endDialog;
 
     void Awake()
     {
@@ -51,6 +54,17 @@ public class ScenesManager : MonoBehaviour
     {
         camera = transform.Find("/Camera").GetComponent<CameraManager>();
         camera.setMaxMoveX(cameraBorderXPosS[0]);
+        SceneRushPosition[0] = new List<EnemyRushPosition>();
+        SceneRushPosition[0].Add(transform.Find("/EnemyPosCH1").GetComponent<EnemyRushPosition>());
+        SceneRushPosition[1] = new List<EnemyRushPosition>();
+        SceneRushPosition[1].Add(transform.Find("/EnemyPosCH21").GetComponent<EnemyRushPosition>());
+        SceneRushPosition[1].Add(transform.Find("/EnemyPosCH22").GetComponent<EnemyRushPosition>());
+        SceneRushPosition[1].Add(transform.Find("/EnemyPosCH23").GetComponent<EnemyRushPosition>());
+        SceneRushPosition[2] = new List<EnemyRushPosition>();
+        SceneRushPosition[2].Add(transform.Find("/EnemyPosCH31").GetComponent<EnemyRushPosition>());
+        SceneRushPosition[2].Add(transform.Find("/EnemyPosCH32").GetComponent<EnemyRushPosition>());
+        SceneRushPosition[2].Add(transform.Find("/EnemyPosCH33").GetComponent<EnemyRushPosition>());
+        /*foreach (var i in SceneRushPosition[1]) print(i.name);*/
     }
 
     private void OnDestroy()
@@ -61,36 +75,43 @@ public class ScenesManager : MonoBehaviour
 
     void Update()
     {
-        
-        if (GameManager.GetInstance().playerPos.x > borderLineSceneTwo)
+
+        if (GameManager.GetInstance().playerPos.x > borderLineScene[0])
+        {
+            if (!isEmitSceneOne)
+            {
+                isEmitSceneOne = true;
+                invokeStatus(0);
+            }
+        }
+
+
+        if (GameManager.GetInstance().playerPos.x > borderLineScene[1])
         {
             if (!isEmitSceneTwo)
             {
                 isEmitSceneTwo = true;
-                invokeStatusTwo();
+                invokeStatus(1);
             }
         }
-        if (GameManager.GetInstance().playerPos.x > borderLineSceneThree)
+        if (GameManager.GetInstance().playerPos.x > borderLineScene[2])
         {
             if (!isEmitSceneThree)
             {
                 isEmitSceneThree = true;
-                invokeStatusThree();
+                invokeStatus(2);
             }
         }
     } 
 
-    void invokeStatusTwo()
+    void invokeStatus(int id)
     {
-        foreach (var pos in Scene2RushPosition)
+        print(id);
+        foreach (var i in SceneRushPosition[1]) print(i.name);
+        foreach (var pos in SceneRushPosition[id])
         {
             pos.makeEnemy();
         }
-    }
-
-    void invokeStatusThree()
-    {
-
     }
 
     void OnEnemyDeath()
@@ -110,8 +131,9 @@ public class ScenesManager : MonoBehaviour
     {
         if (currentStatus == 2)
         {
-
+            endDialog.SetActive(true);
         }
+        border[currentStatus].SetActive(false);
         ++currentStatus;
         deathEnemyCount = 0;
         camera.setMaxMoveX(cameraBorderXPosS[currentStatus]);
