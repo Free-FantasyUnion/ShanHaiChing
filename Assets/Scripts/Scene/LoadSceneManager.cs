@@ -38,7 +38,7 @@ public class LoadSceneManager : MonoBehaviour
 
     IEnumerator LoadScene()
     {
-        mAsyncOperation = SceneManager.LoadSceneAsync("Part_1");
+        mAsyncOperation = SceneManager.LoadSceneAsync(PlayerPrefs.GetString("SceneTarget"));
         mAsyncOperation.allowSceneActivation = false;
         yield return mAsyncOperation;
     }

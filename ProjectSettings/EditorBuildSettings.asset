@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Part_2.unity
     guid: f6e6bd46313257a49ab16072151b520c
+  - enabled: 1
+    path: Assets/Scenes/LoadPause.unity
+    guid: 8e60914cacdb35049b685c67b504a2f1
   m_configObjects: {}

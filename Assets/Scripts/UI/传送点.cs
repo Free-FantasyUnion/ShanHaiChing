@@ -27,7 +27,8 @@ public class 传送点 : MonoBehaviour
     {
         if (Input.GetKeyDown((KeyCode)GameManager.Key.Up)&&collision.gameObject.CompareTag("Player"))
             {
-                UIManager.gotoScene(下一个场景);
-            }
+            PlayerPrefs.SetString("SceneTarget", 下一个场景);
+            SceneManager.LoadSceneAsync("LoadPause");
+        }
     }
 }

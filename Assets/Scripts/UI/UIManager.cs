@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
         BuffImages.Add(transform.Find("/PlayerInfo/StatusPanel/Buffs/SpeedUpL").GetComponent<Image>());
         BuffImages.Add(transform.Find("/PlayerInfo/StatusPanel/Buffs/SlowGenkiL").GetComponent<Image>());
         BuffImages.Add(transform.Find("/PlayerInfo/StatusPanel/Buffs/HurtReduceL").GetComponent<Image>());
-        GenkiBar = transform.Find("/PlayerInfo/StatusPanel/GenkiBar").GetComponent<Image>();
+        GenkiBar = transform.Find("/PlayerInfo/GenkiBar").GetComponent<Image>();
         foreach (var img in BuffImages)
         {
             img.GetComponent<Image>().fillAmount = 0.0f;
@@ -47,15 +47,7 @@ public class UIManager : MonoBehaviour
                 break;
         }
     }
-    public static void gotoScene(string name)
-    {
-        if(name == "Exit")
-        {
-            Application.Quit();
-            return;
-        }
-        SceneManager.LoadSceneAsync(name);
-    }
+
     bool pausing = false;
     public void Pause()
     {

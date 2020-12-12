@@ -116,6 +116,7 @@ public class ScenesManager : MonoBehaviour
 
     void OnEnemyDeath()
     {
+        print("death");
         ++deathEnemyCount;
         if (type[currentStatus] == StatusType.AmountElement)
         {
@@ -129,6 +130,7 @@ public class ScenesManager : MonoBehaviour
 
     public void gotoNextStatus()
     {
+        print("next" + currentStatus);
         if (currentStatus == 2)
         {
             endDialog.SetActive(true);

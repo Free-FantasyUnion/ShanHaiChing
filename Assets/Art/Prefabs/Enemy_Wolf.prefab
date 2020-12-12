@@ -168,6 +168,7 @@ MonoBehaviour:
   dashDistance: 20
   dashTime: 1500
   dashSpeedRatio: 3
+  isInterrupted: 0
   anim: {fileID: 8786358780822897020}
 --- !u!65 &4749356391852434797
 BoxCollider:

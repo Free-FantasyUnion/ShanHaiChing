@@ -32,7 +32,7 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter, IBuffable
 
     private void OnDestroy()
     {
-        Messenger.Broadcast(GameEvent.ENEMY_DEATH);
+        
     }
 
     //IsBuffable
@@ -116,6 +116,8 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter, IBuffable
 
     public void DestoryThis()
     {
-        Destroy(this.gameObject);
+        print("broad");
+        Messenger.Broadcast(GameEvent.ENEMY_DEATH);
+        Destroy(this.gameObject, .1f);
     }
 }
