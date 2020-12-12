@@ -31,12 +31,17 @@ public class GameManager : MonoBehaviour
                 {*/
                     if (target.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                     {
-                        print("Enemy Hurt!");
+                    //print("Enemy Hurt!");
+                    Wolf tmpWolf = target.gameObject.GetComponent<Wolf>();
+                    if (tmpWolf!=null)
+                    {
+                        tmpWolf.isInterrupted = true;
+                    }
                         target.GetComponent<EnemyBase>().Hurt(damage);
                     }
                     else if (target.gameObject.layer == LayerMask.NameToLayer("Player"))
                     {
-                        print("Player Under Attack!");
+                        //print("Player Under Attack!");
                         target.GetComponent<Player>().Hurt(damage);
                     }
                 

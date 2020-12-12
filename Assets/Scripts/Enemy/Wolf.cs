@@ -16,7 +16,7 @@ public class Wolf : EnemyBase
     //temp
     float timer;
     float timer2;
-    bool isInterrupted;
+    public bool isInterrupted;
     bool isDashing = false;
     bool dashingRight = false;
 
@@ -36,9 +36,9 @@ public class Wolf : EnemyBase
     protected override void Action()
     {
 
-        float distanceX = this.transform.position.x - player.transform.GetChild(1).position.x;
+        float distanceX = this.transform.position.x - player.transform.position.x;
         float absDistanceX = Mathf.Abs(distanceX);
-        float distanceZ = this.transform.position.z - player.transform.GetChild(1).position.z;
+        float distanceZ = this.transform.position.z - player.transform.position.z;
         float absDistanceZ = Mathf.Abs(distanceZ);
 
         Vector3 target0 = player.transform.position;
@@ -74,11 +74,13 @@ public class Wolf : EnemyBase
         isInterrupted = false;
         isDashing = false;
         this.basicSpeed = 3.0f;
+        this.basicYuanQi = 75.0f;
+        this.yuanQi = 75.0f;
         anim = this.GetComponent<Animator>();
         this.InitAttributes();
         this.dashDistance = 5.0f;
         this.dashTime = 1.5f;
-        this.attackRadius = 3.0f;
+        this.attackRadius = 1.5f;
         timer2 = 0;
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -93,10 +95,15 @@ public class Wolf : EnemyBase
             Action();
             if (isDashing)
             {
-                /*if (true)
+                if (isInterrupted )
                 {
+                    isInterrupted = false;
                     isDashing = false;
-                }*/
+
+                    //TODO:调一下动画
+                    anim.SetInteger("state", 1);
+                    timer2 = Time.timeSinceLevelLoad;
+                }
                 if (Time.timeSinceLevelLoad - timer2 >= 1.75f)
                 {
                     Dash();
