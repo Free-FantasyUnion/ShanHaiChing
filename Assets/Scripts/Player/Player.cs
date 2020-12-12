@@ -164,7 +164,8 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
             //这个print作为调试用
             print(GameManager.AttackJudge(judgePoint, attackRadius, 60f, Physics.AllLayers, YuanQi2Attack(yuanQi)));
             coldTime = basicColdTime;
-
+            print(atkTimes);
+            MusicManager.PlayMusic(MusicManager.atk[this.atkTimes-1]);
         }
     }
 
