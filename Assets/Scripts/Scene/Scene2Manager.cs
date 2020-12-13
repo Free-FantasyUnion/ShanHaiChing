@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScenesManager : MonoBehaviour
+public class Scene2Manager : MonoBehaviour
 {
     private enum StatusType
     {
         Event, AmountElement, BOSS
     }
-
-    // 单例
-    public static ScenesManager _Instance;
     
     // 控制分界线的位置
     [SerializeField] 
@@ -45,7 +42,6 @@ public class ScenesManager : MonoBehaviour
 
     void Awake()
     {
-        _Instance = this;
         Messenger.AddListener(GameEvent.ENEMY_DEATH, OnEnemyDeath);
         Messenger.AddListener(GameEvent.BOSS_DEATH, OnBossDeath);
     }
@@ -55,7 +51,8 @@ public class ScenesManager : MonoBehaviour
         camera = transform.Find("/Camera").GetComponent<CameraManager>();
         camera.setMaxMoveX(cameraBorderXPosS[0]);
         SceneRushPosition[0] = new List<EnemyRushPosition>();
-        SceneRushPosition[0].Add(transform.Find("/EnemyPosCH1").GetComponent<EnemyRushPosition>());
+        SceneRushPosition[0].Add(transform.Find("/EnemyPosCH11").GetComponent<EnemyRushPosition>());
+        SceneRushPosition[0].Add(transform.Find("/EnemyPosCH12").GetComponent<EnemyRushPosition>());
         SceneRushPosition[1] = new List<EnemyRushPosition>();
         SceneRushPosition[1].Add(transform.Find("/EnemyPosCH21").GetComponent<EnemyRushPosition>());
         SceneRushPosition[1].Add(transform.Find("/EnemyPosCH22").GetComponent<EnemyRushPosition>());
@@ -116,6 +113,7 @@ public class ScenesManager : MonoBehaviour
 
     void OnEnemyDeath()
     {
+        print("death");
         ++deathEnemyCount;
         if (type[currentStatus] == StatusType.AmountElement)
         {
@@ -137,7 +135,6 @@ public class ScenesManager : MonoBehaviour
         border[currentStatus].SetActive(false);
         ++currentStatus;
         deathEnemyCount = 0;
-        print("gotoNext");
         camera.setMaxMoveX(cameraBorderXPosS[currentStatus]);
     }
 

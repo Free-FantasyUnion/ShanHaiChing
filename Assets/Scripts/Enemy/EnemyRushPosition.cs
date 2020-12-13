@@ -23,11 +23,8 @@ public class EnemyRushPosition : MonoBehaviour
         {
             var tmp = Instantiate(rushEnemy[i]);
             tmp.GetComponent<EnemyBase>().player = this.player;
-            rushEnemy[i].name = this.name + i;
-            // print("pos:" + transform.position + "add" + poss[i] + "to" + (transform.position + poss[i])); 
-            rushEnemy[i].transform.position = transform.position + poss[i];
-            var enemyRenderer = rushEnemy[i].GetComponent<SpriteRenderer>();
-            Color color = enemyRenderer.color;
+            tmp.name = this.name + i;
+            tmp.transform.position = transform.position + poss[i];
         }
 
     }
@@ -41,14 +38,45 @@ public class EnemyRushPosition : MonoBehaviour
         if (rushEnemy.Count == 1)
         {
             targetPos.Add(toPlayerPos * radius);
+            // print("rush" + targetPos[0]);
         }
         if (rushEnemy.Count == 2)
         {
             //print(toPlayerPos);
             //print(Quaternion.AngleAxis(60, Vector3.forward) * toPlayerPos);
             //print(Quaternion.AngleAxis(-60, Vector3.forward) * toPlayerPos);
-            targetPos.Add(Quaternion.AngleAxis(30, Vector3.forward) * toPlayerPos * radius);
-            targetPos.Add(Quaternion.AngleAxis(-30, Vector3.forward) * toPlayerPos * radius);
+            targetPos.Add(new Vector3(1,0,0) * radius);
+            targetPos.Add(new Vector3(-1,0,0) * radius);
+        }
+        if (rushEnemy.Count == 3)
+        {
+            targetPos.Add(new Vector3(1, 0, 0) * radius);
+            targetPos.Add(new Vector3(0, 0, 0));
+            targetPos.Add(new Vector3(-1, 0, 0) * radius);
+        }
+        if (rushEnemy.Count == 4)
+        {
+            targetPos.Add(new Vector3(-1.5f, 0, 0) * radius);
+            targetPos.Add(new Vector3(-0.5f, 0, 0) * radius);
+            targetPos.Add(new Vector3(0.5f, 0, 0) * radius);
+            targetPos.Add(new Vector3(1.5f, 0, 0) * radius);
+        }
+        if (rushEnemy.Count == 5)
+        {
+            targetPos.Add(new Vector3(-2, 0, 0) * radius);
+            targetPos.Add(new Vector3(-1, 0, 0) * radius);
+            targetPos.Add(new Vector3(0, 0, 0));
+            targetPos.Add(new Vector3(1, 0, 0) * radius);
+            targetPos.Add(new Vector3(2, 0, 0) * radius);
+        }
+        if (rushEnemy.Count == 6)
+        {
+            targetPos.Add(new Vector3(-2.5f, 0, 0) * radius);
+            targetPos.Add(new Vector3(-1.5f, 0, 0) * radius);
+            targetPos.Add(new Vector3(-0.5f, 0, 0) * radius);
+            targetPos.Add(new Vector3(0.5f, 0, 0) * radius);
+            targetPos.Add(new Vector3(1.5f, 0, 0) * radius);
+            targetPos.Add(new Vector3(1.5f, 0, 0) * radius);
         }
         return targetPos;
     }

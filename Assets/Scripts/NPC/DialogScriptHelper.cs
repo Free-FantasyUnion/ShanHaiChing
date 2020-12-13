@@ -40,6 +40,11 @@ public class DialogScriptHelper
                 haveAudio = true;
                 s = textList[curIndex++];
             }
+            if (s.Contains("GOTO"))
+            {
+                var sceneName = s.Split(' ')[1].Trim();
+                UIManager.Instance.gotoScene(sceneName);
+            }
             s.Replace("&", "\n");
             return s;
         }
