@@ -28,7 +28,7 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter
 	protected float YuanQiDrop;
 	protected float attackValue;
 
-	protected float defenceRatio;
+	protected float defenceRatio = 0.9f;
 
 	protected float maxSpeed;
 	
@@ -48,8 +48,9 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter
 	{
 		defenceRatio = (float)(defenceRatio + randomFactor * 0.1);
 		yuanQi = 500 + 200 * randomFactor;
+		YuanQiDrop = yuanQi * 0.06f;
 		attackValue = -3 / 550 * (yuanQi - 600) + 3;
-		this.maxSpeed = this.basicSpeed ;
+		this.maxSpeed = this.basicSpeed;
 	}
 
 	//protected void SetYuanqi()
