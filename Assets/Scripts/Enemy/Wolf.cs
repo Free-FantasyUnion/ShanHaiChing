@@ -157,6 +157,7 @@ public class Wolf : EnemyBase
             Messenger.Broadcast(GameEvent.ENEMY_DEATH);
             isAlive = false;
             anim.SetTrigger("die");
+            DestoryThis(3);
         }
         UpdateAtk();
     }

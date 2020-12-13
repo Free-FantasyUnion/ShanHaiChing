@@ -149,10 +149,10 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter
 	{
 		attackValue = -3 / 550 * ( yuanQi - 600 ) + 3;
 	}
-	public void DestoryThis()
+	public void DestoryThis(float time=0.1f)
 	{
 		Messenger.Broadcast(GameEvent.ENEMY_DEATH);
 		GameManager.生成元气物体(transform, YuanQiDrop);
-		Destroy(this.gameObject, .1f);
+		Destroy(this.gameObject, time);
 	}
 }

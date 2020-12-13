@@ -8,7 +8,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     [Header("Basic Attributes")]
     private float basicAttackValue = 10.0f;
     private float basicYuanQi = 100.0f;
-    private float basicYuanQiDrop = 0.375f;
+    private float basicYuanQiDrop = 0.75f;
     private float basicDefenceRatio = 0.1f;
     private float basicSpeed = 8.0f;
     private float basicColdTime = 0.35f;
@@ -17,7 +17,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     private float buffTime = 5.0f;
     [Header("攻击")]
     private int faceDirection = 1;
-    private float attackRadius = 10f;
+    private float attackRadius = 8f;
     private int atkTimes = -1;
     private float 连续攻击间隔 = 0.5f;
     private Transform judgePoint = null;
