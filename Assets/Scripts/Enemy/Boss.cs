@@ -82,7 +82,7 @@ public class Boss : EnemyBase
         isDashing = false;
         this.basicSpeed = 3.0f;
         anim = this.GetComponent<Animator>();
-        this.InitAttributes();
+        this.SetBasicFactors();
         this.dashDistance = 5.0f;
         this.dashTime = 1.5f;
         timer2 = 0;

@@ -77,7 +77,7 @@ public class Wolf : EnemyBase
         this.basicYuanQi = 75.0f;
         this.yuanQi = 75.0f;
         anim = this.GetComponent<Animator>();
-        this.InitAttributes();
+        this.SetBasicFactors();
         this.dashDistance = 5.0f;
         this.dashTime = 1.5f;
         this.attackRadius = 1.5f;
@@ -141,5 +141,6 @@ public class Wolf : EnemyBase
             isAlive = false;
             anim.SetTrigger("die");
         }
+        UpdateAtk();
     }
 }

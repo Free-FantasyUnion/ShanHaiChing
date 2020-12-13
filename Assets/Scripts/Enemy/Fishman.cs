@@ -47,7 +47,7 @@ public class Fishman : EnemyBase
         this.coldTime = 1.0f;
         this.basicSpeed = 4.0f;
         this.shootingDistance = 15.0f;
-        InitAttributes();
+        SetBasicFactors();
     }
 
     // Update is called once per frame

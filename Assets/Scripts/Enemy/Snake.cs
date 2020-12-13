@@ -88,7 +88,7 @@ public class Snake : EnemyBase
         this.basicSpeed = 4.0f;
         this.shootingDistance = 15.0f;
         this.bitingDistance = 10.0f;
-        InitAttributes();
+        SetBasicFactors();
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -120,6 +120,7 @@ public class Snake : EnemyBase
             isAlive = false;
             anim.SetTrigger("die");
         }
+        UpdateAtk();
     }
 
 }
