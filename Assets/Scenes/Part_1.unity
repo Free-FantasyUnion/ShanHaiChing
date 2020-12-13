@@ -411,15 +411,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicYuanQi: 0
   basicYuanQiDrop: 0
-  basicAttackValue: 0
-  basicDefenceRatio: 0
   basicSpeed: 10
-  velocityX: 5
-  velocityY: 5
   player: {fileID: 1291536231}
-  attackType: 0
-  aiType: 0
-  enemyImage: {fileID: 0}
   closeAttackRange: 0
   target: {fileID: 1291536231}
   warningRadius: 30
@@ -4156,18 +4149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17260baa5258089499fa9c7e3d39fc8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicAttackValue: 10
-  basicYuanQi: 20
-  basicYuanQiDrop: 1
-  basicDefenceRatio: 0.1
-  basicSpeed: 8
-  basicColdTime: 0.35
-  velocityX: 5
-  velocityZ: 5
-  buffTime: 5
-  faceDirection: 1
-  atkTimes: 0
-  "\u8FDE\u7EED\u653B\u51FB\u95F4\u9694": 0.5
+  yuanQi: 0
   tail: {fileID: 906755848}
 --- !u!1 &1295818187
 GameObject:
@@ -5863,6 +5845,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8254753379986547233, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6526902662029861015, guid: c8d6c8e7b392f4c4e80b919e136dea43,
+        type: 3}
+    - target: {fileID: 8254753379986547233, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8254753379986547238, guid: 7f63911521aab70438736a38b727e1bb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5878,11 +5871,52 @@ PrefabInstance:
       propertyPath: m_FillAmount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8254753380258507391, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254753380258507391, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254753380258507391, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u7EE7\u7EED\u6E38\u620F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254753380502479065, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6526902662029861015, guid: c8d6c8e7b392f4c4e80b919e136dea43,
+        type: 3}
+    - target: {fileID: 8254753380502479065, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8254753380502479070, guid: 7f63911521aab70438736a38b727e1bb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1944643518}
+    - target: {fileID: 8254753380502498471, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u56DE\u5230\u4E3B\u83DC\u5355"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254753380502498471, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254753380502498471, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8254753380682784325, guid: 7f63911521aab70438736a38b727e1bb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

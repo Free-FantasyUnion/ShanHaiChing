@@ -18,6 +18,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Part_2.unity
     guid: f6e6bd46313257a49ab16072151b520c
   - enabled: 1
+    path: Assets/Scenes/Part_3.unity
+    guid: cfee482ff7ee2a14e9caecf6c2c52a53
+  - enabled: 1
     path: Assets/Scenes/LoadPause.unity
     guid: 8e60914cacdb35049b685c67b504a2f1
+  - enabled: 1
+    path: Assets/Scenes/Thanks.unity
+    guid: a2a615bb8b8af6a4da8a0b7d2bc0d98b
   m_configObjects: {}

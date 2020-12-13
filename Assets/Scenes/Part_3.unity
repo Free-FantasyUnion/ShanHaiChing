@@ -6973,7 +6973,7 @@ PrefabInstance:
     - target: {fileID: 4165122291538104016, guid: a36ce86f0c143e843803a4937f136543,
         type: 3}
       propertyPath: scriptsIndex
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4165122291538104017, guid: a36ce86f0c143e843803a4937f136543,
         type: 3}
@@ -10511,6 +10511,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8254753379986547233, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6526902662029861015, guid: c8d6c8e7b392f4c4e80b919e136dea43,
+        type: 3}
+    - target: {fileID: 8254753379986547233, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8254753379986547238, guid: 7f63911521aab70438736a38b727e1bb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -10526,11 +10537,52 @@ PrefabInstance:
       propertyPath: m_FillAmount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8254753380258507391, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u7EE7\u7EED\u6E38\u620F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254753380258507391, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254753380258507391, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254753380502479065, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6526902662029861015, guid: c8d6c8e7b392f4c4e80b919e136dea43,
+        type: 3}
+    - target: {fileID: 8254753380502479065, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8254753380502479070, guid: 7f63911521aab70438736a38b727e1bb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1643077513}
+    - target: {fileID: 8254753380502498471, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u8FD4\u56DE\u4E3B\u83DC\u5355"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254753380502498471, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254753380502498471, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8254753380682784325, guid: 7f63911521aab70438736a38b727e1bb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -10545,6 +10597,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254753381268306779, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8254753381285711841, guid: 7f63911521aab70438736a38b727e1bb,
         type: 3}
