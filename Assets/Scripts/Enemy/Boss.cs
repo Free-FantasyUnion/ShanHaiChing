@@ -124,4 +124,8 @@ public class Boss : EnemyBase
 
     }
 
+    public override void Hurt(float value)
+    {
+        //UNDONE: boss 的hurt函数
+    }
 }

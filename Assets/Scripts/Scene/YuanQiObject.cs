@@ -9,13 +9,14 @@ public class YuanQiObject : MonoBehaviour
     [SerializeField] private float followDistance;
     [SerializeField] private float absorbDistance;
     public float yuanQiValue;
-    private Player player;
-    
+    public Player player;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        player = transform.Find("/Player").GetComponent<Player>();
+        if (player == null)
+            player = transform.Find("/Player").GetComponent<Player>();
         maxSpeed = 3.0f;
         followDistance = 10.0f;
         absorbDistance = 0.5f;
@@ -25,7 +26,7 @@ public class YuanQiObject : MonoBehaviour
     void Update()
     {
         Vector3 temp = this.gameObject.transform.position - player.transform.position;
-        if(temp.magnitude <= absorbDistance)
+        if (temp.magnitude <= absorbDistance)
         {
             GiveYuanQi();
         }
@@ -33,18 +34,17 @@ public class YuanQiObject : MonoBehaviour
         {
             this.gameObject.transform.Translate(Vector3.ClampMagnitude(-temp, this.maxSpeed * Time.deltaTime));
         }
-        
-        
+
+
     }
-    //TODO: 在EnemyBase的OnDestroy()里实例化yuanqiobject
+
     public YuanQiObject(float value)
     {
         this.yuanQiValue = value;
     }
     private void GiveYuanQi()
     {
-        //TODO: player加上GetYuanQi方法
-        //player.GetYuanQi(this.yuanQiValue);
+        player.GetYuanQi(this.yuanQiValue);
         MusicManager.PlayMusic(MusicManager.absorbGenki);
         Destroy(this.gameObject);
     }

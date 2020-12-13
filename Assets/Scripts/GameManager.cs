@@ -9,14 +9,16 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
     public Player player;
+    private GameObject 元气实体;
+    public Vector3 playerPos;
+
 
     private void Awake()
     {
         GameManager.instance = this;
-        instance.player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        instance.player = transform.Find("/Player").GetComponent<Player>();
+        instance.元气实体 = Resources.Load<GameObject>("Prefabs/元气");
     }
-
-    public Vector3 playerPos;
 
     public static bool AttackJudge(Transform point, float attackRadius, float attackAngel, LayerMask attackLayer, float damage)
     {
@@ -71,6 +73,13 @@ public class GameManager : MonoBehaviour
     public static GameManager GetInstance()
     {
         return instance;
+    }
+
+    public static void 生成元气物体(Transform tf, float value)
+    {
+        GameObject tmp= Instantiate(instance.元气实体, tf);
+        tmp.GetComponent<YuanQiObject>().yuanQiValue = value;
+        tmp.GetComponent<YuanQiObject>().player = instance.player;
     }
 
     public enum Key

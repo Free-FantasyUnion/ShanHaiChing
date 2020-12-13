@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Fishman : EnemyBase
 {
     [SerializeField] float warningRadius;
@@ -54,5 +55,10 @@ public class Fishman : EnemyBase
     void Update()
     {
         Action();
+    }
+
+    public override void Hurt(float value)
+    {
+        // UNDONE: 鱼人的hurt 函数未实现
     }
 }

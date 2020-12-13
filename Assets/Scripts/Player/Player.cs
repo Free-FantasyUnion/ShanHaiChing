@@ -61,7 +61,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
 
     private void Update()
     {
-        this.Hurt(yuanQiDrop);
+        this.Hurt(yuanQiDrop*Time.deltaTime);
         foreach (var buff in this.buffList)//TODO:修
         {
             if ((Time.time - buff.startTime) >= buffTime) buffList.Remove(buff);
@@ -257,6 +257,11 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
             playerAnimator.SetInteger("attack", atkTimes);
         }
 
+    }
+
+    public void GetYuanQi(float value)
+    {
+        this.yuanQi += value;
     }
 
 }

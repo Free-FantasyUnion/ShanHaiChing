@@ -18,19 +18,24 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter
 	[SerializeField] protected EnemyManager.AIType aiType;
 	[SerializeField] protected Sprite enemyImage;
 	//[SerializeField] protected Buff dropBuff;
-	[SerializeField] public GameObject YQObject;
 
 	[SerializeField] protected float closeAttackRange;
 	//Attributes at time
 	[SerializeField] protected Player target;// default: player
 	protected List<Buff> buffList;
+
 	protected float yuanQi;
 	protected float YuanQiDrop;
 	protected float attackValue;
+
 	protected float defenceRatio;
+
 	protected float maxSpeed;
-	public float yuanQiDrop;
+	
 	protected float randomFactor;
+
+
+	
 
 
 	public void SetRandom()
@@ -118,23 +123,22 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter
 	/// </summary>
 	protected abstract void Action();
 
-    public void DropYuanQi(float value)
-    {
-		//YQObject = (GameObject) Resources.Load("Prefabs/元气.prefab");
-		YQObject = Resources.Load<GameObject>("Prefabs/元气.prefab");
-        YuanQiObject YQscript = YQObject.GetComponent<YuanQiObject>();
-        YQscript = new YuanQiObject(value);
-        Instantiate(YQObject,this.transform);
-    }
-    public virtual void Hurt(float value)
-    {
-        this.yuanQi -= value * defenceRatio;
-        if (yuanQi <= 0)
-        {
-            DropYuanQi(15.0f);
-            Destroy(this.gameObject,3);
-        }
-    }
+	/*    public void DropYuanQi(float value)
+		{
+			//YQObject = (GameObject) Resources.Load("Prefabs/元气.prefab");
+			YQObject = Resources.Load<GameObject>("Prefabs/元气.prefab");
+			YuanQiObject YQscript = YQObject.GetComponent<YuanQiObject>();
+			YQscript = new YuanQiObject(value);
+			Instantiate(YQObject,this.transform);
+		}*/
+
+
+
+	/// <summary>
+	/// EnemyBase 中的Hurt已经被重写了
+	/// </summary>
+	/// <param name="value">被伤害的值</param>
+	public abstract void Hurt(float value);
 
 	public void UpdateAtk()
 	{
@@ -144,6 +148,7 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter
 	{
 		print("broad");
 		Messenger.Broadcast(GameEvent.ENEMY_DEATH);
+		GameManager.生成元气物体(transform, YuanQiDrop);
 		Destroy(this.gameObject, .1f);
 	}
 }
