@@ -422,7 +422,6 @@ MonoBehaviour:
   enemyImage: {fileID: 0}
   closeAttackRange: 0
   target: {fileID: 1291536231}
-  yuanQiDrop: 0
   warningRadius: 30
   attackRadius: 3
   attackAngle: 60
@@ -4158,7 +4157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicAttackValue: 10
-  basicYuanQi: 5000
+  basicYuanQi: 20
   basicYuanQiDrop: 1
   basicDefenceRatio: 0.1
   basicSpeed: 8
@@ -5869,6 +5868,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1944643518}
+    - target: {fileID: 8254753380133330961, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254753380133330961, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8254753380502479070, guid: 7f63911521aab70438736a38b727e1bb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5884,6 +5893,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1944643518}
+    - target: {fileID: 8254753381151951565, guid: 7f63911521aab70438736a38b727e1bb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8254753381285711841, guid: 7f63911521aab70438736a38b727e1bb,
         type: 3}
       propertyPath: m_LocalPosition.x

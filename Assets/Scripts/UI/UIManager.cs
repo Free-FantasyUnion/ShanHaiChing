@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class UIManager : MonoBehaviour
         {
             img.GetComponent<Image>().fillAmount = 0.0f;
         }
-    }         
+    }       
 
     public void setUIRatio(Buff.BuffType buff, float amount)
     {
@@ -79,6 +80,7 @@ public class UIManager : MonoBehaviour
     }
     public void Update()
     {
+        GenkiBar.fillAmount = GameManager.GetInstance().player.GetCurrentYuanQiRatio();
         if (Input.GetKeyDown((KeyCode)GameManager.Key.Pause))
         {
             Pause();
@@ -90,6 +92,11 @@ public class UIManager : MonoBehaviour
         GenkiBar.fillAmount = ratio;
     }
 
-    
+    public void gotoScene(string name)
+    {
+        Time.timeScale = 1.0f;
+        PlayerPrefs.SetString("SceneTarget", "Part_1");
+        SceneManager.LoadSceneAsync("LoadPause");
+    }
 
 }
