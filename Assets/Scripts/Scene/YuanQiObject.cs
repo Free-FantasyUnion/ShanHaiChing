@@ -19,7 +19,7 @@ public class YuanQiObject : MonoBehaviour
             player = transform.Find("/Player").GetComponent<Player>();
         maxSpeed = 3.0f;
         followDistance = 10.0f;
-        absorbDistance = 0.5f;
+        absorbDistance = 0.1f;
     }
 
     // Update is called once per frame
@@ -44,8 +44,9 @@ public class YuanQiObject : MonoBehaviour
     }
     private void GiveYuanQi()
     {
+        
         player.GetYuanQi(this.yuanQiValue);
         MusicManager.PlayMusic(MusicManager.absorbGenki);
-        Destroy(this.gameObject);
+        Destroy(this.gameObject,1);
     }
 }
