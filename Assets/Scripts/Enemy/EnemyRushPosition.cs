@@ -54,6 +54,30 @@ public class EnemyRushPosition : MonoBehaviour
             targetPos.Add(new Vector3(0, 0, 0));
             targetPos.Add(new Vector3(-1, 0, 0) * radius);
         }
+        if (rushEnemy.Count == 4)
+        {
+            targetPos.Add(new Vector3(-1.5f, 0, 0) * radius);
+            targetPos.Add(new Vector3(-0.5f, 0, 0) * radius);
+            targetPos.Add(new Vector3(0.5f, 0, 0) * radius);
+            targetPos.Add(new Vector3(1.5f, 0, 0) * radius);
+        }
+        if (rushEnemy.Count == 5)
+        {
+            targetPos.Add(new Vector3(-2, 0, 0) * radius);
+            targetPos.Add(new Vector3(-1, 0, 0) * radius);
+            targetPos.Add(new Vector3(0, 0, 0));
+            targetPos.Add(new Vector3(1, 0, 0) * radius);
+            targetPos.Add(new Vector3(2, 0, 0) * radius);
+        }
+        if (rushEnemy.Count == 6)
+        {
+            targetPos.Add(new Vector3(-2.5f, 0, 0) * radius);
+            targetPos.Add(new Vector3(-1.5f, 0, 0) * radius);
+            targetPos.Add(new Vector3(-0.5f, 0, 0) * radius);
+            targetPos.Add(new Vector3(0.5f, 0, 0) * radius);
+            targetPos.Add(new Vector3(1.5f, 0, 0) * radius);
+            targetPos.Add(new Vector3(1.5f, 0, 0) * radius);
+        }
         return targetPos;
     }
 }

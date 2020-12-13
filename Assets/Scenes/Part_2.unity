@@ -411,15 +411,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicYuanQi: 0
   basicYuanQiDrop: 0
-  basicAttackValue: 0
-  basicDefenceRatio: 0
   basicSpeed: 10
-  velocityX: 5
-  velocityY: 5
   player: {fileID: 1291536231}
-  attackType: 0
-  aiType: 0
-  enemyImage: {fileID: 0}
   closeAttackRange: 0
   target: {fileID: 1291536231}
   warningRadius: 30
@@ -822,6 +815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rushEnemy:
   - {fileID: 8786358780822897011, guid: 5fcdae9f0946a764db1664c750ac2226, type: 3}
+  - {fileID: 8786358780822897011, guid: 5fcdae9f0946a764db1664c750ac2226, type: 3}
   radius: 3
   player: {fileID: 0}
   bullet: {fileID: 0}
@@ -1056,6 +1050,11 @@ PrefabInstance:
         type: 3}
       propertyPath: radius
       value: 1.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165122291538104016, guid: a36ce86f0c143e843803a4937f136543,
+        type: 3}
+      propertyPath: scriptsIndex
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4165122291538104017, guid: a36ce86f0c143e843803a4937f136543,
         type: 3}
@@ -2046,6 +2045,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rushEnemy:
+  - {fileID: 8786358780822897011, guid: 5fcdae9f0946a764db1664c750ac2226, type: 3}
+  - {fileID: 8786358780822897011, guid: 5fcdae9f0946a764db1664c750ac2226, type: 3}
   - {fileID: 8786358780822897011, guid: 5fcdae9f0946a764db1664c750ac2226, type: 3}
   radius: 3
   player: {fileID: 0}
@@ -3915,6 +3916,7 @@ MonoBehaviour:
   rushEnemy:
   - {fileID: 5287748247948235909, guid: af1fa94355886bd488f7d9c99eee7468, type: 3}
   - {fileID: 5287748247948235909, guid: af1fa94355886bd488f7d9c99eee7468, type: 3}
+  - {fileID: 5287748247948235909, guid: af1fa94355886bd488f7d9c99eee7468, type: 3}
   radius: 3
   player: {fileID: 0}
   bullet: {fileID: 0}
@@ -4156,18 +4158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17260baa5258089499fa9c7e3d39fc8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicAttackValue: 10
-  basicYuanQi: 20
-  basicYuanQiDrop: 1
-  basicDefenceRatio: 0.1
-  basicSpeed: 8
-  basicColdTime: 0.35
-  velocityX: 5
-  velocityZ: 5
-  buffTime: 5
-  faceDirection: 1
-  atkTimes: 0
-  "\u8FDE\u7EED\u653B\u51FB\u95F4\u9694": 0.5
+  yuanQi: 0
   tail: {fileID: 906755848}
 --- !u!1 &1295818187
 GameObject:
@@ -4869,6 +4860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rushEnemy:
   - {fileID: 5287748247948235909, guid: af1fa94355886bd488f7d9c99eee7468, type: 3}
+  - {fileID: 5287748247948235909, guid: af1fa94355886bd488f7d9c99eee7468, type: 3}
   radius: 3
   player: {fileID: 0}
   bullet: {fileID: 0}
@@ -4919,7 +4911,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rushEnemy:
   - {fileID: 5287748247948235909, guid: af1fa94355886bd488f7d9c99eee7468, type: 3}
-  radius: 0
+  - {fileID: 5287748247948235909, guid: af1fa94355886bd488f7d9c99eee7468, type: 3}
+  radius: 3
   player: {fileID: 0}
   bullet: {fileID: 0}
 --- !u!23 &1802292974
@@ -5090,6 +5083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rushEnemy:
+  - {fileID: 8786358780822897011, guid: 5fcdae9f0946a764db1664c750ac2226, type: 3}
   - {fileID: 8786358780822897011, guid: 5fcdae9f0946a764db1664c750ac2226, type: 3}
   radius: 0
   player: {fileID: 0}
@@ -5677,7 +5671,7 @@ MonoBehaviour:
   - 13
   - 37
   type: 010000000100000001000000
-  maxEnemyAmount: 010000000300000004000000
+  maxEnemyAmount: 010000000400000005000000
   border:
   - {fileID: 632710955}
   - {fileID: 1295818187}
