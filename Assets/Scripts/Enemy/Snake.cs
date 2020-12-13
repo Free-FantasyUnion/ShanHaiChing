@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Snake : EnemyBase
 {
@@ -16,6 +17,7 @@ public class Snake : EnemyBase
     [SerializeField] private float coldTime;
     float coldTimeRemain = 0;
     float facingDir = 1;
+    private Image GenkiBar;
 
     protected void Shoot()
     {
@@ -96,6 +98,7 @@ public class Snake : EnemyBase
         JudgePoint = transform.GetChild(0);
         if (Bullet == null)
             Bullet = Resources.Load<GameObject>("Prefabs/Bullet");
+        GenkiBar = transform.Find("Canvas/Image").GetComponent<Image>();
     }
 
 
@@ -115,6 +118,7 @@ public class Snake : EnemyBase
     public override void Hurt(float value)
     {
         this.yuanQi -= value * defenceRatio;
+        GenkiBar.fillAmount = yuanQi / basicYuanQi;
         if (yuanQi <= 0&&isAlive)
         {
             isAlive = false;

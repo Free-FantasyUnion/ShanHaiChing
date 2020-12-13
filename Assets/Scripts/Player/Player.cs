@@ -264,4 +264,9 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         this.yuanQi += value;
     }
 
+    public float GetCurrentYuanQiRatio()
+    {
+        return yuanQi / basicYuanQi;
+    }
+
 }

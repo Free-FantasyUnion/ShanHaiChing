@@ -16,6 +16,7 @@ public class LoadSceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1.0f;
         init();
     }
 
@@ -28,6 +29,7 @@ public class LoadSceneManager : MonoBehaviour
         {
             StartCoroutine(LoadScene());
         });
+
     }
 
     // Update is called once per frame
@@ -53,7 +55,9 @@ public class LoadSceneManager : MonoBehaviour
         }
         else if (slider.value >= 0.1f)
         {
+            print(Time.deltaTime);
             slider.value += Time.deltaTime * 0.4f;
+            print(slider.value);
             return;
         }
         slider.value = Mathf.Min(mAsyncOperation.progress, 0.1f);
