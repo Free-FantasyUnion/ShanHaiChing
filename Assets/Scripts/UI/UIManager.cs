@@ -95,7 +95,7 @@ public class UIManager : MonoBehaviour
     public void gotoScene(string name)
     {
         Time.timeScale = 1.0f;
-        PlayerPrefs.SetString("SceneTarget", "Part_1");
+        PlayerPrefs.SetString("SceneTarget", name);
         SceneManager.LoadSceneAsync("LoadPause");
     }
 }

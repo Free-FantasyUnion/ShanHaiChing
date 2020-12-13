@@ -23,7 +23,6 @@ public class Fishman : EnemyBase
 
     protected void Shoot()
     {
-        print("Shooting");
         var tmp = Instantiate(Bullet, JudgePoint.position, JudgePoint.rotation, null).GetComponent<BulletBase>();
         tmp.player = this.player;
         tmp.attackValue = this.attackValue * 0.3f;
@@ -99,7 +98,8 @@ public class Fishman : EnemyBase
     // Update is called once per frame
     void Update()
     {
-        if(isAlive)
+        GenkiBar.fillAmount = yuanQi / basicYuanQi;
+        if (isAlive)
         Action();
     }
 
@@ -109,7 +109,10 @@ public class Fishman : EnemyBase
         GenkiBar.fillAmount = yuanQi / basicYuanQi;
         if (yuanQi <= 0 && isAlive)
         {
+            Messenger.Broadcast(GameEvent.ENEMY_DEATH);
             isAlive = false;
+            print("here");
+            Destroy(this.gameObject);
         }
         UpdateAtk();
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3112487935102694960}
   - component: {fileID: 3112487935102694961}
   - component: {fileID: 3112487935102694966}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy_Fishman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ MonoBehaviour:
   coldTime: 0
   Snake: {fileID: 5287748247948235909, guid: af1fa94355886bd488f7d9c99eee7468, type: 3}
   Wolf: {fileID: 8786358780822897011, guid: 5fcdae9f0946a764db1664c750ac2226, type: 3}
-  GenkiBar: {fileID: 0}
+  GenkiBar: {fileID: 4515912892947585139}
 --- !u!1 &401496377142570656
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3435219220336872118}
   - component: {fileID: 1899981861998368087}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u5C3E\u5DF4\u4E0B\u90E8"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1696307768165868334}
   - component: {fileID: 4098413828949183147}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u5934"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3844136521859272163}
   - component: {fileID: 779393066792974486}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u53F3\u4E0A\u81C2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4140006590487290443}
   - component: {fileID: 5179682519965733284}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u5DE6\u5C0F\u81C2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -439,7 +439,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3112487935235476942}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: JudgePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -470,7 +470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6001437085052095941}
   - component: {fileID: 2807154940408235417}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u5C3E\u5DF4"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +553,7 @@ GameObject:
   - component: {fileID: 4667662581918304056}
   - component: {fileID: 7698369682598282337}
   - component: {fileID: 4515912892947585139}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,7 +626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2080635858643438421}
   - component: {fileID: 8067977436571865154}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u4E09\u621F\u53C9"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -707,7 +707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8053411803137213716}
   - component: {fileID: 4420287320796811170}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u8EAB\u4F53"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -789,7 +789,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8117437848079295586}
   - component: {fileID: 4424647703245098420}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u53F3\u5C0F\u81C2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -873,7 +873,7 @@ GameObject:
   - component: {fileID: 2147526094510972576}
   - component: {fileID: 3420462028323972182}
   - component: {fileID: 6095263831605718597}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -970,7 +970,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2961774634261670270}
   - component: {fileID: 8392159144838539976}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u5DE6\u4E0A\u81C2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
