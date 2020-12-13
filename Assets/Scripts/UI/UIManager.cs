@@ -98,5 +98,4 @@ public class UIManager : MonoBehaviour
         PlayerPrefs.SetString("SceneTarget", "Part_1");
         SceneManager.LoadSceneAsync("LoadPause");
     }
-
 }
