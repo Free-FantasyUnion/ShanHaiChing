@@ -9,6 +9,7 @@ public class BulletBase : MonoBehaviour
 	public float attackValue;
 	[SerializeField] private float lifeSpan = 1.5f;
 	public Player player;
+	[SerializeField] int Type = 1;
 	private float initTime = 0;
 	void AI()
 	{
@@ -36,7 +37,10 @@ public class BulletBase : MonoBehaviour
 	}
 	private void Update()
 	{
-		moveStrait();
+		if (Type == 1)
+			moveStrait();
+		else
+			moveFollow();
 		initTime += Time.deltaTime;
 		if (initTime >= lifeSpan)
 		{
