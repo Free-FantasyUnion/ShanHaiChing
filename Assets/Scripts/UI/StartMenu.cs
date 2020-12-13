@@ -12,7 +12,7 @@ public class StartMenu : MonoBehaviour
     private void Start()
     {
         startButtons = new List<Button>();
-        foreach(Transform s in transform.Find("/Canvas/Panel"))
+        foreach(Transform s in transform.Find("/Canvas/BtnPanel"))
         {
             startButtons.Add(s.GetComponent<Button>());
         }
