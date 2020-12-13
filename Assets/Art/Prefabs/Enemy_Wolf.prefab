@@ -324,15 +324,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicYuanQi: 0
   basicYuanQiDrop: 1
-  basicAttackValue: 0
-  basicDefenceRatio: 0
   basicSpeed: 10
-  velocityX: 5
-  velocityY: 5
   player: {fileID: 0}
-  attackType: 0
-  aiType: 0
-  enemyImage: {fileID: 0}
   closeAttackRange: 0
   target: {fileID: 0}
   warningRadius: 30

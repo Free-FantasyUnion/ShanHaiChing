@@ -109,7 +109,6 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter
 	{
 		Vector3 temp = this.gameObject.transform.position - targetPosition;
 		this.gameObject.transform.Translate(Vector3.ClampMagnitude(-temp, this.maxSpeed * Time.deltaTime));
-		print(targetPosition);
 		return temp.x > 0;
 	}
 	protected void MoveAway(Vector3 targetPosition)
