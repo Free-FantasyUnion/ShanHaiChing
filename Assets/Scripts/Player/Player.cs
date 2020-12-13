@@ -8,7 +8,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     [Header("Basic Attributes")]
     [SerializeField] private float basicAttackValue = 10.0f;
     [SerializeField] private float basicYuanQi = 100.0f;
-    [SerializeField] private float basicYuanQiDrop = 1.0f;
+    [SerializeField] private float basicYuanQiDrop = 0.75f;
     [SerializeField] private float basicDefenceRatio = 0.1f;
     [SerializeField] private float basicSpeed = 1.0f;
     [SerializeField] private float basicColdTime = 0.35f;
@@ -61,6 +61,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
 
     private void Update()
     {
+        this.Hurt(yuanQiDrop);
         foreach (var buff in this.buffList)//TODO:修
         {
             if ((Time.time - buff.startTime) >= buffTime) buffList.Remove(buff);
@@ -162,18 +163,16 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         if (coldTime <= 0)
         {
             //这个print作为调试用
-            print(GameManager.AttackJudge(judgePoint, attackRadius, 60f, Physics.AllLayers, YuanQi2Attack(yuanQi)));
+            print(GameManager.AttackJudge(judgePoint, attackRadius, 60f, Physics.AllLayers, YuanQi2Attack()));
             coldTime = basicColdTime;
             print(atkTimes);
             MusicManager.PlayMusic(MusicManager.atk[this.atkTimes-1]);
         }
     }
 
-    private float YuanQi2Attack(float YuanQi)
+    private float YuanQi2Attack()
     {
-        float attackValue = basicAttackValue;
-        //TODO:数值需要策划一下
-        return attackValue;
+        return (this.yuanQi + 1 - 1 / (yuanQi + 1)) * (attackRatio);
     }
 
 
@@ -218,10 +217,13 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         }
         Vector3 temp = new Vector3(tempX, 0, tempZ);
         Vector3 printTemp = Vector3.ClampMagnitude(temp, this.maxSpeed);
+        printTemp.z = printTemp.z * 2.0f;
         playerAnimator.SetFloat("speed", Vector3.Magnitude(printTemp));
+        printTemp = Vector3.ClampMagnitude(temp * faceDirection, this.maxSpeed * attackRatio * Time.deltaTime);
+        printTemp.z = printTemp.z * 2.0f;
         //Debug.Log(this.maxSpeed);
         //每次移动都会new一个三维向量,考虑性能
-        this.gameObject.transform.Translate(Vector3.ClampMagnitude(temp*faceDirection, this.maxSpeed * attackRatio * Time.deltaTime));
+        this.gameObject.transform.Translate(printTemp);
     }
 
     #endregion
