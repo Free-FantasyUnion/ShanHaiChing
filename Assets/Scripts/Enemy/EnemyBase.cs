@@ -109,7 +109,7 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter, IBuffable
     public void DropYuanQi(float value)
     {
         //TODO:无法正常工作
-        YQObject = (GameObject) Resources.Load("Prefabs/元气.prefab");
+        YQObject = (GameObject) Resources.LoadAsync("Prefabs/元气.prefab").asset;
         YuanQiObject YQscript = YQObject.GetComponent<YuanQiObject>();
         YQscript = new YuanQiObject(value);
         Instantiate(YQObject,this.transform);
