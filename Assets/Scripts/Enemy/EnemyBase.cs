@@ -18,6 +18,7 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter, IBuffable
     [SerializeField] protected EnemyManager.AIType aiType;
     [SerializeField] protected Sprite enemyImage;
     [SerializeField] protected Buff dropBuff;
+    [SerializeField] public GameObject YQObject;
 
     [SerializeField] protected float closeAttackRange;
     //Attributes at time
@@ -105,11 +106,20 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter, IBuffable
     /// </summary>
     protected abstract void Action();
 
+    public void DropYuanQi(float value)
+    {
+        //TODO:无法正常工作
+        YQObject = (GameObject) Resources.Load("Prefabs/元气.prefab");
+        YuanQiObject YQscript = YQObject.GetComponent<YuanQiObject>();
+        YQscript = new YuanQiObject(value);
+        Instantiate(YQObject,this.transform);
+    }
     public virtual void Hurt(float value)
     {
         this.yuanQi -= value * defenceRatio;
         if (yuanQi <= 0)
         {
+            DropYuanQi(15.0f);
             Destroy(this.gameObject,3);
         }
     }

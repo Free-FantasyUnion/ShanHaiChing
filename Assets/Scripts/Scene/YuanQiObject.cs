@@ -8,7 +8,7 @@ public class YuanQiObject : MonoBehaviour
     [SerializeField] private float maxSpeed;
     [SerializeField] private float followDistance;
     [SerializeField] private float absorbDistance;
-    private float yuanQiValue;
+    public float yuanQiValue;
     private Player player;
     
 
@@ -18,7 +18,7 @@ public class YuanQiObject : MonoBehaviour
         player = transform.Find("/Player").GetComponent<Player>();
         maxSpeed = 3.0f;
         followDistance = 10.0f;
-        absorbDistance = 2.0f;
+        absorbDistance = 0.5f;
     }
 
     // Update is called once per frame
@@ -37,7 +37,7 @@ public class YuanQiObject : MonoBehaviour
         
     }
     //TODO: 在EnemyBase的OnDestroy()里实例化yuanqiobject
-    YuanQiObject(float value)
+    public YuanQiObject(float value)
     {
         this.yuanQiValue = value;
     }
