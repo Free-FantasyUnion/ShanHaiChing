@@ -20,7 +20,6 @@ public class NPC : MonoBehaviour
         if (Input.GetKeyDown((KeyCode)GameManager.Key.Dialog))
         //TODO : 设置判定范围//貌似已经设置好了
         {
-            print(calcDistance(GameManager.GetInstance().player.transform.position));
             if (calcDistance(GameManager.GetInstance().player.transform.position) <= radius)
             {
                 NPCManager.GetInstance().ReseBonseToNPC(scriptsIndex);
