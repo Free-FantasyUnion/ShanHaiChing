@@ -24,10 +24,9 @@ public class EnemyRushPosition : MonoBehaviour
             var tmp = Instantiate(rushEnemy[i]);
             tmp.GetComponent<EnemyBase>().player = this.player;
             rushEnemy[i].name = this.name + i;
-            // print("pos:" + transform.position + "add" + poss[i] + "to" + (transform.position + poss[i])); 
+            print("pos:" + transform.position + "add" + poss[i] + "to" + (transform.position + poss[i])); 
             rushEnemy[i].transform.position = transform.position + poss[i];
-            var enemyRenderer = rushEnemy[i].GetComponent<SpriteRenderer>();
-            Color color = enemyRenderer.color;
+            print(rushEnemy[i].transform.position);
         }
 
     }
@@ -41,6 +40,7 @@ public class EnemyRushPosition : MonoBehaviour
         if (rushEnemy.Count == 1)
         {
             targetPos.Add(toPlayerPos * radius);
+            // print("rush" + targetPos[0]);
         }
         if (rushEnemy.Count == 2)
         {

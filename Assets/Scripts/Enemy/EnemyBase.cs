@@ -151,7 +151,6 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter
 	}
 	public void DestoryThis()
 	{
-		print("broad");
 		Messenger.Broadcast(GameEvent.ENEMY_DEATH);
 		GameManager.生成元气物体(transform, YuanQiDrop);
 		Destroy(this.gameObject, .1f);
