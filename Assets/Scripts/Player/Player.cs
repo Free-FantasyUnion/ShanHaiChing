@@ -8,7 +8,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     [Header("Basic Attributes")]
     [SerializeField] private float basicAttackValue = 10.0f;
     [SerializeField] private float basicYuanQi = 100.0f;
-    [SerializeField] private float basicYuanQiDrop = 0.75f;
+    [SerializeField] private float basicYuanQiDrop = 0.375f;
     [SerializeField] private float basicDefenceRatio = 0.1f;
     [SerializeField] private float basicSpeed = 1.0f;
     [SerializeField] private float basicColdTime = 0.35f;
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     private float lastAtkTime;
     //Attributes at time
     float attackValue;
-    float yuanQi;
+    public float yuanQi;
     float yuanQiDrop;
     float defenceRatio;
     float coldTime;
@@ -92,6 +92,8 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         GameManager.GetInstance().setPlayerPos(transform.position);
         UIManager.Instance.updateQiBar(this.yuanQi / this.basicYuanQi);
     }
+
+
 
     private void OnEnemyDeath()
     {
@@ -163,7 +165,7 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         if (coldTime <= 0)
         {
             //这个print作为调试用
-            print(GameManager.AttackJudge(judgePoint, attackRadius, 60f, Physics.AllLayers, YuanQi2Attack()));
+            print(GameManager.AttackJudge(judgePoint, attackRadius, 60f, LayerMask.NameToLayer("Enemy"), YuanQi2Attack()));
             coldTime = basicColdTime;
             print(atkTimes);
             MusicManager.PlayMusic(MusicManager.atk[this.atkTimes-1]);
@@ -262,11 +264,6 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
     public void GetYuanQi(float value)
     {
         this.yuanQi += value;
-    }
-
-    public float GetCurrentYuanQiRatio()
-    {
-        return yuanQi / basicYuanQi;
     }
 
 }

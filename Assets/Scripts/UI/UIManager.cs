@@ -80,7 +80,7 @@ public class UIManager : MonoBehaviour
     }
     public void Update()
     {
-        GenkiBar.fillAmount = GameManager.GetInstance().player.GetCurrentYuanQiRatio();
+        //GenkiBar.fillAmount = GameManager.GetInstance().player.GetCurrentYuanQiRatio();
         if (Input.GetKeyDown((KeyCode)GameManager.Key.Pause))
         {
             Pause();

@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         instance.元气实体 = Resources.Load<GameObject>("Prefabs/元气");
     }
 
-    public static bool AttackJudge(Transform point, float attackRadius, float attackAngel, LayerMask attackLayer, float damage)
+    public static bool AttackJudge(Transform point, float attackRadius, float attackAngel, int attackLayer, float damage)
     {
         Collider[] targets = Physics.OverlapSphere(point.position, attackRadius, attackLayer);
         bool tmp = targets.Length != 0;

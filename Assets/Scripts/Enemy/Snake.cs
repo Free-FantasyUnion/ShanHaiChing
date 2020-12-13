@@ -23,6 +23,7 @@ public class Snake : EnemyBase
     {
         var tmp = Instantiate(Bullet, JudgePoint.position, JudgePoint.rotation, null).GetComponent<BulletBase>();
         tmp.player = this.player;
+        tmp.attackValue = this.attackValue * 0.5f;
         //tmp.speed
         //sleep
     }
@@ -118,6 +119,7 @@ public class Snake : EnemyBase
     public override void Hurt(float value)
     {
         this.yuanQi -= value * defenceRatio;
+        Debug.Log(value);
         GenkiBar.fillAmount = yuanQi / basicYuanQi;
         if (yuanQi <= 0&&isAlive)
         {

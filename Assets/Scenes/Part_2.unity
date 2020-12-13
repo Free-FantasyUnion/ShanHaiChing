@@ -931,6 +931,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Wolf
       objectReference: {fileID: 0}
+    - target: {fileID: 8786358780822897011, guid: 5fcdae9f0946a764db1664c750ac2226,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8786358780822897017, guid: 5fcdae9f0946a764db1664c750ac2226,
         type: 3}
       propertyPath: target
@@ -1655,7 +1660,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &795764881
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1791,6 +1796,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy_Snake
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287748247948235909, guid: af1fa94355886bd488f7d9c99eee7468,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af1fa94355886bd488f7d9c99eee7468, type: 3}
@@ -2511,19 +2521,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 693ef8c474206294f85b1770e7f9ef82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  borderLineSceneTwo: 4.19
-  borderLineSceneThree: 27.28
-  Scene2RushPosition:
-  - {fileID: 2071646620}
-  - {fileID: 47733307}
-  - {fileID: 1516699691}
-  Scene3RushPosition: []
+  borderLineScene:
+  - 0
+  - 0
+  - 0
   cameraBorderXPosS:
   - -16.5
   - 13
   - 37
   type: 010000000100000001000000
   maxEnemyAmount: 010000000000000000000000
+  border:
+  - {fileID: 0}
+  - {fileID: 0}
+  endDialog: {fileID: 0}
 --- !u!4 &1192072087
 Transform:
   m_ObjectHideFlags: 0
@@ -2639,6 +2650,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy_Snake
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287748247948235909, guid: af1fa94355886bd488f7d9c99eee7468,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af1fa94355886bd488f7d9c99eee7468, type: 3}
@@ -4348,6 +4364,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Snake (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5287748247948235909, guid: af1fa94355886bd488f7d9c99eee7468,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af1fa94355886bd488f7d9c99eee7468, type: 3}
 --- !u!4 &1532112931 stripped
@@ -4372,7 +4393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1549999823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4494,13 +4515,13 @@ MonoBehaviour:
   enemyImage: {fileID: 0}
   closeAttackRange: 0
   target: {fileID: 1029735306}
-  yuanQiDrop: 0
   warningRadius: 30
   attackRadius: 3
   attackAngle: 60
   dashDistance: 20
   dashTime: 1500
   dashSpeedRatio: 3
+  isInterrupted: 0
   anim: {fileID: 1637353442}
 --- !u!61 &1637353441
 BoxCollider2D:

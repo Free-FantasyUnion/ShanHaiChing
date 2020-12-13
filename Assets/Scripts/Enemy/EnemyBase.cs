@@ -7,23 +7,24 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter
 	//basic Attributes
 	[SerializeField] protected float basicYuanQi;
 	[SerializeField] protected float basicYuanQiDrop;
-	[SerializeField] protected float basicAttackValue;
-	[SerializeField] protected float basicDefenceRatio;
 	[SerializeField] protected float basicSpeed;
-	[SerializeField] protected float velocityX;
-	[SerializeField] protected float velocityY;
+
+	protected float basicAttackValue;
+	protected float basicDefenceRatio;
+	protected float velocityX;
+	protected float velocityY;
 	protected bool isAlive = true;
 	public Player player;
-	[SerializeField] protected EnemyManager.AttackType attackType;
-	[SerializeField] protected EnemyManager.AIType aiType;
-	[SerializeField] protected Sprite enemyImage;
+	protected EnemyManager.AttackType attackType;
+	protected EnemyManager.AIType aiType;
+	protected Sprite enemyImage;
 	//[SerializeField] protected Buff dropBuff;
 
 	[SerializeField] protected float closeAttackRange;
 	//Attributes at time
 	[SerializeField] protected Player target;// default: player
 	protected List<Buff> buffList;
-
+	
 	protected float yuanQi;
 	protected float YuanQiDrop;
 	protected float attackValue;
@@ -47,7 +48,8 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter
 	public void SetBasicFactors()
 	{
 		defenceRatio = (float)(defenceRatio + randomFactor * 0.1);
-		yuanQi = 500 + 200 * randomFactor;
+		basicYuanQi = 500 + 200 * randomFactor;
+		yuanQi = basicYuanQi;
 		YuanQiDrop = yuanQi * 0.06f;
 		attackValue = -3 / 550 * (yuanQi - 600) + 3;
 		this.maxSpeed = this.basicSpeed;
