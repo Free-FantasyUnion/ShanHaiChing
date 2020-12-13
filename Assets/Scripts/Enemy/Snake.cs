@@ -119,7 +119,6 @@ public class Snake : EnemyBase
     public override void Hurt(float value)
     {
         this.yuanQi -= value * defenceRatio;
-        Debug.Log(value);
         GenkiBar.fillAmount = yuanQi / basicYuanQi;
         if (yuanQi <= 0&&isAlive)
         {

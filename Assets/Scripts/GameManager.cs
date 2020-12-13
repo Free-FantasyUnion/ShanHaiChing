@@ -7,93 +7,101 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager instance;
-    public Player player;
-    private GameObject 元气实体;
-    public Vector3 playerPos;
+	private static GameManager instance;
+	public Player player;
+	private GameObject 元气实体;
+	public Vector3 playerPos;
 
 
-    private void Awake()
-    {
-        GameManager.instance = this;
-        instance.player = transform.Find("/Player").GetComponent<Player>();
-        instance.元气实体 = Resources.Load<GameObject>("Prefabs/元气");
-    }
+	private void Awake()
+	{
+		GameManager.instance = this;
+		instance.player = transform.Find("/Player").GetComponent<Player>();
+		instance.元气实体 = Resources.Load<GameObject>("Prefabs/元气");
+	}
 
-    public static bool AttackJudge(Transform point, float attackRadius, float attackAngel, int attackLayer, float damage)
-    {
-        Collider[] targets = Physics.OverlapSphere(point.position, attackRadius, attackLayer);
-        bool tmp = targets.Length != 0;
-        if (tmp)
-        {
-            foreach (Collider target in targets)
-            {
-                //TODO: Check the vector3.right is correct//目前为止未出现错误
-/*                if (Mathf.Abs(CaculateAngel(point.right, target.transform.position - point.position)) < attackAngel)
-                {*/
-                    if (target.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-                    {
-                    //print("Enemy Hurt!");
-                    Wolf tmpWolf = target.gameObject.GetComponent<Wolf>();
-                    if (tmpWolf!=null)
-                    {
-                        tmpWolf.isInterrupted = true;
-                    }
-                        target.GetComponent<EnemyBase>().Hurt(damage);
-                    }
-                    else if (target.gameObject.layer == LayerMask.NameToLayer("Player"))
-                    {
-                        //print("Player Under Attack!");
-                        target.GetComponent<Player>().Hurt(damage);
-                    }
-                
-            }
-        }
+	public static bool AttackJudge(Transform point, float attackRadius, float attackAngel, int attackLayer, float damage)
+	{
+		Collider[] targets = Physics.OverlapSphere(point.position, attackRadius);
+		bool tmp = targets.Length != 0;
+		if (tmp)
+		{
+			foreach (Collider target in targets)
+			{
+				//TODO: Check the vector3.right is correct//目前为止未出现错误
+				/*                if (Mathf.Abs(CaculateAngel(point.right, target.transform.position - point.position)) < attackAngel)
+								{*/
+				if (target.gameObject.layer == LayerMask.NameToLayer("Enemy") && attackLayer == target.gameObject.layer)
+				{
+					//print("Enemy Hurt!");
+					try
+					{
+						Wolf tmpWolf = target.gameObject.GetComponent<Wolf>();
 
-        return tmp;
-    }
+						if (tmpWolf != null)
+						{
+							tmpWolf.isInterrupted = true;
+						}
+						target.GetComponent<EnemyBase>().Hurt(damage);
+					}
+					catch
+					{
+						;
+					}
+				}
+				else if (target.gameObject.layer == LayerMask.NameToLayer("Player") && attackLayer == target.gameObject.layer)
+				{
+					//print("Player Under Attack!");
+					target.GetComponent<Player>().Hurt(damage);
+				}
+				
+			}
+		}
 
-    public void setPlayerPos(Vector3 v)
-    {
-        playerPos = v;
-    }
+		return tmp;
+	}
 
-    /// <summary>
-    /// 计算2个向量的夹角
-    /// </summary>
-    /// <param name="direction"></param>
-    /// <param name="joinedLine"></param>
-    /// <returns></returns>
-    static float CaculateAngel(Vector3 direction, Vector3 joinedLine)
-    {
-        Vector3 tmp = new Vector3(joinedLine.x, 0, joinedLine.z);
-        return Mathf.Acos(Vector3.Dot(direction.normalized, tmp.normalized)) * Mathf.Rad2Deg;
-    }
+	public void setPlayerPos(Vector3 v)
+	{
+		playerPos = v;
+	}
 
-    public static GameManager GetInstance()
-    {
-        return instance;
-    }
+	/// <summary>
+	/// 计算2个向量的夹角
+	/// </summary>
+	/// <param name="direction"></param>
+	/// <param name="joinedLine"></param>
+	/// <returns></returns>
+	static float CaculateAngel(Vector3 direction, Vector3 joinedLine)
+	{
+		Vector3 tmp = new Vector3(joinedLine.x, 0, joinedLine.z);
+		return Mathf.Acos(Vector3.Dot(direction.normalized, tmp.normalized)) * Mathf.Rad2Deg;
+	}
 
-    public static void 生成元气物体(Transform tf, float value)
-    {
-        GameObject tmp= Instantiate(instance.元气实体, tf);
-        tmp.GetComponent<YuanQiObject>().yuanQiValue = value;
-        tmp.GetComponent<YuanQiObject>().player = instance.player;
-    }
+	public static GameManager GetInstance()
+	{
+		return instance;
+	}
 
-    public enum Key
-    {
-        Attack = KeyCode.J,
-        Up = KeyCode.W,
-        Down = KeyCode.S,
-        Left = KeyCode.A,
-        Right = KeyCode.D,
-        // 快速移动未确定
-        QuickMove = KeyCode.LeftShift,
-        Dialog = KeyCode.Space,
-        Pause = KeyCode.Escape
-    }
+	public static void 生成元气物体(Transform tf, float value)
+	{
+		GameObject tmp= Instantiate(instance.元气实体, tf);
+		tmp.GetComponent<YuanQiObject>().yuanQiValue = value;
+		tmp.GetComponent<YuanQiObject>().player = instance.player;
+	}
+
+	public enum Key
+	{
+		Attack = KeyCode.J,
+		Up = KeyCode.W,
+		Down = KeyCode.S,
+		Left = KeyCode.A,
+		Right = KeyCode.D,
+		// 快速移动未确定
+		QuickMove = KeyCode.LeftShift,
+		Dialog = KeyCode.Space,
+		Pause = KeyCode.Escape
+	}
 
 }
 

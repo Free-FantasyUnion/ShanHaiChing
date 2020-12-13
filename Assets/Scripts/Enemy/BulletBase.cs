@@ -47,8 +47,10 @@ public class BulletBase : MonoBehaviour
 
 	private void OnCollisionEnter(Collision other)
 	{
+		Debug.Log("子弹碰撞到了我的游戏主角");
 		if (other.gameObject.tag == "Player")
 		{
+			Debug.Log(attackValue.ToString()+"Player!!!!!!!!");
 			player.Hurt(attackValue);
 		}
 	}

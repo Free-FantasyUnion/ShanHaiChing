@@ -6,20 +6,20 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
 {
 
     [Header("Basic Attributes")]
-    [SerializeField] private float basicAttackValue = 10.0f;
-    [SerializeField] private float basicYuanQi = 100.0f;
-    [SerializeField] private float basicYuanQiDrop = 0.375f;
-    [SerializeField] private float basicDefenceRatio = 0.1f;
-    [SerializeField] private float basicSpeed = 1.0f;
-    [SerializeField] private float basicColdTime = 0.35f;
-    [SerializeField] private float velocityX = 5.0f;
-    [SerializeField] private float velocityZ = 5.0f;
-    [SerializeField] private float buffTime = 5.0f;
+    private float basicAttackValue = 10.0f;
+    private float basicYuanQi = 100.0f;
+    private float basicYuanQiDrop = 0.375f;
+    private float basicDefenceRatio = 0.1f;
+    private float basicSpeed = 8.0f;
+    private float basicColdTime = 0.35f;
+    private float velocityX = 5.0f;
+    private float velocityZ = 5.0f;
+    private float buffTime = 5.0f;
     [Header("攻击")]
-    [SerializeField] private int faceDirection = 1;
-    private float attackRadius = 2f;
-    [SerializeField] private int atkTimes = -1;
-    [SerializeField] private float 连续攻击间隔 = 0.5f;
+    private int faceDirection = 1;
+    private float attackRadius = 10f;
+    private int atkTimes = -1;
+    private float 连续攻击间隔 = 0.5f;
     private Transform judgePoint = null;
     private float lastAtkTime;
     //Attributes at time
@@ -71,7 +71,6 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         this.Move();
         if (Input.GetKeyDown((KeyCode)GameManager.Key.Attack))
         {
-            attackRatio = 0.2f;
             AnimationStateChange();
         }
         this.coldTime -= Time.deltaTime;
@@ -165,9 +164,9 @@ public class Player : MonoBehaviour, ICharacter, IBuffable
         if (coldTime <= 0)
         {
             //这个print作为调试用
-            print(GameManager.AttackJudge(judgePoint, attackRadius, 60f, LayerMask.NameToLayer("Enemy"), YuanQi2Attack()));
+            //print(GameManager.AttackJudge(judgePoint, attackRadius, 60f, 8, YuanQi2Attack()));
+            print(GameManager.AttackJudge(judgePoint, attackRadius, 60f,LayerMask.NameToLayer("Enemy"), YuanQi2Attack()));
             coldTime = basicColdTime;
-            print(atkTimes);
             MusicManager.PlayMusic(MusicManager.atk[this.atkTimes-1]);
         }
     }

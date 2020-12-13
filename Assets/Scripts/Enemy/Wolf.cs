@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
+//TODO: 狼的脚本里面的 元气条需要检查一下
 public class Wolf : EnemyBase
 {
     [SerializeField] float warningRadius;
@@ -12,13 +14,14 @@ public class Wolf : EnemyBase
     [SerializeField] float dashTime = 0.7f;
     [SerializeField] float dashSpeedRatio = 5.0f;
     private Transform JudgePoint;
-
+    private bool dashed = false;
     //temp
     float timer;
     float timer2;
     public bool isInterrupted;
     bool isDashing = false;
     bool dashingRight = false;
+    private Image GenkiBar;
 
     [SerializeField] private Animator anim;
     //Dash Attack
@@ -30,7 +33,11 @@ public class Wolf : EnemyBase
             dashDirection = 1;
         }
         this.transform.Translate(new Vector3(this.maxSpeed * dashSpeedRatio * Time.deltaTime * dashDirection, 0, 0));
-        GameManager.AttackJudge(JudgePoint, this.attackRadius, this.attackAngle, LayerMask.NameToLayer("Player"), this.attackValue);
+        if (Vector3.SqrMagnitude(player.transform.position - this.JudgePoint.transform.position) < 1f&&!dashed)
+        {
+            GameManager.AttackJudge(JudgePoint, this.attackRadius, this.attackAngle, LayerMask.NameToLayer("Player"), this.attackValue);
+            dashed = true;
+        }
     }
 
     protected override void Action()
@@ -86,9 +93,11 @@ public class Wolf : EnemyBase
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         JudgePoint = transform.GetChild(0);
 
+        GenkiBar = transform.Find("Canvas/Image").GetComponent<Image>();
+
     }
 
-    void Update()
+    void Update()//TODO: 狼的冲撞会因为dashed而判定不到
     {
         if (isAlive)
         {
@@ -99,6 +108,7 @@ public class Wolf : EnemyBase
                 {
                     isInterrupted = false;
                     isDashing = false;
+                    dashed = false;
 
                     //TODO:调一下动画
                     anim.SetInteger("state", 1);
@@ -115,11 +125,16 @@ public class Wolf : EnemyBase
                         timer2 = Time.timeSinceLevelLoad;
                         isDashing = false;
                         dashingRight = false;
+                        dashed = false;
                     }
                 }
                 else
                 {
-                    GameManager.AttackJudge(JudgePoint, this.attackRadius, this.attackAngle, LayerMask.NameToLayer("Player"), this.attackValue);
+                    if (Vector3.SqrMagnitude(player.transform.position - this.JudgePoint.transform.position) < 1f && !dashed)
+                    {
+                        GameManager.AttackJudge(JudgePoint, this.attackRadius, this.attackAngle, LayerMask.NameToLayer("Player"), this.attackValue);
+                        dashed = true;
+                    }
                 }
 
             }
@@ -136,6 +151,7 @@ public class Wolf : EnemyBase
     public override void Hurt(float value)
     {
         this.yuanQi -= value * defenceRatio;
+        GenkiBar.fillAmount = yuanQi / basicYuanQi;
         if (yuanQi <= 0 && isAlive)
         {
             isAlive = false;
