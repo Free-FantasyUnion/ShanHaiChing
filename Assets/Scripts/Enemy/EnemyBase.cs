@@ -42,12 +42,14 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter
 	{
 		randomFactor = Random.Range(-0.5f, 0.5f);
 	}
-	protected void SetBasicFactors()
-	{
-		defenceRatio = (float)( defenceRatio + randomFactor * 0.1 );
-		yuanQi = 500 + 200 * randomFactor;
 
-		attackValue = -3 / 550 * ( yuanQi - 600 ) + 3;
+
+	public void SetBasicFactors()
+	{
+		defenceRatio = (float)(defenceRatio + randomFactor * 0.1);
+		yuanQi = 500 + 200 * randomFactor;
+		attackValue = -3 / 550 * (yuanQi - 600) + 3;
+		this.maxSpeed = this.basicSpeed ;
 	}
 
 	//protected void SetYuanqi()
@@ -104,6 +106,7 @@ public abstract class EnemyBase : MonoBehaviour, ICharacter
 	{
 		Vector3 temp = this.gameObject.transform.position - targetPosition;
 		this.gameObject.transform.Translate(Vector3.ClampMagnitude(-temp, this.maxSpeed * Time.deltaTime));
+		print(targetPosition);
 		return temp.x > 0;
 	}
 	protected void MoveAway(Vector3 targetPosition)
