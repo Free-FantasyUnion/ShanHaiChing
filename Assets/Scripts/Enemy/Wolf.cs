@@ -154,7 +154,7 @@ public class Wolf : EnemyBase
         GenkiBar.fillAmount = yuanQi / basicYuanQi;
         if (yuanQi <= 0 && isAlive)
         {
-            Messenger.Broadcast(GameEvent.ENEMY_DEATH);
+            // Messenger.Broadcast(GameEvent.ENEMY_DEATH);
             isAlive = false;
             anim.SetTrigger("die");
             DestoryThis(3);
